@@ -3,34 +3,57 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>login-Home</title>
+<c:import url="/AdminHeader.go" />
 
 <script type="text/javascript">
 
 	
 	function fn_access(){
 		
-		document.listform.action = "accLoginHome.go";
-		document.listform.submit();
+		document.loginHomeVO.action = "accLoginHome.go";
+		document.loginHomeVO.submit();
 		
 	}
 
 
 </script>
-
-</head>
 <body>
 
-	<form  id="listform" name="listform">
-		this is login home
-		</br>
-		</br>
-		</br>
-		<a onclick="javascript:fn_access()">access login</a>
-	</form>
+	<div class="contents_wrap">
+		<form  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
+			<div class="contents">
+				<div class="space10"></div>
+				<div class="search_wrap fl">
+					this is login home
+					</br>
+					</br>
+				</div>
+					</br>
+				<div>
+					<table id="btable" border="1" cellpadding="1" cellspacing="1" class="admin_table tableline width450">
+						<tbody>
+							<tr>
+							
+								<th>id<th>
+								<td> <input type="text" id="id" name="id" value="" > </td>
+							
+							</tr>
+							<tr>
+							
+								<th>pw<th>
+								<td> <input type="password" id="pw" name="pw" value="" > </td>
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				
+				<div class="btngroup mt0">
+					<button class="btn02 fr" onclick="javascript:fn_access();" type="button">access login</button>
+				</div>
+			</div>
+		</form>
+	</div>
 	
 </body>
-</html>

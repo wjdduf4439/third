@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-SUCCESS LOGIN
+
+	<c:if test="${accessTok == 1 }">SUCCESS LOGIN</c:if>
+	<c:if test="${accessTok == 0 }">SUCCESS FAILED</c:if>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.ljy.third.vo;
+package  com.ljy.third.vo;
 
 public class loginHomeVO {
 

@@ -11,6 +11,7 @@ spring:
       prefix: /WEB-INF/view/  # 변경가능
       suffix: .jsp
       
+      
 ---
 
 server:
@@ -25,3 +26,22 @@ spring:
       #prefix의 기준은 /src/main/webapp의 기준이다
       prefix: /WEB-INF/view/  # 변경가능
       suffix: .jsp
+      
+      
+  datasource:
+    url: jdbc:mysql://ljy-db.c60dwjop3klp.ap-northeast-1.rds.amazonaws.com:3306/THIRD_DB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: LJY_Amazon
+    password: dl!wjd2duf
+    
+---
+    
+mybatis:
+  type-aliases-package: com.ljy.third.dao
+  mapper-locations: 
+    - classpath:mybatis/mapper/*.xml
+    
+---
+pageContext:
+  request:
+    contextPath:
