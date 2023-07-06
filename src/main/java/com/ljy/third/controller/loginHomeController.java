@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.ljy.third.service.loginHomeService;
 import com.ljy.third.vo.loginHomeVO;
 
@@ -16,6 +15,8 @@ public class loginHomeController{
 	@Resource(name = "loginHomeService")
 	loginHomeService mloginHomeService;
 	
+
+	
 	@RequestMapping("/loginHome.go")
 	public String getLoginHome(ModelMap map) throws Exception {
 		
@@ -23,6 +24,8 @@ public class loginHomeController{
 		
 		return "loginHome";
 	}
+	
+	
 	
 	
 	@RequestMapping("/accLoginHome.go")
@@ -48,4 +51,8 @@ public class loginHomeController{
 		
 		return "succLogin";
 	}
+	
+	
+	
+	
 }
