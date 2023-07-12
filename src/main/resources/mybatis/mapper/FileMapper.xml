@@ -8,13 +8,13 @@
 
 	<select id="selectFileList" resultType="com.ljy.third.vo.FileVO">
 		SELECT code, fid, fsign, fpath, fname
-		FROM file_table
+		FROM FILE_TABLE
 		WHERE fid = #{atchFileId}
 	</select>
 	
 	<select id="selectAtchFileCount" resultType="int">
 		SELECT COUNT(fid)
-		FROM file_table
+		FROM FILE_TABLE
 		WHERE fid = #{fid}
 		
 		<!-- 
@@ -27,14 +27,14 @@
 	
 	<select id="selectFileSign" resultType="int">
 		SELECT COUNT(fsign)
-		FROM file_table
+		FROM FILE_TABLE
 		WHERE fid = #{atchFileId}
 	</select>
 	
 	<select id="selectFileCodeMax" resultType="com.ljy.third.vo.FileVO">
 	
 		SELECT *
-		FROM file_table
+		FROM FILE_TABLE
 		ORDER BY code DESC LIMIT 1
 	
 	</select>
@@ -42,7 +42,7 @@
 	<select id="selectFileIdMax" resultType="String">
 	
 		SELECT MAX(fid)
-		FROM file_table
+		FROM FILE_TABLE
 	
 	</select>
 	
@@ -58,7 +58,7 @@
 	
 	<update id="updateFileSign">
 	
-		UPDATE	file_table
+		UPDATE	FILE_TABLE
 		SET		fsign = #{fsign}
 		WHERE 	code = #{code}
 	
@@ -66,14 +66,14 @@
 	
 	<delete id="deleteFileMenu">
 	
-		DELETE FROM file_table
+		DELETE FROM FILE_TABLE
 		WHERE code = #{code}
 	
 	</delete>
 	
 	<delete id="deleteFileArray">
 	
-		DELETE FROM file_table
+		DELETE FROM FILE_TABLE
 		WHERE code IN
 		  <foreach item="mDelArray" collection="array" index="i" open="(" separator="," close=")"> 
 		 	#{mDelArray}

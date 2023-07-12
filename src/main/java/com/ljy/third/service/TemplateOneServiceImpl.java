@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -31,7 +33,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 	private BoardDAO mboardDAO;
 	
 	//private String SAVE_PATH =  "C:/sts-bundle/workspace-sts-3.9.4.RELEASE/first/src/main/webapp/resources/image";
-	private String SAVE_PATH =  "C:/upload";
+	private String SAVE_PATH =  "";
 	private String PREFIX_URL =  SAVE_PATH + "/";
 	
 	@Override
@@ -82,7 +84,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 	}
 
 	@Override
-	public void insertTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest ) throws Exception {
+	public void insertTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		// TODO Auto-generated method stub
 		
 		
@@ -116,11 +118,12 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		}
 		
 		
-		//filecode ����
+		//filecode 존재 시
 		
 		if(!templateOneVO.getB_filename().get(0).getOriginalFilename().equals("")){
 			
-			System.out.println("���� ���� + " + templateOneVO.getB_filename().get(0).getOriginalFilename());
+			System.out.println("파일명 + " + templateOneVO.getB_filename().get(0).getOriginalFilename());
+			makedir(req);
 			
 			String f_id;										//atchfileid�� ã�� ����
 			
@@ -178,12 +181,13 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 				fileVO.add(mfileVO);
 				
 			}
-			System.out.println("���ε����� ���ε��");
+			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
 			System.out.println(fileVO.get(0).getFname());
+			System.out.println("-------------------------------------------------------------------");
 		     
 		    mboardDAO.insertFileBoardDAO(fileVO);
 			
@@ -193,7 +197,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 	}
 
 	@Override
-	public void updateTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest ) throws Exception {
+	public void updateTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		
 		
 		//System.out.println("update���� ���ӵ�");
@@ -206,7 +210,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		
 		if(!templateOneVO.getB_filename().get(0).getOriginalFilename().equals("")){
 			
-			//�����ڵ� ���
+			makedir(req);
 				
 			int temp = 0;
 			int tailNumber;
@@ -217,9 +221,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 			
 			FileVO mFileVO = fileDAO.selectFileCodeMax();
 			
-			try { //������ ÷�εǾ� �������� maxcode ����(0�̸� catch)
-				
-				//temp = Integer.parseInt(maxCode.substring(6, maxCode.length())); temp ++;
+			try { 
 				
 				temp = Integer.parseInt(mFileVO.getCode().replace("FILE_", "")); //�̹� ��ϵ� �ڵ��� �ִ밪�� �����ͼ� file_�κ��� ����
 				tailNumber = temp;
@@ -297,12 +299,13 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 				fileVO.add(mfileVO);
 				
 			}
-			System.out.println("���ε����� ���ε��");
+			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
 			System.out.println(fileVO.get(0).getFname());
+			System.out.println("-------------------------------------------------------------------");
 			
 		    mboardDAO.insertFileBoardDAO(fileVO);
 
@@ -361,6 +364,20 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		
 		try {fos = new FileOutputStream(SAVE_PATH + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
 		
+		
+	}
+	
+	//파일을 기입하거나 저장할때 경로는 지정
+	private void makedir( HttpServletRequest req ) {
+		
+		String processerName = System.getProperty("os.name").toLowerCase();
+		System.out.println("processerName : " + processerName); 
+		
+		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/upload"; }
+		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
+		
+		
+		this.PREFIX_URL =  SAVE_PATH + "/";
 		
 	}
 

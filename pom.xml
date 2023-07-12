@@ -93,6 +93,31 @@
 		</dependency>
 		
 		
+		<!--
+		AspectJ는 대표적인 AOP 프레임워크이며, 인터페이스를 구현한 클래스에만 적용됩니다. 만약 인터페이스 구현 없는 순수 클래스의 경우 적용이 되지 않는 점에 유의해야 합니다.
+		그리고 만약 @Aspect 어노테이션을 사용해 Advice 클래스를 구현하고 Pointcut의 표현식을 사용하기 위해서는 추가로 aspectjweaver 라이브러리를 사용해야 합니다. 아래와 같이 의존 설정을 해주면 됩니다.
+		-->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjrt</artifactId>
+		    <version>1.9.7</version>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		
+		<!-- AspectJ가 인터페이스를 구현한 클래스만 프록시를 생성해 사용할 수 있다면, Cglib 라이브러리는 인터페이스 구현과 관계 없이 해당 클래스의 프록시를 생성해 AOP를 구현해줍니다. -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+		
 	</dependencies>
 
 

@@ -91,7 +91,7 @@
     
     		SELECT COLUMN_NAME
 			FROM Information_schema.columns
-			WHERE table_name = 'tb_${siteCode}'
+			WHERE table_name = 'TB_${siteCode}'
 	        
 	        
 	        <if test="fieldNumber != '' and fieldNumber != null">
@@ -134,7 +134,7 @@
 	
 	<update id="insertSiteTable">
 	
-		CREATE TABLE tb_${siteCode} (
+		CREATE TABLE TB_${siteCode} (
 				`code` VARCHAR(20) NOT NULL COMMENT '코드명은 ???',
 				`title` VARCHAR(250) NULL DEFAULT NULL COMMENT '제목',
 				`context` LONGTEXT NULL COMMENT '내용',
@@ -176,7 +176,7 @@
 	</update>
 	
 	<update id="deleteSiteTableDelete">
-			DROP TABLE tb_${siteCode}
+			DROP TABLE TB_${siteCode}
 	</update>
 	
 	<delete id="deleteSiteMenu">

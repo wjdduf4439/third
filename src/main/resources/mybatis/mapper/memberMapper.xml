@@ -35,19 +35,19 @@
     
     <select id="lookFileBoardDAO" resultType="com.ljy.third.vo.FileVO">
 	        SELECT *
-	        FROM file_table
+	        FROM FILE_TABLE
 	        WHERE fid = #{b_file_id}
     </select>
     
     <select id="lookOneFileBoardDAO" resultType="com.ljy.third.vo.FileVO">
 	        SELECT *
-	        FROM file_table
+	        FROM FILE_TABLE
 	        WHERE fid = #{b_file_id} AND fname = #{b_file_name}
     </select>
     
     <select id="lookOneFileBoardDAO2" resultType="com.ljy.third.vo.FileVO">
 	        SELECT *
-	        FROM file_table
+	        FROM FILE_TABLE
 	        WHERE code = #{code}
     </select>
     
@@ -69,7 +69,7 @@
     
     <insert id="insertfileBoardDAO">
     
-    	INSERT INTO file_table(code, fid, fsign, fpath, fname)
+    	INSERT INTO FILE_TABLE(code, fid, fsign, fpath, fname)
     	VALUES
     	
     	<foreach collection="list" item="fileVO" separator=" , " >

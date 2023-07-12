@@ -2,6 +2,8 @@ package com.ljy.third.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -24,9 +26,9 @@ public interface TemplateOneService {
 	
 	public TemplateOneVO selectTableRecordRecent(TemplateOneVO templateOneVO) throws Exception;
 	
-	public void insertTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest ) throws Exception;
+	public void insertTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	
-	public void updateTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest ) throws Exception;
+	public void updateTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	
 	public void deleteTableRecord(TemplateOneVO templateOneVO) throws Exception;
 	

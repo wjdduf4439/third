@@ -10,7 +10,7 @@
 	
 		SELECT		siteCode, title, formCode, templateType, placeRow, placeName, placeWidth
 				
-		FROM		site_table
+		FROM		SITE_TABLE
 		
 		WHERE		siteCode = #{siteCode}
 	

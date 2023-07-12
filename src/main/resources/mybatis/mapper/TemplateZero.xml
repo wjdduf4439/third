@@ -8,7 +8,7 @@
 	<select id="selectTableFieldList" resultType="com.ljy.third.vo.TemplateInfoVO" >
 	
 		SELECT COLUMN_NAME,COLUMN_COMMENT,ORDINAL_POSITION FROM Information_schema.columns
-		WHERE table_name = 'tb_${siteCode}'
+		WHERE table_name = 'TB_${siteCode}'
 		
 		AND ORDINAL_POSITION IN
         <foreach item="item" index="index" collection="fieldNumber"  open="(" close=")"  separator="," >
@@ -88,7 +88,7 @@
 	<select id="maxTableAtchFileId" resultType="String">
 	 
 		SELECT Max(atchFileId)
-		FROM file_table
+		FROM TB_${siteCode}
 		where atchfileid != ""
 		 
 	</select>
@@ -104,7 +104,7 @@
 	<select id="selectTableFileListMax" resultType="String">
 	 
 		SELECT count(code)
-		FROM file_table
+		FROM FILE_TABLE
 		 
 	</select>
 	
@@ -185,7 +185,7 @@
 	<delete id="deleteFileRecord">
 		
 		DELETE FROM
-			file_table
+			FILE_TABLE
 		WHERE fid = #{atchFileId}
 		
 	

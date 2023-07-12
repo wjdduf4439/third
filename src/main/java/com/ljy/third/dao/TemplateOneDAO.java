@@ -44,7 +44,7 @@ public class TemplateOneDAO {
 	
 	public String maxTableAtchFileId(TemplateZeroVO templateZeroVO) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("com.ljy.third.dao.TemplateOne.maxTableAtchFileId", templateZeroVO );
+		return sqlSession.selectOne("com.ljy.third.dao.TemplateOne.maxTableAtchFileId", templateZeroVO ) == null? "0":sqlSession.selectOne("com.ljy.third.dao.TemplateOne.maxTableAtchFileId", templateZeroVO );
 	}
 	
 	public String countTableAtchFileId(TemplateOneVO templateOneVO) {

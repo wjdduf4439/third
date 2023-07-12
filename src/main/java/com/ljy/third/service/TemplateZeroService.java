@@ -2,6 +2,8 @@ package com.ljy.third.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ljy.third.vo.TemplateInfoVO;
@@ -22,9 +24,9 @@ public interface TemplateZeroService {
 	
 	public TemplateZeroVO selectTableRecordRecent(TemplateZeroVO templateZeroVO) throws Exception;
 	
-	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest ) throws Exception;
+	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	
-	public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest ) throws Exception;
+	public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception;
 	

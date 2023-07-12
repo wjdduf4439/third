@@ -30,8 +30,40 @@
 
 <title>header 포함</title>
 
+		<%
+			String sessionpass = "none";
+		
+			
+			
+			//url 추출 후 login화면이면 상단 패널을 지우기
+			String url1 = request.getRequestURL().toString();
+		%>
+		
+		<%
+			if(
+					url1.contains("view/loginHome") == true ||
+					url1.contains("view/failLogin") == true
+			){ }
+			else{
+				
+				//세션 작업 = none시 로그인 페이지로 이동
+				if( null == session ){ sessionpass = "locked"; }
+				else { sessionpass = (String) session.getAttribute("sessionPass"); }
+				
+				System.out.println("sessionpass : " + sessionpass);
+				
+				if("pass".equals(sessionpass) == false){
+					
+					System.out.println("세션 삭제 후 초기화면으로 이동");
+					%> <script>location.replace("/third/loginHome.go");</script> <%
+				}
+				
+		%>
+	
+		
 		<nav id="topMenu">
 				<ul>
+					
 						
 					 	<c:forEach var="form" items="${formList }" varStatus="status1">
 	
@@ -82,5 +114,6 @@
 					 	
 				</ul>
 		</nav>
+		<%} %>
 
 </head>

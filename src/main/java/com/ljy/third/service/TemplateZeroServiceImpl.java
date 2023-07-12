@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +33,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	private BoardDAO mboardDAO;
 	
 	//private String SAVE_PATH =  "C:/sts-bundle/workspace-sts-3.9.4.RELEASE/first/src/main/webapp/resources/image";
-	private String SAVE_PATH =  "C:/upload";
+	private String SAVE_PATH =  "";
 	private String PREFIX_URL =  SAVE_PATH + "/";
 	
 	@Override
@@ -78,7 +79,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	}
 
 	@Override
-	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest ) throws Exception {
+	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -115,7 +116,8 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
 			
-			String f_code;										//atchfileid�� ã�� ����
+			String f_code;	//atchfileid를 담을 변수
+			makedir(req);	//파일이 있다면 파일경로를 먼저 지정
 			
 			try {	f_code = fileDAO.selectFileCodeMax().getCode();	}catch (Exception e) {	f_code = "0";	}
 			
@@ -169,12 +171,13 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				fileVO.add(mfileVO);
 				
 			}
-			System.out.println("���ε����� ���ε��");
+			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
 			System.out.println(fileVO.get(0).getFname());
+			System.out.println("-------------------------------------------------------------------");
 		     
 		     mboardDAO.insertFileBoardDAO(fileVO);
 			
@@ -184,11 +187,11 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	}
 
 	@Override
-	public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest ) throws Exception {
+	public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		
 		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
 			
-			//�����ڵ� ���
+			makedir(req);	//파일이 있다면 파일경로를 먼저 지정
 				
 			int temp = 0;
 			int tailNumber;
@@ -196,7 +199,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			String maxCode = fileDAO.selectFileCodeMax().getCode();
 			System.out.println("maxcode : " + maxCode);
 			
-			if(maxCode.equals("0")) {}
+			
 			
 			
 			try { //������ ÷�εǾ� �������� maxcode ����(0�̸� catch)
@@ -266,7 +269,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	
 				FileVO mfileVO = new FileVO();//����Ʈ�� �ֱ� ���� ��� fileVO
 				
-				originFilename = templateZeroVO.getB_filename().get(i - sign).getOriginalFilename();//������ Ȯ���ڸ� ������ �̸�(���ϸ�)
+				originFilename = templateZeroVO.getB_filename().get(i - sign).getOriginalFilename();
 				writeFile(templateZeroVO.getB_filename().get(i - sign), originFilename);//���ε� ������ ���� ���ε�
 				
 				System.out.println("��ȣ : " + Integer.toString(sign + templateZeroVO.getB_filename().size() - i));
@@ -279,12 +282,13 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				fileVO.add(mfileVO);
 				
 			}
-			System.out.println("���ε����� ���ε��");
+			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
 			System.out.println(fileVO.get(0).getFname());
+			System.out.println("-------------------------------------------------------------------");
 			
 		    mboardDAO.insertFileBoardDAO(fileVO);
 			
@@ -323,6 +327,20 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		try {fos = new FileOutputStream(SAVE_PATH + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
 		
+		
+	}
+	
+	//파일을 기입하거나 저장할때 경로는 지정
+	private void makedir( HttpServletRequest req ) {
+		
+		String processerName = System.getProperty("os.name").toLowerCase();
+		System.out.println("processerName : " + processerName); 
+		
+		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/upload"; }
+		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
+		
+		
+		this.PREFIX_URL =  SAVE_PATH + "/";
 		
 	}
 

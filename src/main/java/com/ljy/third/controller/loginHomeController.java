@@ -1,6 +1,8 @@
 package com.ljy.third.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,18 +20,21 @@ public class loginHomeController{
 
 	
 	@RequestMapping("/loginHome.go")
-	public String getLoginHome(ModelMap map) throws Exception {
+	public String getLoginHome(ModelMap map, HttpServletRequest req) throws Exception { 
+		String resourceSrc = req.getSession().getServletContext().getRealPath("/"); 
+		System.out.println("resourceSrc : " + resourceSrc); 
 		
-		System.out.println("access getLoginHome");
+		String processerName = System.getProperty("os.name").toLowerCase();
+		System.out.println("processerName : " + processerName); 
 		
-		return "loginHome";
+		
+		
+		return "loginHome"; 
 	}
 	
 	
-	
-	
 	@RequestMapping("/accLoginHome.go")
-	public String accLoginHome(ModelMap map, @ModelAttribute("loginHomeVO")loginHomeVO mloginHomeVO ) throws Exception {
+	public String accLoginHome(ModelMap map, @ModelAttribute("loginHomeVO")loginHomeVO mloginHomeVO, HttpServletRequest req) throws Exception {
 		
 		System.out.println("in id : " + mloginHomeVO.getId());
 		System.out.println("in pw : " + mloginHomeVO.getPw());
@@ -40,16 +45,17 @@ public class loginHomeController{
 		System.out.println("regist id : " + registedLoginHomeVO.getId());
 		System.out.println("regist pw : " + registedLoginHomeVO.getPw());
 		
-		map.addAttribute("accessTok","0");
 		if( mloginHomeVO.getId().equals(registedLoginHomeVO.getId()) == true && mloginHomeVO.getPw().equals(registedLoginHomeVO.getPw()) == true ) {
 			
-			map.addAttribute("accessTok","1");
+			HttpSession session = req.getSession();
+			session.setAttribute("id", registedLoginHomeVO.getId());
+			session.setAttribute("sessionPass", "pass");
+			
+			return "succLogin";
 			
 		}
 		
-		
-		
-		return "succLogin";
+		return "failLogin";
 	}
 	
 	
