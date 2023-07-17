@@ -38,7 +38,7 @@ public class TemplateOneController {
 	private FileService fileService;
 	
 	@RequestMapping("/template/templateOneList.go")
-	public String TemplateOneList(@ModelAttribute("searchVO") TemplateOneVO templateOneVO  ,ModelMap map, HttpServletRequest req) throws Exception {
+	public String TemplateOneList(@ModelAttribute("searchVO") TemplateOneVO templateOneVO, ModelMap map, HttpServletRequest req) throws Exception {
 		
 		TemplateInfoVO templateInfoVO =  (TemplateInfoVO) req.getAttribute("templateInfoVO");
 		

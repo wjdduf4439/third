@@ -133,7 +133,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				</tr>
 				<tr>
 					<th> <i class="icono-asterisk"></i>   작성자 id</th>
-					<td colspan="3"><input type="text" name="writerID" id="writerID" class="width500" value="${resultList.writerID }" /></td>
+					<td colspan="3"><input type="text" name="writerID" id="writerID" class="width500" value="${sessionScope.id}" readonly="readonly"  /></td>
 				</tr>
 				<tr>
 					<th>내용</th>

@@ -71,23 +71,27 @@ public class FileController {
 		return "/file/fileDownloadForm";
 	}
 	
+	
 	@RequestMapping(value = "/filedown.go")
-	public String fileDown(String code, ModelMap map) throws Exception {
+	public String fileDown(String code, ModelMap map, HttpServletRequest req) throws Exception {
 		
 		FileVO mfileVO = mBoardService.lookOneFileBoardService(code);
 		
 		File downloadFile = new File(mfileVO.getFpath());
-		File realFileName = new File(mfileVO.getFname());//��¥ ���� �̸����� �ٿ�ε��ϱ� ���� ����
+		File realFileName = new File(mfileVO.getFname());//
 		
-		//�ٿ�ε� �� �ش� path�� ����(���� �̸��� �ƴ�)
-		//�ش� ������ �ٿ�ε�� �ϳ����� ����ǰ� �Ѵ�
 		
 		if(!downloadFile.canRead()) { return "redirect:/mainboard.go"; }
 		
+		/*
 		map.addAttribute("downloadFile", downloadFile);
-		map.addAttribute("realFileName", realFileName);//��¥ ���� �̸����� �ٿ�ε��ϱ� ���� ����
+		map.addAttribute("realFileName", realFileName);//
+		*/
 		
-		return "fileDownloadView";
+		req.setAttribute("realFileName", realFileName);
+		System.out.println("1차 완료 realFileName : " + realFileName);
+		
+		return "forward:/fileDownloadView";
 	}
 	
 	@RequestMapping(value = "/fileDelete.go")
@@ -154,6 +158,10 @@ public class FileController {
 		
 		return ajaxReturn;
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -17,6 +17,8 @@ import com.ljy.third.vo.loginHomeVO;
 //@Aspect
 public class aopExe {
 
+	
+	/*
 	// 시작 전에 실행될 AOP 메소드
 	@Before("within(com.ljy.third.controller..*)")
 	public void beforeMethod() {
@@ -39,7 +41,7 @@ public class aopExe {
 		
 	}
 	
-
+	*/
 	
 	
 }

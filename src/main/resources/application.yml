@@ -2,7 +2,7 @@
 server:
   port: 8081
   servlet:
-    context-path: /  
+    context-path: /
     session:
       timeout: 10 #초단위로 세션을 설정
 
@@ -34,6 +34,10 @@ mybatis:
   type-aliases-package: com.ljy.third.dao
   mapper-locations: 
     - classpath:mybatis/mapper/*.xml
-
-
+    
+    
+#<beans:bean id="fileDownloadView" class="com.first.service.FileDownloadView"/>
+   
+  
+    
   

@@ -58,7 +58,7 @@ public class TemplateInfoController {
 		map.addAttribute("templateInfoVO", templateInfoVO);
 		
 		//System.out.println("templatetype : " + tableName.getTemplateType());
-		System.out.println("info���� ���� �ε��� : " + templateInfoVO.getPageIndex());
+		System.out.println("info페이지 인덱스 : " + templateInfoVO.getPageIndex());
 		
 		if(tableName.getTemplateType().equals("0")){
 			

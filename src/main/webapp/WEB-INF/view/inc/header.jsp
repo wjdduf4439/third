@@ -32,8 +32,6 @@
 
 		<%
 			String sessionpass = "none";
-		
-			
 			
 			//url 추출 후 login화면이면 상단 패널을 지우기
 			String url1 = request.getRequestURL().toString();
@@ -43,14 +41,13 @@
 			if(
 					url1.contains("view/loginHome") == true ||
 					url1.contains("view/failLogin") == true
-			){ }
-			else{
+			){ }else{
 				
 				//세션 작업 = none시 로그인 페이지로 이동
 				if( null == session ){ sessionpass = "locked"; }
 				else { sessionpass = (String) session.getAttribute("sessionPass"); }
 				
-				System.out.println("sessionpass : " + sessionpass);
+				System.out.println("sessionpass in header : " + sessionpass);
 				
 				if("pass".equals(sessionpass) == false){
 					

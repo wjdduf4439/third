@@ -1,5 +1,7 @@
 package com.ljy.third.vo;
 
+import org.springframework.web.util.HtmlUtils;
+
 public class VOobject {
 
 	/** ?��?���?�??�� */
@@ -83,6 +85,12 @@ public class VOobject {
 		this.searchCnd3 = searchCnd3;
 	}
 	public String getSearchWrd() {
+		
+		//xssfilter가 vo에 맞춰줘야 하는 부분이 많고 부모 클래스를 호출해서 처리해야 하는 일이 많아 생성자로 자동으로 searchWrd의 값을 설정
+    	//System.out.println("VOobject 변형 이전 검색어 " + this.searchWrd); 
+    	this.searchWrd = HtmlUtils.htmlEscape(this.searchWrd);
+    	//System.out.println("VOobject 변환 이후 검색어" + this.searchWrd);
+		
 		return searchWrd;
 	}
 	public void setSearchWrd(String searchWrd) {

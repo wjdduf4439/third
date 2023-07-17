@@ -1,33 +1,12 @@
 package com.ljy.third.service;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUpgradeHandler;
-import javax.servlet.http.Part;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,6 +60,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoardService(BoardVO mboardVO, HttpServletRequest req) throws Exception {
 		
+		makedir(req);
+		
 		BoardVO newboardVO = mboardDAO.oneBoardDAO(mboardVO);//code����� ���� vo����
 		int newcode = newboardVO.getB_code();
 		mboardVO.setB_code(newcode+1);
@@ -101,7 +82,7 @@ public class BoardServiceImpl implements BoardService {
 				writeFile(mboardVO.getB_filename().get(i), originFilename, req);//���ε� ������ ���� ���ε�
 				
 				mfileVO.setFid(mboardVO.getB_file_id());
-				mfileVO.setFsign(i); //������ ����
+				mfileVO.setFsign(i); 
 				mfileVO.setFpath( PREFIX_URL + originFilename); //������ ��� + ������ �̸����� �������ϰ�� ����
 				mfileVO.setFname(originFilename); //������ �̸�
 				
@@ -130,10 +111,24 @@ public class BoardServiceImpl implements BoardService {
 	
 	//file의 데이터를 기입하고 실제 디렉터리에 파일을 넣음
 	private void writeFile(MultipartFile b_filename, String saveFileName, HttpServletRequest req) throws IOException {
-		
+		makedir(req);
 		byte[] data = b_filename.getBytes();
 		FileOutputStream fos = new FileOutputStream(SAVE_PATH + "/" + saveFileName);
 		fos.write(data); fos.close();
+		
+	}
+	
+	//파일을 기입하거나 저장할때 경로는 지정
+	private void makedir( HttpServletRequest req ) {
+		
+		String processerName = System.getProperty("os.name").toLowerCase();
+		System.out.println("processerName : " + processerName); 
+		
+		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/upload"; }
+		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
+		
+		
+		this.PREFIX_URL =  SAVE_PATH + "/";
 		
 	}
 
