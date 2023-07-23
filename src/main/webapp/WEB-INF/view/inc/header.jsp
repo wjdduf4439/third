@@ -67,8 +67,11 @@
 											</ol>
 										
 									</c:forEach>
+						
+									
 							</ul>
 						</c:forEach>	
+						<li><a class="menuLink" href=<c:url value="/loginHome.go"/>>초기 화면</a></li>
 						
 						<form id="userSitefrm" name="userSitefrm" method="post">
 

@@ -44,12 +44,12 @@
 						</tbody>
 					</table>
 				</div>
-					로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
-					면접을 할 기회가 생기면 관리자용 게시판 기능을 보여드리겠습니다.
-				
 				<div class="btngroup mt0">
 					<button class="btn02 fl" onclick="javascript:fn_access();" type="button">access login</button>
 				</div>
+					로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
+					면접을 할 기회가 생기면 관리자용 게시판 기능을 보여드리겠습니다.
+				
 			</div>
 		</form>
 	</div>
