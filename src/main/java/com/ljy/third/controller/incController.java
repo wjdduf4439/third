@@ -22,7 +22,10 @@ public class incController {
 	@RequestMapping(value = "/AdminHeader.go")
 	public String header(ModelMap map, FormMenuVO formMenuVO) throws Exception {
 		
+		
 		List<FormMenuVO> formList = formService.selectFormMenuList(formMenuVO);
+		//System.out.println("form의 사이즈 갯수 : " + formList.size() );
+		
 		
 		//FORM_TABLE의 정보 주입
 		map.addAttribute("formList", formList);

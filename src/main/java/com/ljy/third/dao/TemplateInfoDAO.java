@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.TemplateInfoVO;
+import com.ljy.third.vo.TemplateViewInfoVO;
 
 @Repository("TemplateInfoDAO")
 public class TemplateInfoDAO {
@@ -23,6 +24,11 @@ public class TemplateInfoDAO {
 	public TemplateInfoVO selectTableName(TemplateInfoVO templateInfoVO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.ljy.third.dao.TemplateInfo.selectTableName", templateInfoVO );
+	}
+	
+	public TemplateViewInfoVO selectTableName(TemplateViewInfoVO templateViewInfoVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.ljy.third.dao.TemplateInfo.selectTableName_View", templateViewInfoVO );
 	}
 
 	public List<?> selectTableFieldList(TemplateInfoVO templateInfoVO) throws Exception {

@@ -71,6 +71,25 @@ public class FileController {
 		return "/file/fileDownloadForm";
 	}
 	
+	@RequestMapping(value = "/file/fileViewAdmin.go")
+	public String fileViewDownloadForm(FileVO fileVO, @RequestParam String atchFileId, ModelMap map) throws Exception {
+		
+		try {
+			
+			List<FileVO> fileList = fileService.selectFileMenuList(atchFileId);
+			
+			map.addAttribute("fileList", fileList);
+			
+			
+			return "/file/fileViewDownloadForm";
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "/file/fileViewDownloadForm";
+	}
+	
 	
 	@RequestMapping(value = "/filedown.go")
 	public String fileDown(String code, ModelMap map, HttpServletRequest req) throws Exception {

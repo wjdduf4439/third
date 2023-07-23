@@ -13,7 +13,7 @@ public class PageSet {
 
 	public PageSet(int mcurrPage, int mdbCount, int RecordCountPerPage) {
 		
-		this.currPage = mcurrPage;
+		this.currPage = mcurrPage; //System.out.println("페이지 이동 시 생성되는 pageset의 페이지 번호 : " + this.currPage);
 		this.dbCount = mdbCount;
 		this.RecordCountPerPage = RecordCountPerPage;
 	}

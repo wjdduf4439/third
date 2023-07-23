@@ -9,22 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.service.TemplateInfoService;
 import com.ljy.third.vo.TemplateInfoVO;
+import com.ljy.third.vo.TemplateViewInfoVO;
 
 @Controller
 public class TemplateInfoController {
 
 	@Resource(name ="TemplateInfoService")
 	private TemplateInfoService templateInfoService; //�ش� ���� ���� ����
-	
-	public static void main( String[] args ) {
-        System.out.println( "Hello World!" );
-        
-        ModelMap map = new ModelMap();
-        
-        TemplateInfoController mtemplate = new TemplateInfoController();
-        TemplateInfoVO mtemplateInfoVO = new TemplateInfoVO();
-        
-    }
 	
 	
 	@RequestMapping("/template/templateInfo.go")
@@ -71,6 +62,44 @@ public class TemplateInfoController {
 		}  
 		
 		return "templateZero/templateZeroMenu";
+	}
+	
+	
+	@RequestMapping("/template/templeteViewInfo.go")
+	public String templeteViewInfo(@ModelAttribute("searchVO") TemplateViewInfoVO templateViewInfoVO ,ModelMap map) throws Exception {
+	
+		String[] fieldNumber;	//������ �ʵ��ȣ �����ϴ� ����
+		String[] fieldName;		//������ �ʵ���� �����ϴ� ����
+		String[] fieldWidth = {"50"};	//������ �ʵ�ʺ� �����ϴ� ����
+		
+		TemplateViewInfoVO tableName = templateInfoService.selectTableName(templateViewInfoVO);
+		templateViewInfoVO.setSiteCode(tableName.getSiteCode());
+		templateViewInfoVO.setTitle(tableName.getTitle());
+		
+		fieldNumber = tableName.getPlaceRow().toString().split(",");//������ �ʵ���� �����ϴ� ����
+		templateViewInfoVO.setFieldNumber(fieldNumber);//�迭�� ��ȯ �� vo�� ����
+		
+		fieldName = tableName.getPlaceName().toString().split(",");//������ �ʵ���� �����ϴ� ����
+		templateViewInfoVO.setFieldName(fieldName);//�迭�� ��ȯ �� vo�� ����
+		
+		try { //�� �Խ��� ������ �Խ����� width�ڷᰡ �ʿ� ������ ����ó�� ����
+			
+			fieldWidth = tableName.getPlaceWidth().toString().split(",");//������ �ʵ�ʺ� �����ϴ� ����
+			
+		}catch(NullPointerException e) {
+			
+		}
+		templateViewInfoVO.setFieldWidth(fieldWidth);//�迭�� ��ȯ �� vo�� ����
+		map.addAttribute("templateViewInfoVO", templateViewInfoVO);
+		
+		if(tableName.getTemplateType().equals("0")){
+			
+			return "forward:/template/templateZeroViewList.go";
+			
+		}
+	
+		return "userView/templateViewMenu";
+	
 	}
 	
 }

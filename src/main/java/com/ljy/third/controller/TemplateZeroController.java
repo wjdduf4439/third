@@ -37,6 +37,7 @@ public class TemplateZeroController {
 		int countList = templateZeroService.selectTableRecordListCount(templateInfoVO);// ������ �Խ����� �Խù��� ���� ���� �� �÷� ���ϱ�
 		
 		PageSet paging = new PageSet(templateZeroVO.getPageIndex(), countList, templateZeroVO.getRecordCountPerPage());
+		//현재 페이징을 선언하면 currpage가 1인 상태에서 전달받을 경우, 1에서 더 늘어나는 현상이 보임
 		templateZeroVO = (TemplateZeroVO) paging.recordSet(templateZeroVO);// ���ڵ� ��ġ �Ϸ� �޼ҵ�
 		
 		List<TemplateInfoVO> fieldList = templateZeroService.selectTableFieldList(templateInfoVO);

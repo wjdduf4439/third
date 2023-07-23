@@ -19,20 +19,14 @@
 	function fn_list(searchCnd) {
 		//페이지 선택
 		document.frm.pageIndex.value = searchCnd;
-		document.frm.action = '<c:url value="/template/templateInfo.go"/>';
+		document.frm.action = '<c:url value="/template/templeteViewInfo.go"/>';
 		document.frm.submit();
 	}
 	
-	function fn_write(){
-
-		document.frm.action = '<c:url value="/template/templateZeroWrite.go"/>';
-		document.frm.submit();
-	}
-	
-	function fn_update(code){
+	function fn_view(code){
 		
 		document.frm.code.value = code ;
-		document.frm.action = '<c:url value="/template/templateZeroWrite.go"/>';
+		document.frm.action = '<c:url value="/template/templateZeroViewWrite.go"/>';
 		document.frm.submit();
 		
 	}
@@ -42,7 +36,7 @@
 <div class="contents_wrap">
 		
 		<form name="frm" method="post">
-			<input type="hidden" name="siteCode" value="${templateInfoVO.siteCode}" />
+			<input type="hidden" name="siteCode" value="${templateViewInfoVO.siteCode}" />
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex}" />
 			<input type="hidden" name="pageUnit" value="${searchVO.pageUnit}"/>
 			<!-- 검색해서 온게 아니라 searchVO로 페이지를 활용하지 않음 -->
@@ -92,7 +86,7 @@
 							<c:if test="${ not empty noticeList }">
 								<c:out value="${fn:length(noticeList)}"/><c:out value="${noticeList[0].code}"/> 
 								<c:forEach var="notice" items="${noticeList }" varStatus="status1">
-									<tr onclick="javascript:fn_update('${notice.code}')">
+									<tr onclick="javascript:fn_view('${notice.code}')">
 										<td> [공지] </td>
 										<c:forEach var="notice2" items="${fieldList }" varStatus="status2">
 											<c:if test="${notice2.ordinal_Position == 2 }"><td>${notice.title}</td></c:if>
@@ -109,7 +103,7 @@
 							</c:if>
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
-								<tr onclick="javascript:fn_update('${result.code}')">
+								<tr onclick="javascript:fn_view('${result.code}')">
 									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
 									<c:forEach var="result2" items="${fieldList }" varStatus="status2">
 										<c:if test="${result2.ordinal_Position == 2 }"><td>${result.title}</td></c:if>
@@ -140,9 +134,6 @@
 							<c:out value="${paging.pageList }" escapeXml="false"/>
 						</ul>
 					</div>
-				</div>
-				<div class="btngroup mt0">
-					<button class="btn02 fr" onclick="javascript:fn_write();" type="button">등록</button>
 				</div>
 			</div>
 		</form>

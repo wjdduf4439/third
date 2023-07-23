@@ -46,38 +46,6 @@ function fn_validate(){
 	return true;
 }
 
-function fn_insert(){
-	
-	if(fn_validate() == false) { return;}
-	
-	if (!confirm("등록하시겠습니까?")) { return; }
-	
-	fn_pageReset();
-	
-	if($("input:checkbox[name=noticeSwitchBox]").is(":checked") == true){ $("#noticeSwitch").val("1"); }else{ $("#noticeSwitch").val("0"); }
-	
-	<c:if test="${empty resultList}">
-		document.frm.action = '<c:url value="/template/templateZeroInsert.go"/>';
-	</c:if>
-	<c:if test="${not empty resultList}">
-		document.frm.action = '<c:url value="/template/templateZeroUpdate.go"/>';
-	</c:if>
-	
-	document.frm.submit();
-	
-}
-
-function fn_delete(){
-	
-	if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
-	
-	fn_pageReset();
-	
-	document.frm.action = '<c:url value="/template/templateZeroDelete.go"/>';
-	document.frm.submit();
-	
-}
-
 function fn_back(){
 	
 	document.frm.action = '<c:url value="/template/templateInfo.go"/>';
@@ -118,43 +86,29 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				</colgroup>
 				
 				<tr>
-					<th> <i class="icono-asterisk"></i>   제목</th>
-					<td><input type="text" name="title" id="title" class="width500" value="${resultList.title }"/></td>
-					<th>공지여부확인</th>
-					<td >
-						<input type='checkbox' id='noticeSwitchBox' name='noticeSwitchBox' value='1' <c:out value="${resultList.noticeSwitch == '1' ? 'checked' : ''}"/> >
-					</td>
+					<th>제목</th>
+					<td colspan="3">${resultList.title }</td>
 				</tr>
 				<tr>
-					<th> <i class="icono-asterisk"></i>   작성자 이름</th>
-					<td colspan="3">
-						<input type="text" name="frstRegistNm" id="frstRegistNm" value="관리자" readonly="readonly"  />
-						<!--  <input type="text" name="frstRegistNm" id="frstRegistNm" value="${resultList.frstRegistNm }"value="관리자" readonly="readonly"  /> --> 
-					</td>
+					<th>작성자 이름</th>
+					<td colspan="3"> ${resultList.frstRegistNm } </td>
 				</tr>
 				<tr>
-					<th> <i class="icono-asterisk"></i>   작성자 id</th>
-					<td colspan="3"><input type="text" name="writerID" id="writerID" class="width500" value="${sessionScope.id}" readonly="readonly"  /></td>
+					<th>작성자 id</th>
+					<td colspan="3">${resultList.writerID }</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="3"><input type="text" name="contexteditor" id="contexteditor" class="width800" value="${resultList.context }" /></td>
+					<td colspan="3">${resultList.context }</td>
 				</tr>
 				
-				<c:import url="/file/fileAdmin.go" charEncoding="utf-8">        
+				<c:import url="/file/fileViewAdmin.go" charEncoding="utf-8">        
 					<c:param name="atchFileId" value="${resultList.atchFileId}" />
 				</c:import>
 			
 			</table>
 
 		</form>
-		
-		<div class="btngroup mt0">
-			<button class="btn03 fl" onclick="javascript:fn_back();" type="button">취소</button>
-			<c:if test="${empty resultList }"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">등록</button> </c:if>
-			<c:if test="${not empty resultList}"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">수정</button> </c:if>
-			<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
-		</div>
 		</div>
 
 </div>

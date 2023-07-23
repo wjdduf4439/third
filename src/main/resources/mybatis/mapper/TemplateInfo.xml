@@ -15,6 +15,16 @@
 		WHERE		siteCode = #{siteCode}
 	
 	</select>
+	
+	<select id="selectTableName_View"  resultType="com.ljy.third.vo.TemplateViewInfoVO">
+	
+		SELECT		siteCode, title, formCode, templateType, placeRow, placeName, placeWidth
+				
+		FROM		SITE_TABLE
+		
+		WHERE		siteCode = #{siteCode}
+	
+	</select>
 
 
 </mapper>
