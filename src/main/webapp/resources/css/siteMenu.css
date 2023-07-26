@@ -18,8 +18,22 @@ i {position:relative !important; bottom: 4px !important;}
 
 input[type="text"], input[type="password"], input[type="number"], input[type="email"]{ font-family:'Noto Sans KR', san-serif; font-size:1.0rem; letter-spacing:-0.2px; padding:0 8px; height:34px; border: 1px solid #c8c8c8 !important; background: #fff }
 		
-.contents_wrap { width:96%; max-width: 1840px; margin:0 auto; background:#fff; margin-top:30px; height:auto; padding-bottom:30px; }
+.contents_align_div{ width:96%; max-width: 1840px; float:left; margin:0 auto; height:350px;  } 
+		
+.contents_wrap { width:96%; max-width: 1840px; margin:50px auto; background:#fff; margin-top:30px; height:auto; padding-bottom:30px; }
 .contents_wrap:after {content:"."; display:block; height:0; clear:both; visibility:hidden;}
+
+.contents_wrap_t1 { width:45%; max-width: 900px; min-height:350px; margin-left: 50px; background:#fff; margin-top:30px; padding-bottom:30px; border-style:solid; border-color:black; border-radius:5px; }
+.contents_wrap_t1:after {content:"."; display:block; clear:both; visibility:hidden;}
+.contents_wrap_t2 { 
+	width:45%; max-width: 900px; height:350px; min-height:350px; background:#fff; margin-top:30px; height:auto; padding:25px; float:right; border-style:solid; border-color:black; border-radius:5px;
+ 	 }
+.contents_wrap_t2:after {content:"."; display:block; clear:both; visibility:hidden;}
+.contents_wrap_t3 { 
+						width:96%; max-width: 1680px; height:350px; min-height:350px; background:#fff; margin:50px; height:auto; padding:45px; float:right; border-style:solid; border-color:black; border-radius:20px;
+						position:absolute; top:450px;
+ 					}
+.contents_wrap_t3:after {content:"."; display:block; clear:both; visibility:hidden;}
 
 .contents { width:94%; height:auto; min-height:670px; clear:both;  background:#fff; margin:0 auto; }
 .contents h3 { font-size:1.5rem; margin:20px 0 10px 0; clear:both; padding-top: 10px; padding-left:26px; letter-spacing:-0.5px; }
@@ -28,6 +42,9 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 .contents h6 i { color:#6dc33c; }
 .contents .content_txt { font-size:1.1rem; line-height:1.6; margin:20px 0 0 20px; }
 .contents .content_txt02 { font-size:1.6rem; line-height:1.7; margin:20px 0 0 0; }
+
+
+.contents_login { width:94%; min-height:350px; clear:both;  background:#fff; margin:0 auto; }
 
 .scrollHidden {height:100%; min-height:100%; overflow:hidden !important; touch-action:none;}
 
@@ -324,6 +341,96 @@ table tbody tr td .btngroup { margin:0 !important; }
 .width95p { width:95% !important;}
 .width98p { width:98% !important;}
 .width100p { width:100% !important;}
+
+/* 가로사이즈 (테이블 col class로 사용 필요할 경우 class 추가) */ 
+.height30 { height:30px !important;}
+.height40 { height:40px !important;}
+.height50 { height:50px !important;}
+.height55 { height:55px !important;}
+.height60 { height:60px !important;}
+.height61 { height:61px !important;}
+.height70 { height:70px !important;}
+.height80 { height:80px !important;}
+.height85 { height:85px !important;}
+.height90 { height:90px !important;}
+.height100 { height:100px !important;}
+.height110 { height:110px !important;}
+.height120 { height:120px !important;}
+.height130 { height:130px !important;}
+.height140 { height:140px !important;}
+.height150 { height:150px !important;}
+.height160 { height:160px !important;}
+.height170 { height:170px !important;}
+.height180 { height:180px !important;}
+.height190 { height:190px !important;}
+.height194 { height:194px !important;}
+.height200 { height:200px !important;}
+.height210 { height:210px !important;}
+.height220 { height:220px !important;}
+.height230 { height:230px !important;}
+.height240 { height:240px !important;}
+.height250 { height:250px !important;}
+.height260 { height:260px !important;}
+.height270 { height:270px !important;}
+.height280 { height:280px !important;}
+.height290 { height:290px !important;}
+.height300 { height:300px !important;}
+.height310 { height:310px !important;}
+.height315 { height:315px !important;}
+.height320 { height:320px !important;}
+.height330 { height:330px !important;}
+.height340 { height:340px !important;}
+.height350 { height:350px !important;}
+.height360 { height:360px !important;}
+.height370 { height:370px !important;}
+.height380 { height:380px !important;}
+.height390 { height:390px !important;}
+.height400 { height:400px !important;}
+.height450 { height:450px !important;}
+.height500 { height:500px !important;}
+.height507 { height:507px !important;}
+.height520 { height:520px !important;}
+.height530 { height:530px !important;}
+.height550 { height:550px !important;}
+.height566 { height:566px !important;}
+.height570 { height:570px !important;}
+.height573 { height:573px !important;}
+.height580 { height:580px !important;}
+.height600 { height:600px !important;}
+.height650 { height:650px !important;}
+.height700 { height:700px !important;}
+.height790 { height:790px !important;}
+.height797 { height:797px !important;}
+.height800 { height:800px !important;}
+.height900 { height:900px !important;}
+.height930 { height:930px !important;}
+.height950 { height:950px !important;}
+.height1000 { height:1000px !important;}
+.heightauto { height:auto !important;}
+.height5p { height:5% !important;}
+.height10p { height:10% !important;}
+.height15p { height:15% !important;}
+.height20p { height:20% !important;}
+.height25p { height:25% !important;}
+.height30p { height:30% !important;}
+.height35p { height:35% !important;}
+.height38p { height:38% !important;}
+.height40p { height:40% !important;}
+.height45p { height:45% !important;}
+.height48p { height:48% !important;}
+.height49p { height:49% !important;}
+.height50p { height:50% !important;}
+.height55p { height:55% !important;}
+.height60p { height:60% !important;}
+.height65p { height:65% !important;}
+.height70p { height:70% !important;}
+.height75p { height:75% !important;}
+.height80p { height:80% !important;}
+.height85p { height:85% !important;}
+.height90p { height:90% !important;}
+.height95p { height:95% !important;}
+.height98p { height:98% !important;}
+.height100p { height:100% !important;}
 
 /* color */
 .color01 { color:#22a824 !important; } /* green */

@@ -19,9 +19,10 @@
 </script>
 <body>
 
-	<div class="contents_wrap">
-		<form  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
-			<div class="contents">
+<div class="contents_align_div">
+	<span class="contents_wrap_t1 fl">
+		<form class=""  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
+			<div class="contents_login">
 				<div class="space10"></div>
 					포트폴리오 : 이정열
 					로그인
@@ -47,11 +48,31 @@
 				<div class="btngroup mt0">
 					<button class="btn02 fl" onclick="javascript:fn_access();" type="button">access login</button>
 				</div>
-					로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
-					면접을 할 기회가 생기면 관리자용 게시판 기능을 보여드리겠습니다.
 				
 			</div>
+			
+			
 		</form>
-	</div>
+	</span>
+	<span class="contents_wrap_t2">
+			
+			안녕하십니까. 백엔드 웹 개발자를 지향하는 이정열입니다.
+			</br>
+			로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
+			</br>
+			면접을 할 기회가 생기면 관리자용 게시판 기능을 보여드리겠습니다. 잘부탁드립니다.
+	</span>
+</div>	
+
+<div class="contents_wrap_t3">
+
+	<div>ABOUT ME</div>
+	<span class="space10"></span>
+	</br><span>주소 : </span> <span> 대구 중구</span>
+	</br><span>tel : </span> <span> 010 - 2933 - 4813</span>
+	</br><span>email : </span><span>wjdduf4439@gmail.com</span>
+	</br><span>skill : </span><span>spring, php, java, c++</span>
+
+</div>
 	
 </body>

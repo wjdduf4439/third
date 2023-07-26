@@ -33,6 +33,7 @@
 
 </script>
 
+<div class="fl">
 <div class="contents_wrap">
 		
 		<form name="frm" method="post">
@@ -139,6 +140,7 @@
 		</form>
 
 </div>
+
 <%
 
 
