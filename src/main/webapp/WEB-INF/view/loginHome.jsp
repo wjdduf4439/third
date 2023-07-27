@@ -66,12 +66,30 @@
 
 <div class="contents_wrap_t3">
 
-	<div>ABOUT ME</div>
+	<div class="font_about_me">
+		<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>
+		ABOUT ME
+	</div>
 	<span class="space10"></span>
-	</br><span>주소 : </span> <span> 대구 중구</span>
-	</br><span>tel : </span> <span> 010 - 2933 - 4813</span>
-	</br><span>email : </span><span>wjdduf4439@gmail.com</span>
-	</br><span>skill : </span><span>spring, php, java, c++</span>
+	</br><span class="space10"></span></br>
+	
+		<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-internet-181526.png"/>
+		<span>주소 : </span> <span> 대구 중구</span>
+		
+	</br><span class="space10"></span></br>
+	
+		<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-smartphone-181516.png"/>
+		<span>tel : </span> <span> 010 - 2933 - 4813</span>
+		
+	</br><span class="space10"></span></br>
+	
+		<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-email-181535.png"/>
+		<span>email : </span><span>wjdduf4439@gmail.com</span>
+		
+	</br><span class="space10"></span></br>
+	
+		<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-link-181531.png"/>
+		<span>skill : </span><span>spring, php, java, c++</span>
 
 </div>
 	

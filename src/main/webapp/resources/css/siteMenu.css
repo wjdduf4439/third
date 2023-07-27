@@ -198,6 +198,11 @@ td.textleft > i.fa { margin-left:0 !important; margin-right:5px; vertical-align:
 .tablewrite td p.stat_write { font-size:1.1rem; line-height:1.6; }
 .tablewrite td p.stat_write i { margin-left:0; font-size:1.2rem; }
 
+
+.font_about_me { font-weight: bold; font-size: 35px; }
+.font_about_me_content { font-weight: bold; font-size: 18px; }
+
+
 /* pagination */
 .pageNum {/* width: 100%;*/ text-align: center; }
 

@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icono.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/siteMenu.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/headMenu.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/iconpack.css" />
 
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
