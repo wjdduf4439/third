@@ -28,7 +28,7 @@
 					로그인
 					</br>
 				<div>
-					<table id="btable" border="1" cellpadding="1" cellspacing="1" class="admin_table tableline width450">
+					<table id="btable" border="1" cellpadding="1" cellspacing="1" class="admin_table tableline width100p">
 						<tbody>
 							<tr>
 							
@@ -54,7 +54,7 @@
 			
 		</form>
 	</span>
-	<span class="contents_wrap_t2">
+	<span class="contents_wrap_t2 hidden-xs">
 			
 			안녕하십니까. 백엔드 웹 개발자를 지향하는 이정열입니다.
 			</br>
@@ -64,7 +64,7 @@
 	</span>
 </div>	
 
-<div class="contents_wrap_t3">
+<div class="contents_wrap_t3 width100p">
 
 	<div class="font_about_me">
 		<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>
