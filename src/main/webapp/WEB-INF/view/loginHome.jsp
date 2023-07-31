@@ -132,6 +132,11 @@
 		
 			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-link-181531.png"/>
 			<span>skill : </span><span>spring, php, java, c++</span>
+			
+		</br><span class="space10"></span></br>
+		
+			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-settings-181550.png"/>
+			<span>프로젝트 github : </span><a href="https://github.com/wjdduf4439/third">바로가기</a>			
 	
 	</div>
 </div>
