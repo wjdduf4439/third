@@ -22,7 +22,8 @@
 		   
 		   if(windowWidth < 1170) {
 			//창 가로 크기가 1170 미만일 경우
-			   $( ".contents_wrap_t1" ).css( "width", "95%" );
+			   $( ".contents_wrap_t1" ).css( "width", "92.5%" );
+			   
 			   $( ".contents_wrap_t2" ).hide();
 			   $( ".contents_align_div_mv" ).show();
 			} else {
@@ -45,8 +46,8 @@
 </script>
 <body>
 
-<div class="contents_align_div he">
-	<div class="contents_wrap_t1 fl">
+<div class="contents_align_div he inline-flex">
+	<div class="contents_wrap_t1">
 		<form class=""  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
 			<div class="contents_login">
 				<div class="space10"></div>
@@ -54,18 +55,18 @@
 					로그인
 					</br>
 				<div>
-					<table id="btable" border="1" cellpadding="1" cellspacing="1" class="admin_table tableline">
+					<table id="btable" border="1" cellpadding="1" cellspacing="1" class="admin_table tableline_login">
 						<tbody>
 							<tr>
 							
 								<th>id<th>
-								<td> <input type="text" id="id" name="id" value="" > </td>
+								<td> <input type="text" id="id" name="id" value="" class="width90p" > </td>
 							
 							</tr>
 							<tr>
 							
 								<th>pw<th>
-								<td> <input type="password" id="pw" name="pw" value="" > </td>
+								<td> <input type="password" id="pw" name="pw" value="" class="width90p" > </td>
 							
 							</tr>
 						</tbody>
