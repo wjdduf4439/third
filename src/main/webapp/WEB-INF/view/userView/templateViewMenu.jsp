@@ -33,9 +33,10 @@
 
 </script>
 
-<div class="fl">
 <div class="contents_wrap">
-		
+		<div class="contents height40">
+			<h3 class="fl">${searchVO.siteTitle }</h3>
+		</div>
 		<form name="frm" method="post">
 			<input type="hidden" name="siteCode" value="${templateViewInfoVO.siteCode}" />
 			<input type="hidden" name="pageIndex" value="${searchVO.pageIndex}" />
@@ -138,7 +139,6 @@
 				</div>
 			</div>
 		</form>
-
 </div>
 
 <%

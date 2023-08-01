@@ -19,7 +19,7 @@ i {position:relative !important; bottom: 4px !important;}
 
 input[type="text"], input[type="password"], input[type="number"], input[type="email"]{ font-family:'Noto Sans KR', san-serif; font-size:1.0rem; letter-spacing:-0.2px; padding:0 8px; height:34px; border: 1px solid #c8c8c8 !important; background: #fff }
 		
-/*display:contents; 속성으로 단을 만들 수 있다.*/
+
 .contents_align_div{ width:96%; max-width: 1840px; margin:0;  height:350px; }
 .contents_align_div_mv { width:96%; max-width: 1840px; margin:0; }
 		
@@ -27,17 +27,17 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 
 .contents_wrap_t1 { background:#fff; height:250px; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px; }
 .contents_wrap_t2 { 
-	width:45%; max-width: 900px; height:250px; background:#fff; margin-top:30px; padding:25px 25px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
+	width:45%; max-width: 900px; height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 25px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
  	 }
 .contents_wrap_t3 { 
-						height:350px; min-height:350px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
+						height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
  					}
 
 .contents_wrap_mv { 
 					height:200px; margin-left: 50px; background:#fff; margin-top:10px; margin-bottom:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
 				  }
 
-.contents { width:94%; height:auto; min-height:670px; clear:both;  background:#fff; margin:0 auto; }
+.contents { width:94%; clear:both;  background:#fff; margin:0 auto; }
 .contents h3 { font-size:1.5rem; margin:20px 0 10px 0; clear:both; padding-top: 10px; padding-left:26px; letter-spacing:-0.5px; }
 .contents h3.fl { margin-top: 0}
 .contents h6 { font-size:1.5rem; margin:30px 0 10px 0; clear:both; letter-spacing:-0.3px; }

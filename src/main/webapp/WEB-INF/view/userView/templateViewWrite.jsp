@@ -60,9 +60,6 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 <div class="contents_wrap">
 		<div class="contents">
 		<h3 class="fl">${searchVO.siteTitle }</h3>
-		<div class="essential fr">
-	      <i class="icono-asterisk"></i>필수입력항목
-	    </div>
 		<form id="frm" name="frm" method="post" enctype="multipart/form-data">
 			<input type="hidden" id="pageIndex" name="pageIndex" value="${searchVO.pageIndex}" />
 			<input type="hidden" name="pageUnit" value="${searchVO.pageUnit}" />

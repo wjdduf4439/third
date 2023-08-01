@@ -19,16 +19,23 @@
 	function fn_setWidth(){
 		
 		var windowWidth = $( window ).width();
+		var t1_width = $( "#contents_align_div_t1" ).width();
 		   
 		   if(windowWidth < 1170) {
 			//창 가로 크기가 1170 미만일 경우
 			   $( ".contents_wrap_t1" ).css( "width", "92.5%" );
+			
+			   $( "#contents_align_div_t2" ).css( "width", t1_width + "px");
 			   
 			   $( ".contents_wrap_t2" ).hide();
 			   $( ".contents_align_div_mv" ).show();
 			} else {
 			//창 가로 크기가 1170 보다 클 경우
 				$( ".contents_wrap_t1" ).css( "width", "45%");
+				$( ".contents_wrap_t2" ).css( "margin-left", +"px" )
+			
+				$( "#contents_align_div_t2" ).css( "width", t1_width + "px");
+			
 				$( ".contents_wrap_t2" ).show();
 				$( ".contents_align_div_mv" ).hide();
 			}
@@ -46,7 +53,7 @@
 </script>
 <body>
 
-<div class="contents_align_div he inline-flex">
+<div id="contents_align_div_t1" class="contents_align_div he inline-flex">
 	<div class="contents_wrap_t1">
 		<form class=""  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
 			<div class="contents_login">
@@ -90,7 +97,6 @@
 			면접을 할 기회가 생기면 관리자용 게시판 기능을 보여드리겠습니다. 잘부탁드립니다.
 	</div>
 </div>	
-</br>
 <div class="contents_align_div_mv">
 
 	<div class="contents_wrap_mv">
@@ -105,7 +111,7 @@
 </div>
 <div style="clear:both;"></div>
 
-<div class="contents_align_div height200">
+<div id="contents_align_div_t2"  class="contents_align_div height200">
 	<div class="contents_wrap_t3">
 	
 		<div class="font_about_me">

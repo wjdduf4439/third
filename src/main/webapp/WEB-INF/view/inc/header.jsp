@@ -46,137 +46,142 @@
 		%>
 	
 		
-		<nav id="topMenu">
-				<ul>
-					
+		<div class="inline-flex width100p">
+		
+			<nav id="topMenu">
+					<ul>
 						
-					 	<c:forEach var="form" items="${formList }" varStatus="status1">
-	
-							<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName }</a></li>
-								
-						</c:forEach>
-						
-						<c:forEach var="form" items="${formList }" varStatus="status1">
-							<ul onmouseout="javascript:fn_noshow();" class="sub-menu"style="margin-left: ${status1.index * 100}px;" >
-									<c:forEach var="sites" items="${sites }" varStatus="status1" begin="${form.startIndex }" end = "${form.endIndex }" >
-										
-											<ol onmouseover="javascript:fn_show();" >
-											
-												<c:if test="${form.formCode == sites.formCode }">	
-													<a onmouseover="javascript:fn_show();" href="javascript:fn_ViewSiteLink('${sites.siteCode }');" > ${sites.title }</a>		
-												</c:if>
-												
-											</ol>
-										
-									</c:forEach>
-						
+							
+						 	<c:forEach var="form" items="${formList }" varStatus="status1">
+		
+								<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName }</a></li>
 									
-							</ul>
-						</c:forEach>	
-						<li><a class="menuLink" href=<c:url value="/loginHome.go"/>>초기 화면</a></li>
-						
-						<form id="userSitefrm" name="userSitefrm" method="post">
-
-							<input type="hidden" id="siteCode" name="siteCode" value="" />
-						
-						</form>
-					 	
-					 	<script>
-
-							function fn_ViewSiteLink(siteCode){
+							</c:forEach>
 							
-								document.userSitefrm.siteCode.value = siteCode;
-								document.userSitefrm.action = '<c:url value="/template/templeteViewInfo.go"/>';
-								document.userSitefrm.submit();
-								
-							}
-							
-							function fn_show(){ $(".sub-menu").css("visibility", "visible"); }
-							
-							function fn_noshow(){ $(".sub-menu").css("visibility", "hidden"); }
-						
-						</script>
-					 	
-				</ul>
-		</nav>
-		
-		
-		<%
-			//관리자용 메뉴
-			if(
-					url1.contains("view/loginHome") == true ||
-					url1.contains("view/failLogin") == true ||
-					url1.contains("view/userView") == true
-			){ }else{
-				
-				//세션 작업 = none시 로그인 페이지로 이동
-				if( null == session ){ sessionpass = "locked"; }
-				else { sessionpass = (String) session.getAttribute("sessionPass"); }
-				
-				System.out.println("sessionpass in header : " + sessionpass);
-				
-				if("pass".equals(sessionpass) == false){
-					
-					System.out.println("세션 삭제 후 초기화면으로 이동");
-					%> <script>location.replace("/third/loginHome.go");</script> <%
-				}
-				
-		%>
-	
-		
-		<nav id="topMenu">
-				<ul>
-					
-						
-					 	<c:forEach var="form" items="${formList }" varStatus="status1">
-	
-							<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName }</a></li>
-								
-						</c:forEach>
-						
-						<c:forEach var="form" items="${formList }" varStatus="status1">
-							<ul onmouseout="javascript:fn_noshow();" class="sub-menu"style="margin-left: ${status1.index * 100}px;" >
-									<c:forEach var="sites" items="${sites }" varStatus="status1" begin="${form.startIndex }" end = "${form.endIndex }" >
-										
-											<ol onmouseover="javascript:fn_show();" >
+							<c:forEach var="form" items="${formList }" varStatus="status1">
+								<ul onmouseout="javascript:fn_noshow();" class="sub-menu"style="margin-left: ${status1.index * 100}px;" >
+										<c:forEach var="sites" items="${sites }" varStatus="status1" begin="${form.startIndex }" end = "${form.endIndex }" >
 											
-												<c:if test="${form.formCode == sites.formCode }">	
-													<a onmouseover="javascript:fn_show();" href="javascript:fn_SiteLink('${sites.siteCode }');" > ${sites.title }</a>		
-												</c:if>
+												<ol onmouseover="javascript:fn_show();" >
 												
-											</ol>
+													<c:if test="${form.formCode == sites.formCode }">	
+														<a onmouseover="javascript:fn_show();" href="javascript:fn_ViewSiteLink('${sites.siteCode }');" > ${sites.title }</a>		
+													</c:if>
+													
+												</ol>
+											
+										</c:forEach>
+							
 										
-									</c:forEach>
-							</ul>
-						</c:forEach>	
-						
-						<li><a class="menuLink" href=<c:url value="/site/siteAdmin.go"/>>게시판 관리</a></li>
-					 	<li><a class="menuLink" href=<c:url value="/form/formAdmin.go"/>>항목 관리</a></li>
-						
-						<form id="sitefrm" name="sitefrm" method="post">
-
-							<input type="hidden" id="siteCode" name="siteCode" value="" />
-						
-						</form>
-					 	
-					 	<script>
-
-							function fn_SiteLink(siteCode){
+								</ul>
+							</c:forEach>	
+							<li><a class="menuLink" href=<c:url value="/loginHome.go"/>>초기 화면</a></li>
 							
-								document.sitefrm.siteCode.value = siteCode;
-								document.sitefrm.action = '<c:url value="/template/templateInfo.go"/>';
-								document.sitefrm.submit();
+							<form id="userSitefrm" name="userSitefrm" method="post">
+	
+								<input type="hidden" id="siteCode" name="siteCode" value="" />
+							
+							</form>
+						 	
+						 	<script>
+	
+								function fn_ViewSiteLink(siteCode){
 								
-							}
+									document.userSitefrm.siteCode.value = siteCode;
+									document.userSitefrm.action = '<c:url value="/template/templeteViewInfo.go"/>';
+									document.userSitefrm.submit();
+									
+								}
+								
+								function fn_show(){ $(".sub-menu").css("visibility", "visible"); }
+								
+								function fn_noshow(){ $(".sub-menu").css("visibility", "hidden"); }
 							
-							function fn_show(){ $(".sub-menu").css("visibility", "visible"); }
-							
-							function fn_noshow(){ $(".sub-menu").css("visibility", "hidden"); }
+							</script>
+						 	
+					</ul>
+			</nav>
+			
+			
+			<%
+				//관리자용 메뉴
+				if(
+						url1.contains("view/loginHome") == true ||
+						url1.contains("view/failLogin") == true ||
+						url1.contains("view/userView") == true
+				){ }else{
+					
+					//세션 작업 = none시 로그인 페이지로 이동
+					if( null == session ){ sessionpass = "locked"; }
+					else { sessionpass = (String) session.getAttribute("sessionPass"); }
+					
+					System.out.println("sessionpass in header : " + sessionpass);
+					
+					if("pass".equals(sessionpass) == false){
 						
-						</script>
-					 	
-				</ul>
-		</nav>
-		<%} %>
+						System.out.println("세션 삭제 후 초기화면으로 이동");
+						%> <script>location.replace("/third/loginHome.go");</script> <%
+					}
+					
+			%>
+		
+			
+			<nav id="topMenu">
+					<ul>
+						
+							
+						 	<c:forEach var="form" items="${formList }" varStatus="status1">
+		
+								<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName }</a></li>
+									
+							</c:forEach>
+							
+							<c:forEach var="form" items="${formList }" varStatus="status1">
+								<ul onmouseout="javascript:fn_noshow();" class="sub-menu"style="margin-left: ${status1.index * 100}px;" >
+										<c:forEach var="sites" items="${sites }" varStatus="status1" begin="${form.startIndex }" end = "${form.endIndex }" >
+											
+												<ol onmouseover="javascript:fn_show();" >
+												
+													<c:if test="${form.formCode == sites.formCode }">	
+														<a onmouseover="javascript:fn_show();" href="javascript:fn_SiteLink('${sites.siteCode }');" > ${sites.title }</a>		
+													</c:if>
+													
+												</ol>
+											
+										</c:forEach>
+								</ul>
+							</c:forEach>	
+							
+							<li><a class="menuLink" href=<c:url value="/site/siteAdmin.go"/>>게시판 관리</a></li>
+						 	<li><a class="menuLink" href=<c:url value="/form/formAdmin.go"/>>항목 관리</a></li>
+							
+							<form id="sitefrm" name="sitefrm" method="post">
+	
+								<input type="hidden" id="siteCode" name="siteCode" value="" />
+							
+							</form>
+						 	
+						 	<script>
+	
+								function fn_SiteLink(siteCode){
+								
+									document.sitefrm.siteCode.value = siteCode;
+									document.sitefrm.action = '<c:url value="/template/templateInfo.go"/>';
+									document.sitefrm.submit();
+									
+								}
+								
+								function fn_show(){ $(".sub-menu").css("visibility", "visible"); }
+								
+								function fn_noshow(){ $(".sub-menu").css("visibility", "hidden"); }
+							
+							</script>
+						 	
+					</ul>
+			</nav>
+			<%} %>
+		
+		</div>
+		
 
 </head>
