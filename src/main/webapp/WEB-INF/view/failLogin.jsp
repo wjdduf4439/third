@@ -10,8 +10,8 @@
 	
 	function fn_failLogin(){
 		
-		document.loginHomeVO.action = "loginHome.go";
-		document.loginHomeVO.submit();
+		document.loginFailForm.action = "loginHome.go";
+		document.loginFailForm.submit();
 		
 	}
 
@@ -20,7 +20,7 @@
 <body>
 
 	<div class="contents_wrap">
-		<form  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
+		<form  id="loginFailForm" name="loginFailForm" method="post" enctype="multipart/form-data"  runat="server" action="" >
 			<div class="contents">
 				<div class="space10"></div>
 					로그인에 실패했습니다.

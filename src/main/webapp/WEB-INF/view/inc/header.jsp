@@ -27,7 +27,25 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/smarteditor2-master/workspace/js/service/HuskyEZCreator.js"  charset="utf-8"></script>
 
 <style>
-			
+	#loginmask {
+      position:absolute;
+      z-index:9000;
+      background-color:#000;
+      display:none;
+      left:0;
+      top:0;
+    }
+    
+    #loginformBox {
+      position:absolute;
+      z-index:9001;
+      display:none;
+      left:30%;
+      top:30%;
+      width:35%;
+      height:250px; 
+      background:#fff; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px; }
+    }
 </style>
 
 <title>header 포함</title>
@@ -76,6 +94,20 @@
 								</ul>
 							</c:forEach>	
 							<li><a class="menuLink" href=<c:url value="/loginHome.go"/>>초기 화면</a></li>
+							<%
+							
+							System.out.println("session id : " + session.getValue("id"));
+							
+							if( null == session.getValue("id") ){
+								%> 
+								<li><a class="menuLink" href="javascript:fn_LoginForm();">로그인</a></li>
+								<%	 
+							} else { %> 
+								<li><a class="menuLink" href="javascript:fn_loginOut();">로그아웃</a></li>
+								<%	 }
+							 %>
+							
+							
 							
 							<form id="userSitefrm" name="userSitefrm" method="post">
 	
@@ -85,6 +117,48 @@
 						 	
 						 	<script>
 	
+							 	function fn_LoginForm(){
+							 		
+							 		var maskHeight = $(document).height();
+							        var maskWidth = $(window).width(); 
+							        
+							        console.log(maskWidth);
+							        console.log(maskHeight);
+							        
+							        $('#loginmask').css({'width':maskWidth,'height':maskHeight}); 
+							        
+							        $('#loginmask').fadeIn(1000);
+							        $('#loginmask').fadeTo("slow",0.8);
+							        
+							        $('#loginmask').show();
+							        $('#loginformBox').show();
+							 		
+							 	}
+							 	
+							 	//동적 페이지 폼 닫기
+							 	$(document).on("click", "#loginmask", function(){
+							 	    //alert("동작확인");
+							 		console.log("loginmask clicked");
+						            $('#loginmask').hide();
+						            $('#loginformBox').hide();
+							 	});
+							 	
+							 	//로그아웃 버튼을 눌렀을 때
+							 	function fn_loginOut(){  
+							        
+							 		document.userSitefrm.action = '<c:url value="/accLogout.go"/>';
+									document.userSitefrm.submit();		
+							 		
+							 	}
+							 	
+							 	//검은 막을 눌렀을 때
+						        $('#loginmask').click(function () {
+						        	console.log("loginmask clicked");
+						            $('#loginmask').hide();
+						            //$('.window').hide();
+						        });
+						 	
+							 	//게시판 이동
 								function fn_ViewSiteLink(siteCode){
 								
 									document.userSitefrm.siteCode.value = siteCode;
@@ -182,6 +256,12 @@
 			<%} %>
 		
 		</div>
+		
+		<!-- 로그인 화면 전용 마스크 -->
+		<div id="loginmask"></div>
+		<!-- 로그인 화면 전용 폼-->
+		<div id="loginformBox"><c:import url="/AdminLoginFormBox.go" /></div>
+		
 		
 
 </head>

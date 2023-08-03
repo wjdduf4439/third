@@ -19,6 +19,12 @@ public class incController {
 	@Resource(name = "FormService")
 	private FormService formService;
 	
+	@RequestMapping(value = "/AdminLoginFormBox.go")
+	public String loginFormBox(ModelMap map) throws Exception {
+		
+		return "inc/loginFormBox";
+	}
+	
 	@RequestMapping(value = "/AdminHeader.go")
 	public String header(ModelMap map, FormMenuVO formMenuVO) throws Exception {
 		

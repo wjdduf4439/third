@@ -59,6 +59,15 @@ public class loginHomeController{
 	}
 	
 	
+	@RequestMapping("/accLogout.go")
+	public String accLoginHome(ModelMap map, HttpServletRequest req) throws Exception {
+		
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		return "forward:/loginHome.go";
+	}
+	
 	
 	
 }
