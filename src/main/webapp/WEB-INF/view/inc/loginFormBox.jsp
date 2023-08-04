@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 	
 	<script>
 	
 		function fn_access(){
 			
-			document.loginHomeVO.action = "<c:url value='/accLoginHome.go'/>";
+			document.loginHomeVO.action = '<c:url value="/accLoginHome.go"/>';
 			document.loginHomeVO.submit();
 			
 		}
@@ -14,7 +17,7 @@
 	</script>
 
 	<div class="loginFormBox">
-		<form class=""  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data"  runat="server" action="" >
+		<form class=""  id="loginHomeVO" name="loginHomeVO" method="post" enctype="multipart/form-data" action="" >
 			<div class="contents_login">
 				<div class="space10"></div>
 					포트폴리오 : 이정열
