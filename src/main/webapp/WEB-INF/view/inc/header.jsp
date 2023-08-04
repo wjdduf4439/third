@@ -178,27 +178,38 @@
 			
 			
 			<%
-				//관리자용 메뉴
-				if(
+				//관리자 로그인 세션 체크 - 허용 안될시 초기화면으로 넘어감
+				
+				if(		
+						
 						url1.contains("view/loginHome") == true ||
 						url1.contains("view/failLogin") == true ||
-						url1.contains("view/userView") == true
-				){ }else{
+						url1.contains("view/userView") == true ){ 
 					
+				}else{
+				
 					//세션 작업 = none시 로그인 페이지로 이동
 					if( null == session ){ sessionpass = "locked"; }
 					else { sessionpass = (String) session.getAttribute("sessionPass"); }
 					
 					System.out.println("sessionpass in header : " + sessionpass);
+						if("pass".equals(sessionpass) == false){
+							
+							System.out.println("세션 삭제 후 초기화면으로 이동");
+							%> <script>location.replace("/third/loginHome.go");</script> <%
+						}
+				}
+			%> 
+		
+		
+			<%
+				
+				//관리자용 네비게이션 뷰
+				if(	null == session.getValue("id") ){ 
 					
-					if("pass".equals(sessionpass) == false){
-						
-						System.out.println("세션 삭제 후 초기화면으로 이동");
-						%> <script>location.replace("/third/loginHome.go");</script> <%
-					}
+				}else{
 					
 			%>
-		
 			
 			<nav id="topMenu">
 					<ul>
@@ -253,7 +264,7 @@
 						 	
 					</ul>
 			</nav>
-			<%} %>
+			<% } %>
 		
 		</div>
 		
