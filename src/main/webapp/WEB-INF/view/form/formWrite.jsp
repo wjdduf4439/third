@@ -76,7 +76,7 @@ function fn_back(){
 		
 		<div class="contents" >
 			<div class="space20"></div>
-			<h3 class="fl"><i class="icono-list"></i>   게시판 관리</h3>
+			<h3 class="fl"><i class="icono-list"></i>   항목 관리</h3>
 			<div class="essential fr">
 		      <i class="icono-asterisk width10"></i>필수입력항목
 		    </div>
