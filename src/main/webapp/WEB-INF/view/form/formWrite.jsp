@@ -106,7 +106,7 @@ function fn_back(){
 					<tr>
 						<th> <i class="fa fa-asterisk" aria-hidden="true" ></i>작성자</th>
 						<td class="width200" colspan="3">
-							<input type="text" name="frstRegistNm" id="frstRegistNm" class="width200" value="${resultList.frstRegistNm }" />
+							<input type="text" name="frstRegistNm" id="frstRegistNm" value="관리자" readonly="readonly"  />
 						</td>
 					</tr>
 					<tr>
