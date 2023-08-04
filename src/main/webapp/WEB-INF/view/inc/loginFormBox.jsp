@@ -5,7 +5,7 @@
 	
 		function fn_access(){
 			
-			document.loginHomeVO.action = "accLoginHome.go";
+			document.loginHomeVO.action = "<c:url value='/accLoginHome.go'/>";
 			document.loginHomeVO.submit();
 			
 		}
