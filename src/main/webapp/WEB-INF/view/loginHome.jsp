@@ -62,7 +62,7 @@
 </div>	
 <div class="contents_align_div_mv height150">
 
-	<div class="contents_wrap_mv height150">
+	<div class="contents_wrap_mv height100">
 			
 			안녕하십니까. 백엔드 웹 개발자를 지향하는 이정열입니다.
 			</br>
@@ -107,7 +107,7 @@
 	</div>
 </div>
 
-<div id="contents_align_div_t3"  class="contents_align_div height1500">
+<div id="contents_align_div_t3"  class="contents_align_div height2000">
 
 	<div class="contents_wrap_t3 height1750">
 	
@@ -136,13 +136,13 @@
 	
 		<div class="font_about_me_content">항목 생성 과정 </div>
 		</br><span class="space10"></span></br>
-		<img class="border3_black" src="${pageContext.request.contextPath}/resources/siteStep/form-step_b.png"/>
+		<img class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/form-step_b.png"/>
 		
 		</br><span class="space20"></span></br>
 	
 		<div class="font_about_me_content">게시판 생성 과정</div>
 		</br><span class="space10"></span></br>
-		<img class="border3_black" src="${pageContext.request.contextPath}/resources/siteStep/site-step_a.png"/>
+		<img class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/site-step_a.png"/>
 	
 	</div>
 

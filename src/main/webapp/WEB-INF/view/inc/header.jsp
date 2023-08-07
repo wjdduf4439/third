@@ -26,6 +26,80 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/smarteditor2-master/workspace/js/service/HuskyEZCreator.js"  charset="utf-8"></script>
 
+
+		<%
+			String sessionpass = "none";
+			
+			//url 추출 후 login화면이면 상단 패널을 지우기
+			String url1 = request.getRequestURL().toString();
+			
+			String cIpAddress = request.getHeader("X-Forwarded-For");
+			
+			if (cIpAddress == null || cIpAddress.length() == 0 || "unknown".equalsIgnoreCase(cIpAddress)) {                    
+				cIpAddress = request.getHeader("Proxy-Client-IP");
+			}
+			 
+			if (cIpAddress == null || cIpAddress.length() == 0 || "unknown".equalsIgnoreCase(cIpAddress)) {
+				cIpAddress = request.getHeader("WL-Proxy-Client-IP");
+			}
+			 
+			if (cIpAddress == null || cIpAddress.length() == 0 || "unknown".equalsIgnoreCase(cIpAddress)) {
+				cIpAddress = request.getHeader("HTTP_CLIENT_IP");
+			}
+			 
+			if (cIpAddress == null || cIpAddress.length() == 0 || "unknown".equalsIgnoreCase(cIpAddress)) {
+				cIpAddress = request.getHeader("HTTP_X_FORWARDED_FOR");
+			}
+			 
+			if (cIpAddress == null || cIpAddress.length() == 0 || "unknown".equalsIgnoreCase(cIpAddress)) {
+				cIpAddress = request.getRemoteAddr();
+			}
+			
+			System.out.println("url1 : " + url1);
+			System.out.println("cIpAddress : " + cIpAddress);
+		%>
+
+<script type="text/javascript">
+
+
+	<%
+		//log테이블 이외의 페이지에 로그 남기도록 하기
+		if(url1.contains("log/") != true){
+	%>
+	$(document).ready(function(){
+			
+		var logReq = '<%= url1 %>';
+		var cIpAddress = '<%= cIpAddress %>';
+		
+		var url = "<c:url value='/log/logInsert.go?ip="+cIpAddress+"&logReq="+logReq+"'/>";
+		
+		//로그 기입 ajax 넣기
+		$.ajax({      
+	        type:"get",  
+	        url : url,
+	        async: true,
+	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+	        dataType : 'json',
+	        processData : false,
+	        contentType : false,
+	        beforeSend : function(xmlHttpRequest){
+	        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+	        	  },    
+	        success:function(args){   
+	                  
+	        },   
+	        error:function(e){  
+	            //alert("log 기입 실패" + e.responseText);  
+	        }  
+	    });  
+			
+	});
+	
+	<%
+		}
+	%>
+	
+</script>	
 <style>
 	#loginmask {
       position:absolute;
@@ -49,14 +123,6 @@
 </style>
 
 <title>header 포함</title>
-
-		<%
-			String sessionpass = "none";
-			
-			//url 추출 후 login화면이면 상단 패널을 지우기
-			String url1 = request.getRequestURL().toString();
-			System.out.println("url1 : " + url1);
-		%>
 		
 		<%
 			//사용자용 메뉴
@@ -239,6 +305,7 @@
 							
 							<li><a class="menuLink" href=<c:url value="/site/siteAdmin.go"/>>게시판 관리</a></li>
 						 	<li><a class="menuLink" href=<c:url value="/form/formAdmin.go"/>>항목 관리</a></li>
+						 	<li><a class="menuLink" href=<c:url value="/log/logAdmin.go"/>>로그 테이블</a></li>
 							
 							<form id="sitefrm" name="sitefrm" method="post">
 	

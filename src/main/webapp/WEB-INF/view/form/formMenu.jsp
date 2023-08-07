@@ -23,20 +23,6 @@
 		document.frm.action = '<c:url value="/form/formAdmin.go"/>';
 		document.frm.submit();
 	}
-	
-	function fn_write(){
-
-		document.frm.action = '<c:url value="/form/formWrite.go"/>';
-		document.frm.submit();
-	}
-	
-	function fn_update(code){
-		
-		document.frm.formCode.value = code ;
-		document.frm.action = '<c:url value="/form/formWrite.go"/>';
-		document.frm.submit();
-		
-	}
 
 </script>
 <body>
@@ -89,7 +75,7 @@
 						<tbody>
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
-								<tr onclick="javascript:fn_update('${result.formCode}')">
+								<tr>
 									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
 									<td> ${result.formName }</td>
 									<td> ${result.frstRegistNm }</td>
@@ -116,10 +102,6 @@
 							<c:out value="${paging.pageList }" escapeXml="false"/>
 						</ul>
 					</div>
-				</div>
-				
-				<div class="btngroup mt0">
-					<button class="btn02 fr" onclick="javascript:fn_write();" type="button">등록</button>
 				</div>
 			</div>
 		</form>

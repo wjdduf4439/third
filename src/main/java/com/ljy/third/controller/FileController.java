@@ -39,10 +39,7 @@ public class FileController {
 		FileVO mfileVO = mBoardService.lookOneFileBoardService(mboardVO);
 		
 		File downloadFile = new File(mfileVO.getFpath());
-		File realFileName = new File(mfileVO.getFname());//��¥ ���� �̸����� �ٿ�ε��ϱ� ���� ����
-		
-		//�ٿ�ε� �� �ش� path�� ����(���� �̸��� �ƴ�)
-		//�ش� ������ �ٿ�ε�� �ϳ����� ����ǰ� �Ѵ�
+		File realFileName = new File(mfileVO.getFname()); 
 		
 		if(!downloadFile.canRead()) { return "redirect:/mainboard.go"; }
 		

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ljy.third.dao.logAdminDao">
+	
+	<select id="selectlogAdminList" resultType="com.ljy.third.vo.logAdminVO">
+	        SELECT		logcode,
+						ip,
+						logtime,
+						logreq
+	        			
+	        FROM LOG_TABLE
+	        WHERE 1=1
+	        <!-- start 레코드부터 size값만큼 레코드를 뽑아냄 -->
+	        <!-- 
+	        <if test="searchCnd == null" >
+				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+			</if>
+		    <if test="searchCnd == 0" >
+				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			</if>
+			<if test="searchCnd == 1" >
+				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			</if>
+			 -->
+		
+			ORDER BY logtime DESC,  logcode DESC
+		    LIMIT ${pageIndex}, #{recordCountPerPage} 
+	        
+    </select>
+
+	<select id="looklogAdminCnt" resultType="int">
+	        SELECT count(logcode)
+	        FROM LOG_TABLE
+	        WHERE 1=1
+	        
+	       <!-- 
+	        <if test="searchCnd == null" >
+				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+			</if>
+		    <if test="searchCnd == 0" >
+				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			</if>
+			<if test="searchCnd == 1" >
+				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			</if>
+			 -->
+	        
+    </select>
+    
+    
+    <select id="selectTableRecordListMax" resultType="String">
+	        SELECT max(logcode)
+	        FROM LOG_TABLE
+	 </select>
+
+	<insert id="insertlogAdmin">
+		 
+			INSERT INTO LOG_TABLE (
+				logcode,
+				ip,
+				logtime,
+				logreq
+				
+			) VALUES (
+				#{logCode},
+				#{ip},
+				now(),
+				#{logReq}
+			) 
+		
+	</insert>
+
+</mapper>
