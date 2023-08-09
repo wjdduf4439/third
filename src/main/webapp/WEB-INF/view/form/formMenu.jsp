@@ -22,6 +22,19 @@
 		document.frm.pageIndex.value = pageNo;
 		document.frm.action = '<c:url value="/form/formAdmin.go"/>';
 		document.frm.submit();
+	}	
+	function fn_write(){
+
+		document.frm.action = '<c:url value="/form/formWrite.go"/>';
+		document.frm.submit();
+	}
+	
+	function fn_update(code){
+		
+		document.frm.siteCode.value = code ;
+		document.frm.action = '<c:url value="/form/formWrite.go"/>';
+		document.frm.submit();
+		
 	}
 
 </script>
@@ -102,6 +115,10 @@
 							<c:out value="${paging.pageList }" escapeXml="false"/>
 						</ul>
 					</div>
+				</div>
+				
+				<div class="btngroup mt0">
+					<button class="btn02 fr" onclick="javascript:fn_write();" type="button">등록</button>
 				</div>
 			</div>
 		</form>

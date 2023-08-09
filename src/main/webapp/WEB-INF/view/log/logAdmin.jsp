@@ -17,10 +17,38 @@
 	
 	function fn_list(pageNo) {
 		//페이지 선택
+		if( $('#searchCnd').val() == '1' ){ $("#searchCndInput").val($("#dateSelectInput").val()); }
+		
+		
 		document.frm.pageIndex.value = pageNo;
 		document.frm.action = '<c:url value="/log/logAdmin.go"/>';
 		document.frm.submit();
 	}
+	
+	function fn_changeCnd(){
+		
+		if( $('#searchCnd').val() == '1' ){
+			
+			console.log("날짜 선택");
+			$("#dateSelectInput").show();
+			$("#searchCndInput").hide();
+			
+		}else{
+
+			$("#searchCndInput").show();
+			$("#dateSelectInput").hide();
+			
+		}
+		
+	}
+	
+	$(document).ready(function(){
+		
+		$( "#dateSelectInput" ).datepicker();
+		$( "#dateSelectInput" ).datepicker("option", "dateFormat", "yy-mm-dd");
+		fn_changeCnd();
+		
+	});
 
 </script>
 <div class="contents_wrap">
@@ -46,12 +74,13 @@
 				</div>
 				
 				<div class="search_wrap fr mt10">
-					<select class="width150 selectText mb05" name="searchCnd">
+					<select class="width150 selectText mb05" onchange="javascript:fn_changeCnd();" id="searchCnd" name="searchCnd">
 						<option value="" <c:if test='${searchVO.searchCnd == ""}'> selected </c:if>>전체</option>
-						<option value="0" <c:if test='${searchVO.searchCnd == "0"}'> selected </c:if>>제목</option>
-						<option value="1" <c:if test='${searchVO.searchCnd == "1"}'> selected </c:if>>관리자</option>
+						<option value="0" <c:if test='${searchVO.searchCnd == "0"}'> selected </c:if>>ip</option>
+						<option value="1" <c:if test='${searchVO.searchCnd == "1"}'> selected </c:if>>날짜</option>
 					</select>
-					<input type="text" name="searchWrd" value="<c:out value="${searchVO.searchWrd }"/>" onkeypress="javascript:fn_searchKeyPressed(event);" class="mt15 width240 mr0" placeholder="검색어를 입력하세요">
+					<input type="text" id="dateSelectInput" name="dateSelectInput" value="<c:out value="${searchVO.searchWrd }"/>" autocomplete="off" class="mt15 width240 mr0" placeholder="검색어를 입력하세요" />
+					<input type="text" id="searchCndInput" name="searchWrd" value="<c:out value="${searchVO.searchWrd }"/>" onkeypress="javascript:fn_searchKeyPressed(event);" class="mt15 width240 mr0" placeholder="검색어를 입력하세요">
 					<button type="button" class="btn01" onclick="javascript:fn_list('0')">검색</button>
 				</div>
 				
@@ -66,8 +95,8 @@
 							<tr>
 								<th>No</th>
 								<th>ip</th>
-								<th>logtime</th>
-								<th>logreq</th>
+								<th>조회시간</th>
+								<th>요청 뷰</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,10 +130,6 @@
 							<c:out value="${paging.pageList }" escapeXml="false"/>
 						</ul>
 					</div>
-				</div>
-				
-				<div class="btngroup mt0">
-					<button class="btn02 fr" onclick="javascript:fn_write();" type="button">등록</button>
 				</div>
 			</div>
 		</form>

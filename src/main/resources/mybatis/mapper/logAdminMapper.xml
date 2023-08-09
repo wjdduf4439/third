@@ -13,18 +13,17 @@
 	        			
 	        FROM LOG_TABLE
 	        WHERE 1=1
+	        
 	        <!-- start 레코드부터 size값만큼 레코드를 뽑아냄 -->
-	        <!-- 
 	        <if test="searchCnd == null" >
-				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+				<![CDATA[	AND	(ip LIKE CONCAT ('%',#{searchWrd},'%') OR logtime LIKE CONCAT ('%',#{searchWrd},'%') )  ]]>
 			</if>
 		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				<![CDATA[	AND	ip LIKE CONCAT('%',#{searchWrd},'%')  ]]>
 			</if>
 			<if test="searchCnd == 1" >
-				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				<![CDATA[	AND	logtime LIKE CONCAT('%',#{searchWrd},'%')  ]]>
 			</if>
-			 -->
 		
 			ORDER BY logtime DESC,  logcode DESC
 		    LIMIT ${pageIndex}, #{recordCountPerPage} 
@@ -36,17 +35,16 @@
 	        FROM LOG_TABLE
 	        WHERE 1=1
 	        
-	       <!-- 
+	        <!-- start 레코드부터 size값만큼 레코드를 뽑아냄 -->
 	        <if test="searchCnd == null" >
-				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+				<![CDATA[	AND	(ip LIKE CONCAT ('%',#{searchWrd},'%') OR logtime LIKE CONCAT ('%',#{searchWrd},'%') )  ]]>
 			</if>
 		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				<![CDATA[	AND	ip LIKE CONCAT('%',#{searchWrd},'%')  ]]>
 			</if>
 			<if test="searchCnd == 1" >
-				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				<![CDATA[	AND	logtime LIKE CONCAT('%',#{searchWrd},'%')  ]]>
 			</if>
-			 -->
 	        
     </select>
     

@@ -27,6 +27,8 @@ public class logAdminController {
 		PageSet paging = new PageSet(logAdminVO.getPageIndex(), countList, logAdminVO.getRecordCountPerPage());
 		logAdminVO = (logAdminVO) paging.recordSet(logAdminVO);
 		
+		System.out.println("searchWrd : " + logAdminVO.getSearchWrd());
+		
 		List<logAdminVO> resultList = logAdminService.selectlogAdminList(logAdminVO);
 		
 		map.addAttribute("resultList", resultList);

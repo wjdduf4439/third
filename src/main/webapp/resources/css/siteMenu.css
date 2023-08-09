@@ -31,6 +31,8 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 .contents_wrap_t3 { 
 						height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
  					}
+ 					
+.contents_align_div_ry { background:#fff; height:250px; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px; } 					
 
 .contents_wrap_mv { 
 					height:200px; margin-left: 50px; background:#fff; margin-top:30px; margin-bottom:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
@@ -256,5 +258,9 @@ table tbody tr td .btngroup { margin:0 !important; }
 .btn05:hover { background:#fff; transition:.3s; border:1px solid #ff282d; color:#dc232a !important; cursor:pointer; }
 .btn06 { font-size:0.8rem !important; padding:0 13px; height:36px; border:1px solid #9aaac4; vertical-align:top; transition:.3s; cursor:pointer; background:#fff; color:#002054; } 
 .btn06:hover { background:#f2f4f6; transition:.3s; border:1px solid #002054; color:#002054 !important; cursor:pointer; }
+
+.btn_rv1_div { border:3px solid #000; text-align: center; font-weight: bold; font-size: 18px;}
+.btn_rv1_img { width:60px; height:60px; padding:10px; background:url( ../icon_loginview/9846051.png); background-size:cover; border:#fff; vertical-align:top; cursor:pointer;}
+.btn_rv1_div:hover { /* background-color:#000; color:#fff; */ filter: opacity(0.5); } 
 
 

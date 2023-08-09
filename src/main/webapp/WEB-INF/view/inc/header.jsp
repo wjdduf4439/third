@@ -14,6 +14,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
+ <!-- 제이쿼리 ui css -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icono.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/siteMenu.css" />
@@ -25,6 +27,10 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/smarteditor2-master/workspace/js/service/HuskyEZCreator.js"  charset="utf-8"></script>
+
+ 
+ <!-- 제이쿼리 ui js -->
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 		<%
@@ -130,7 +136,7 @@
 		%>
 	
 		
-		<div class="inline-flex width100p">
+		<div class="inline-flex width100p height150">
 		
 			<nav id="topMenu">
 					<ul>
