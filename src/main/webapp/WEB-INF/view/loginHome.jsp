@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 	
-	$(document).ready(function(){ fn_setWidth(); fn_setRV('1'); });
+	$(document).ready(function(){ fn_setWidth(); fn_setRV('1','0'); });
 	
 	
 	
@@ -25,8 +25,7 @@
 			//창 가로 크기가 1170 미만일 경우 
 			//div_t3_image 네임 width95p 설정
 			
-				$("img[name=div_t3_image]").removeClass('width65p');
-				$("img[name=div_t3_image]").addClass('width95p');
+				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
 			
 				$( "#contents_align_div_t1" ).hide();
 				$( ".contents_align_div_mv" ).show();
@@ -34,8 +33,7 @@
 			//창 가로 크기가 1170 보다 클 경우
 			//div_t3_image 네임 width45p 설정
 				
-				$("img[name=div_t3_image]").removeClass('width95p');
-				$("img[name=div_t3_image]").addClass('width65p');
+				$("img[name=div_t3_image]").removeClass('width95p'); $("img[name=div_t3_image]").addClass('width65p');
 			
 				$( "#contents_align_div_t1" ).show();
 				$( ".contents_align_div_mv" ).hide();
@@ -43,11 +41,19 @@
 		   
 	}
 	
+	function fn_returnIntro(){
+		
+		var offset = $("#contents_align_div_ry").offset();
+	     $('html, body').animate({scrollTop : offset.top}, 400);
+		
+	}
 	
-	function fn_setRV(buttonid){
+	
+	function fn_setRV(buttonid,mode){
 		
 		//buttonid 값에 따라 레이아웃 보여주기
 		//1차적으로 모든 뷰를 끄고 buttionid값에 해당하는 기능 뷰를 보여주기
+		//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
 		 
 		
 		for(i=1; i<3; i++){ fn_hideHeight(i); }
@@ -59,6 +65,16 @@
 		}else if(buttonid == '2'){
 			fn_setHeight(buttonid, '1000');
 		}
+		
+		
+		if(mode == '1'){
+			//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
+			
+			var offset = $("#contents_align_div_rv" + buttonid).offset();
+		     $('html, body').animate({scrollTop : offset.top}, 400);	
+			
+		}
+		 
 		
 	}
 	
@@ -112,11 +128,11 @@
 			</br><span class="space10"></span></br>
 			<div style="display:inline-block;">
 			
-				<button id="rv1" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('1');">
+				<button id="rv1" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('1','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9846051.png" class="btn_rv1"/></br>항목과 게시판의 생성
 				</button>
 				
-				<button id="rv2" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('2');">
+				<button id="rv2" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('2','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845968.png" class="btn_rv1"/></br>로그 테이블
 				</button>
 			
@@ -163,8 +179,8 @@
 	<div id="contents_align_div_rvcon1" class="contents_wrap_t3 ">
 	
 		<div class="font_about_me">
-			<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>
-			기능 소개
+			<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>기능 소개
+			<button class="btn_rv_top" onclick="javascript:fn_returnIntro();" type="button"></button>
 		</div>
 		
 		</br><span class="space10"></span></br>
@@ -205,8 +221,8 @@
 	<div id="contents_align_div_rvcon2" class="contents_wrap_t3 ">
 	
 		<div class="font_about_me">
-			<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>
-			기능 소개
+			<img class="icon_40" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-speech-bubble-181506.png"/>기능 소개
+			<button class="btn_rv_top" onclick="javascript:fn_returnIntro();" type="button"></button>
 		</div>
 		
 		</br><span class="space10"></span></br>

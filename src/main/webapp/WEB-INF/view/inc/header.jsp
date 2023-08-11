@@ -68,6 +68,36 @@
 <script type="text/javascript">
 
 
+	//네비게이션 div 높이 조정
+	function fn_setNavWidth(){
+		
+		var windowWidth = $( window ).width();
+		var t1_width = $( "#contents_align_div_t1" ).width();
+		   
+		   if(windowWidth < 1170) {
+			//창 가로 크기가 1170 미만일 경우 
+			//div_t3_image 네임 width95p 설정
+			
+				$("#navContent").removeClass('height60');
+				$("#navContent").addClass('height150');
+				
+			} else {
+			//창 가로 크기가 1170 보다 클 경우
+			//div_t3_image 네임 width45p 설정
+				
+				$("#navContent").removeClass('height150');
+				$("#navContent").addClass('height60');
+			}
+		   
+	}
+	
+	
+	$(document).ready(function(){ fn_setNavWidth();  });
+	
+	$( window ).resize(function() {
+		fn_setNavWidth();
+	});	
+
 	<%
 		//log테이블 이외의 페이지에 로그 남기도록 하기
 		if(url1.contains("log/") != true){
@@ -136,7 +166,7 @@
 		%>
 	
 		
-		<div class="inline-flex width100p height150">
+		<div id="navContent" class="inline-flex width100p height150">
 		
 			<nav id="topMenu">
 					<ul>
