@@ -20,23 +20,44 @@
 		
 		var windowWidth = $( window ).width();
 		var t1_width = $( "#contents_align_div_t1" ).width();
-		   
-		   if(windowWidth < 1170) {
-			//창 가로 크기가 1170 미만일 경우 
-			//div_t3_image 네임 width95p 설정
-			
-				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
-			
-				$( "#contents_align_div_t1" ).hide();
-				$( ".contents_align_div_mv" ).show();
-			} else {
+		
+			if (windowWidth >= 1170) {
 			//창 가로 크기가 1170 보다 클 경우
 			//div_t3_image 네임 width45p 설정
 				
 				$("img[name=div_t3_image]").removeClass('width95p'); $("img[name=div_t3_image]").addClass('width65p');
 			
-				$( "#contents_align_div_t1" ).show();
-				$( ".contents_align_div_mv" ).hide();
+				$( "#contents_align_div1" ).show();
+				$( "#contents_align_div1_mv" ).hide();
+			} else if(windowWidth < 1170 && windowWidth > 500 ) {
+			//창 가로 크기가 1170 미만일 경우 
+			//div_t3_image 네임 width95p 설정
+			//contents_align_div1_mv + cont height 150으로 설정
+			
+				$( "#contents_align_div1_mv" ).removeClass('height250'); $( "#contents_align_div1_mv" ).addClass('height150');
+				$( "#contents_align_div1_mv_cont" ).removeClass('height200'); $( "#contents_align_div1_mv_cont" ).addClass('height100');
+				
+				$( "#contents_align_div_ry" ).removeClass('height350'); $( "#contents_align_div_ry" ).addClass('height200');
+				$( "#contents_align_div_ry_cont" ).removeClass('height300'); $( "#contents_align_div_ry_cont" ).addClass('height150');
+				
+				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
+			
+				$( "#contents_align_div1" ).hide();
+				$( "#contents_align_div1_mv" ).show();
+			} else if(windowWidth <= 500) {
+			//창 가로 크기가 400 미만일 경우 
+			//contents_align_div1_mv + cont height 200으로 설정
+			
+				$( "#contents_align_div1_mv" ).removeClass('height150'); $( "#contents_align_div1_mv" ).addClass('height250');
+				$( "#contents_align_div1_mv_cont" ).removeClass('height100'); $( "#contents_align_div1_mv_cont" ).addClass('height200');
+				
+				$( "#contents_align_div_ry" ).removeClass('height200'); $( "#contents_align_div_ry" ).addClass('height350');
+				$( "#contents_align_div_ry_cont" ).removeClass('height150'); $( "#contents_align_div_ry_cont" ).addClass('height300');
+				
+				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
+				
+				$( "#contents_align_div1" ).hide();
+				$( "#contents_align_div1_mv" ).show();
 			}
 		   
 	}
@@ -48,11 +69,17 @@
 		
 	}
 	
+	function fn_gotoRV(buttonid){
+		
+		
+		
+		
+	}
+	
 	
 	function fn_setRV(buttonid,mode){
 		
-		//buttonid 값에 따라 레이아웃 보여주기
-		//1차적으로 모든 뷰를 끄고 buttionid값에 해당하는 기능 뷰를 보여주기
+		//buttonid 값에 따라 레이아웃 보여주기, 1차적으로 모든 뷰를 끄고 buttionid값에 해당하는 기능 뷰를 보여주기
 		//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
 		 
 		
@@ -67,13 +94,8 @@
 		}
 		
 		
-		if(mode == '1'){
-			//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
-			
-			var offset = $("#contents_align_div_rv" + buttonid).offset();
-		     $('html, body').animate({scrollTop : offset.top}, 400);	
-			
-		}
+		if(mode == '1'){ var offset = $( "#contents_align_span_rv"+buttonid ).offset(); $('html, body').animate({scrollTop : offset.top}, 400); }
+		//contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 
 		 
 		
 	}
@@ -96,8 +118,8 @@
 </script>
 <body>
 
-<div id="contents_align_div_t1" class="contents_align_div height200">
-	<div class="contents_wrap_t2 height150">
+<div id="contents_align_div1" class="contents_align_div height200">
+	<div id="contents_align_div1_cont" class="contents_wrap_t2 height150">
 			
 			안녕하십니까. 백엔드 웹 개발자 지망생 이정열입니다.
 			</br>
@@ -107,9 +129,9 @@
 	</div>
 </div>	
 
-<div class="contents_align_div_mv height150">
+<div id="contents_align_div1_mv" class="contents_align_div_mv height150">
 
-	<div class="contents_wrap_mv height100">
+	<div id="contents_align_div1_mv_cont" class="contents_wrap_mv height100">
 			
 			안녕하십니까. 백엔드 웹 개발자 지망생 이정열입니다.
 			</br>
@@ -122,9 +144,9 @@
 
 
 <div id="contents_align_div_ry" class="contents_align_div height200">
-	<div class="contents_wrap_t2 height150">
+	<div id="contents_align_div_ry_cont" class="contents_wrap_t2 height150">
 			
-			<div class="font_about_me_content">구현 기능 소개</div>
+			<div class="font_about_me_content">구현 기능 소개(클릭하면 해당 소개문으로 이동합니다)</div>
 			</br><span class="space10"></span></br>
 			<div style="display:inline-block;">
 			
@@ -174,6 +196,7 @@
 	</div>
 </div>
 
+<span id="contents_align_span_rv1" ></span><!-- contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 -->
 <div id="contents_align_div_rv1"  class="contents_align_div ">
 
 	<div id="contents_align_div_rvcon1" class="contents_wrap_t3 ">
@@ -216,7 +239,8 @@
 
 </div>
 
-<div id="contents_align_div_rv2"  class="contents_align_div ">
+<span id="contents_align_span_rv2" ></span><!-- contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 -->
+<div id="contents_align_div_rv2" class="contents_align_div ">
 
 	<div id="contents_align_div_rvcon2" class="contents_wrap_t3 ">
 	

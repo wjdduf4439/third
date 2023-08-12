@@ -20,8 +20,8 @@ i {position:relative !important; bottom: 4px !important;}
 input[type="text"], input[type="password"], input[type="number"], input[type="email"]{ font-family:'Noto Sans KR', san-serif; font-size:1.0rem; letter-spacing:-0.2px; padding:0 8px; height:34px; border: 1px solid #c8c8c8 !important; background: #fff }
 		
 
-.contents_align_div{ width:96%; max-width: 1840px; margin:0;  height:350px; }
-.contents_align_div_mv { width:96%; max-width: 1840px; margin:0; }
+.contents_align_div{ width:96%; max-width: 1840px; margin:0;  height:350px; display:contents; }
+.contents_align_div_mv { width:96%; max-width: 1840px; margin:0; display:contents; }
 		
 .contents_wrap { width:96%; max-width: 1840px; margin:50px auto; background:#fff; margin-top:30px; margin-right:30px; height:auto; padding-bottom:30px; }
 
