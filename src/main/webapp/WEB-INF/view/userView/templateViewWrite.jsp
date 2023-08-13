@@ -106,6 +106,9 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			</table>
 
 		</form>
+			<div class="btngroup mt0">
+				<button class="btn03 fr" onclick="javascript:fn_back();" type="button">돌아가기</button>
+			</div>
 		</div>
 
 </div>

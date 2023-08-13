@@ -52,7 +52,7 @@ public class logAdminServiceImpl implements logAdminService {
 				
 			}
 			
-			for(int j = 0; j < 14-i ; j++) { newCode += "0"; System.out.println(newCode); }
+			for(int j = 0; j < 14-i ; j++) { newCode += "0"; /*System.out.println(newCode);*/ }
 			newCode += Integer.toString(tailNumber);
 			
 			System.out.println(newCode);

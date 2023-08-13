@@ -70,7 +70,7 @@
 						<option value="20" <c:out value="${paging.recordCountPerPage == 20 ? 'selected' : ''}"/>>20</option>
 						<option value="30" <c:out value="${paging.recordCountPerPage == 30 ? 'selected' : ''}"/>>30</option>
 					</select>
-					<span>게시판의 묶음인 항목을 만드는 게시판입니다</span>
+					<span>뷰의 방문기록을 기록한 로그 테이블입니다.</span>
 				</div>
 				
 				<div class="search_wrap fr mt10">

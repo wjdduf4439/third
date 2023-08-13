@@ -121,10 +121,10 @@ function fn_back(){
 			</form>
 			
 			<div class="btngroup mt0">
+				<button class="btn03 fr" onclick="javascript:fn_back();" type="button">돌아가기</button>
 				<c:if test="${empty resultList }"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">등록</button> </c:if>
 				<c:if test="${not empty resultList}"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">수정</button> </c:if>
 				<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
-				<button class="btn03 fr" onclick="javascript:fn_back();" type="button">취소</button>
 			</div>
 		</div>
 
