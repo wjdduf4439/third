@@ -6,6 +6,7 @@ head { margin:0; }
 body {
 			background: url( ../image/blackback.jpg) fixed 50% 50%;
 			margin:0;
+			padding-right:50px;
 			clear:both;
 			
 		}
@@ -29,13 +30,13 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 .contents_wrap_t2 { height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 25px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
  	 }
 .contents_wrap_t3 { 
-						height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
+						height:250px; background:#fff; margin-left: 50px; margin-top:30px; padding:25px 25px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
  					}
  					
 .contents_align_div_ry { background:#fff; height:250px; margin-left: 50px; margin-top:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px; } 					
 
 .contents_wrap_mv { 
-					height:200px; margin-left: 50px; background:#fff; margin-top:30px; margin-bottom:30px; padding:25px 0px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
+					height:200px; margin-left: 50px; background:#fff; margin-top:30px; margin-bottom:30px; padding:25px 25px 25px 25px; border-style:solid; border-color:black; border-radius:5px;
 				  }
 
 .contents { width:94%; clear:both;  background:#fff; margin:0 auto; }
