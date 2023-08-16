@@ -57,6 +57,7 @@ public class FileController {
 			List<FileVO> fileList = fileService.selectFileMenuList(atchFileId);
 			
 			map.addAttribute("fileList", fileList);
+			map.addAttribute("fid", fileList.get(0).getFid());
 			
 			
 			return "/file/fileDownloadForm";
@@ -76,6 +77,7 @@ public class FileController {
 			List<FileVO> fileList = fileService.selectFileMenuList(atchFileId);
 			
 			map.addAttribute("fileList", fileList);
+			map.addAttribute("fid", fileList.get(0).getFid());
 			
 			
 			return "/file/fileViewDownloadForm";

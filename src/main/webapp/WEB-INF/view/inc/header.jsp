@@ -176,9 +176,9 @@
 		%>
 	
 		
-		<div id="navContent" class="width100p">
+		<div id="navContent" class="width100p inline-flex">
 		
-			<nav id="topMenu">
+			<nav id="topMenu" class="width50p">
 					<ul>
 						
 							
@@ -323,7 +323,7 @@
 					
 			%>
 			
-			<nav id="topMenu">
+			<nav id="topMenu" class="width50p">
 					<ul>
 						
 							

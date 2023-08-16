@@ -20,6 +20,7 @@
 				</li>
 			</c:forEach>
 		</ul>
+		<input type="hidden" name="b_file_id" id="b_file_id" value='${fid}' >
 	</td>
 </tr>
 	
@@ -54,7 +55,8 @@ function fn_deleteFile(code, fid, fileSn, fname) {
         	
         },
         error : function(error) {
-           alert(error + "임");
+           //alert(error + "임");
+        	$("#"+code).remove();
         }
     });
 }

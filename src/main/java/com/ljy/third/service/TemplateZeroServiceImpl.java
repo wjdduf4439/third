@@ -147,11 +147,12 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				
 				newCodeList.add(newCode);
 				
-				templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + newCode);
+				
 				
 			}
 			//AtchFileid의 형식을 FileCode를 만든 다음 설정하는것으로 변경
-			//AtchFileid의 형식을 숫자에서 숫자 _AND_ code의 형식으로의 변환이 필요함
+			//AtchFileid의 형식을 숫자에서 fid _AND_ siteCode의 형식으로의 변환이 필요함
+			templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + templateZeroVO.getSiteCode());
 
 			String originFilename = "";
 			List<FileVO> fileVO = new ArrayList<FileVO>();
@@ -160,7 +161,8 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 			for(int i = 0 ; i < templateZeroVO.getB_filename().size(); i++  ) {
 	
-				FileVO mfileVO = new FileVO();//����Ʈ�� �ֱ� ���� ��� fileVO
+				FileVO mfileVO = new FileVO(); mfileVO.setSiteCode(templateZeroVO.getSiteCode());
+				//새로운 filevo 선언 후 sitecode에 현재 사용하고 있는 게시판 코드를 집어넣음
 				
 				originFilename = templateZeroVO.getB_filename().get(i).getOriginalFilename();//������ Ȯ���ڸ� ������ �̸�(���ϸ�)
 				writeFile(templateZeroVO.getB_filename().get(i), originFilename);//���ε� ������ ���� ���ε�
@@ -176,6 +178,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			}
 			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
+			System.out.println(fileVO.get(0).getSiteCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
@@ -269,14 +272,16 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 			for(int i = sign ; i < sign + templateZeroVO.getB_filename().size(); i++  ) {
 	
-				FileVO mfileVO = new FileVO();//����Ʈ�� �ֱ� ���� ��� fileVO
+				FileVO mfileVO = new FileVO(); mfileVO.setSiteCode(templateZeroVO.getSiteCode());
+				//새로운 filevo 선언 후 sitecode에 현재 사용하고 있는 게시판 코드를 집어넣음
 				
 				originFilename = templateZeroVO.getB_filename().get(i - sign).getOriginalFilename();
 				writeFile(templateZeroVO.getB_filename().get(i - sign), originFilename);//���ε� ������ ���� ���ε�
 				
 				System.out.println("��ȣ : " + Integer.toString(sign + templateZeroVO.getB_filename().size() - i));
 				mfileVO.setCode(templateZeroVO.getB_fileCode().get(sign + templateZeroVO.getB_filename().size() - i - 1));
-				mfileVO.setFid(templateZeroVO.getAtchFileId());
+				//update의 setfid는 기존 사용하던 fid를 사용해야함
+				mfileVO.setFid(templateZeroVO.getB_file_id());
 				mfileVO.setFsign(i);							 //������ ����
 				mfileVO.setFpath( PREFIX_URL + originFilename); //������ ��� + ������ �̸����� �������ϰ�� ����
 				mfileVO.setFname(originFilename); //������ �̸�
@@ -286,6 +291,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			}
 			System.out.println("----------------------작성 파일의 세부 구성요소--------------------------");
 			System.out.println(fileVO.get(0).getCode());
+			System.out.println(fileVO.get(0).getSiteCode());
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());

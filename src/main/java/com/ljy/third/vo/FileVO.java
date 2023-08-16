@@ -4,24 +4,23 @@ public class FileVO {
 
 	
 	private String code;
+	private String siteCode;
 	private String fid;
 	private int fsign;
 	private String fpath;
 	private String fname;
-	private String siteCode;
-	
-	public String getSiteCode() {
-		return siteCode;
-	}
-	public void setSiteCode(String siteCode) {
-		this.siteCode = siteCode;
-	}
 
 	public String getCode() {
 		return code;
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getSiteCode() {
+		return siteCode;
+	}
+	public void setSiteCode(String siteCode) {
+		this.siteCode = siteCode;
 	}
 	public String getFid() {
 		return fid;

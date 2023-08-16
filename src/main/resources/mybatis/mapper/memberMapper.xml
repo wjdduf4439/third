@@ -69,13 +69,14 @@
     
     <insert id="insertfileBoardDAO">
     
-    	INSERT INTO FILE_TABLE(code, fid, fsign, fpath, fname)
+    	INSERT INTO FILE_TABLE(code, siteCode, fid, fsign, fpath, fname)
     	VALUES
     	
     	<foreach collection="list" item="fileVO" separator=" , " >
            (
            <!-- //#{fileVO.value} -->
            	#{fileVO.code},
+           	#{fileVO.siteCode},
             #{fileVO.fid},
             #{fileVO.fsign},
             #{fileVO.fpath},
