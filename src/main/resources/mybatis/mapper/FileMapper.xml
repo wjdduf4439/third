@@ -9,7 +9,8 @@
 	<select id="selectFileList" resultType="com.ljy.third.vo.FileVO">
 		SELECT code, fid, fsign, fpath, fname
 		FROM FILE_TABLE
-		WHERE fid = #{atchFileId}
+		WHERE code = #{code} 
+		AND fid = #{fid}
 	</select>
 	
 	<select id="selectAtchFileCount" resultType="int">

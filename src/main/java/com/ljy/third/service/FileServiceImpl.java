@@ -1,5 +1,6 @@
 package com.ljy.third.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +19,19 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public List<FileVO> selectFileMenuList(String atchFileId) throws Exception {
 		// TODO Auto-generated method stub
-		return fileDAO.selectFileMenuList(atchFileId);
+		
+		System.out.println("FileServiceImpl atchFileId : " + atchFileId);
+		
+		FileVO mfileVO = new FileVO();
+		
+		String fid = atchFileId.substring(0, atchFileId.indexOf("_AND_")); mfileVO.setFid(fid);
+		String fcode = atchFileId.substring(atchFileId.indexOf("_AND_") + 5, atchFileId.length() ); mfileVO.setCode(fcode);
+
+		//System.out.println("FileServiceImpl fcode : " + mfileVO.getCode());
+		//System.out.println("FileServiceImpl fid : " + mfileVO.getFid());
+		
+		
+		return fileDAO.selectFileMenuList(mfileVO);
 	}
 
 	@Override

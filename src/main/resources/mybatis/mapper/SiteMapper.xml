@@ -138,7 +138,7 @@
 				`code` VARCHAR(20) NOT NULL COMMENT '코드명은 ???',
 				`title` VARCHAR(250) NULL DEFAULT NULL COMMENT '제목',
 				`context` LONGTEXT NULL COMMENT '내용',
-				`atchFileId` VARCHAR(20) NULL COMMENT '첨부파일',
+				`atchFileId` VARCHAR(40) NULL COMMENT '첨부파일',
 				`writerID` VARCHAR(50) NULL DEFAULT NULL COMMENT '작성자 ID',
 				`frstRegistPnttm` DATETIME NULL DEFAULT NULL COMMENT '최초 게시물 작성시간',
 				`frstRegistNm` VARCHAR(50) NULL DEFAULT NULL COMMENT '최초 게시물 작성자',

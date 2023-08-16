@@ -53,7 +53,7 @@ public class FileController {
 	public String fileDownloadForm(FileVO fileVO, @RequestParam String atchFileId, ModelMap map) throws Exception {
 		
 		try {
-			
+			//atchFileId의 값을 분해하여 filemapper의 selectFileList 부분에 인식시켜야함
 			List<FileVO> fileList = fileService.selectFileMenuList(atchFileId);
 			
 			map.addAttribute("fileList", fileList);

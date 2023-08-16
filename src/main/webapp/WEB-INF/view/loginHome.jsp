@@ -10,8 +10,6 @@
 	
 	$(document).ready(function(){ fn_setWidth(); fn_setRV('1','0'); });
 	
-	
-	
 	$( window ).resize(function() {
 			fn_setWidth();
 	});
@@ -20,6 +18,15 @@
 		
 		var windowWidth = $( window ).width();
 		var t1_width = $( "#contents_align_div_t1" ).width();
+		
+		var contents_align_div1_height = $( "#contents_align_div1_cont" ).height();
+		$( "#contents_align_div1" ).css('height', (contents_align_div1_height + 75) + 'px');
+		
+		var contents_align_div1_mv_cont_height = $( "#contents_align_div1_mv_cont" ).height();
+		$( "#contents_align_div1_mv" ).css('height', (contents_align_div1_mv_cont_height + 75) + 'px');
+		
+		var contents_align_div_ry_cont = $( "#contents_align_div_ry_cont" ).height();
+		$( "#contents_align_div_ry" ).css('height', (contents_align_div_ry_cont + 75) + 'px');
 		
 			if (windowWidth >= 1170) {
 			//창 가로 크기가 1170 보다 클 경우
@@ -32,13 +39,6 @@
 			} else if(windowWidth < 1170 && windowWidth > 550 ) {
 			//창 가로 크기가 1170 미만일 경우 
 			//div_t3_image 네임 width95p 설정
-			//contents_align_div1_mv + cont height 150으로 설정
-			
-				$( "#contents_align_div1_mv" ).removeClass('height250'); $( "#contents_align_div1_mv" ).addClass('height150');
-				$( "#contents_align_div1_mv_cont" ).removeClass('height200'); $( "#contents_align_div1_mv_cont" ).addClass('height100');
-				
-				$( "#contents_align_div_ry" ).removeClass('height550'); $( "#contents_align_div_ry" ).addClass('height200');
-				$( "#contents_align_div_ry_cont" ).removeClass('height500'); $( "#contents_align_div_ry_cont" ).addClass('height150');
 				
 				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
 			
@@ -47,12 +47,6 @@
 			} else if(windowWidth <= 550) {				
 				//창 가로 크기가 400 미만일 경우 
 				//contents_align_div1_mv + cont height 200으로 설정
-			
-				$( "#contents_align_div1_mv" ).removeClass('height150'); $( "#contents_align_div1_mv" ).addClass('height250');
-				$( "#contents_align_div1_mv_cont" ).removeClass('height100'); $( "#contents_align_div1_mv_cont" ).addClass('height200');
-				
-				$( "#contents_align_div_ry" ).removeClass('height200'); $( "#contents_align_div_ry" ).addClass('height550');
-				$( "#contents_align_div_ry_cont" ).removeClass('height150'); $( "#contents_align_div_ry_cont" ).addClass('height500');
 				
 				$("img[name=div_t3_image]").removeClass('width65p'); $("img[name=div_t3_image]").addClass('width95p');
 				
@@ -120,33 +114,45 @@
 </script>
 <body>
 
-<div id="contents_align_div1" class="contents_align_div height200">
-	<div id="contents_align_div1_cont" class="contents_wrap_t2 height150">
+<div id="contents_align_div1" class="contents_align_div">
+	<div id="contents_align_div1_cont" class="contents_wrap_t2">
 			
 			안녕하십니까. 백엔드 웹 개발자 지망생 이정열입니다.
-			</br>
-			로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
-			</br>
-			면접을 할 기회가 생기면 관리자용 게시판 기능을 시연해드리겠습니다. 잘부탁드립니다.
+			</br></br>
+			과거에는 홈페이지 유지보수 일을 함으로서 웹사이트 안정성과 기능 개선을 담당했으며, 이번에는 백엔드 개발 분야로 나아가고자 합니다. 
+			</br></br>
+			유지보수를 통해 다양한 문제를 해결하고 협업을 경험한 덕분에 효율적인 문제 해결과 팀워크의 중요성을 깨닫게 되었습니다. 
+			</br></br>
+			전반적인 홈페이지 개발을 통해 더욱 깊이 있는 기술과 솔루션을 탐구하며, 새로운 도전에 적극적으로 임하고자 합니다.
+			</br></br>
+			이 aws 서버에서 배포한 프로젝트로 지원하고자 하는 회사에 저의 기술과 솔루션에 대한 관심을 표현하고자 합니다.
+			</br></br>
+			잘부탁드립니다.
 	</div>
 </div>	
 
-<div id="contents_align_div1_mv" class="contents_align_div_mv height150">
+<div id="contents_align_div1_mv" class="contents_align_div_mv">
 
-	<div id="contents_align_div1_mv_cont" class="contents_wrap_mv height100">
+	<div id="contents_align_div1_mv_cont" class="contents_wrap_mv">
 			
 			안녕하십니까. 백엔드 웹 개발자 지망생 이정열입니다.
 			</br></br>
-			로그인 하지 않고 상단에 보이는 항목과 게시판은 사용자 시점에서 사용하는 게시판으로 구현했습니다.
+			과거에는 홈페이지 유지보수 일을 함으로서 웹사이트 안정성과 기능 개선을 담당했으며, 이번에는 백엔드 개발 분야로 나아가고자 합니다. 
 			</br></br>
-			면접을 할 기회가 생기면 관리자용 게시판 기능을 시연해드리겠습니다. 잘부탁드립니다.
+			유지보수를 통해 다양한 문제를 해결하고 협업을 경험한 덕분에 효율적인 문제 해결과 팀워크의 중요성을 깨닫게 되었습니다. 
+			</br></br>
+			전반적인 홈페이지 개발을 통해 더욱 깊이 있는 기술과 솔루션을 탐구하며, 새로운 도전에 적극적으로 임하고자 합니다.
+			</br></br>
+			이 aws 서버에서 배포한 프로젝트로 지원하고자 하는 회사에 저의 기술과 솔루션에 대한 관심을 표현하고자 합니다.
+			</br></br>
+			잘부탁드립니다.
 	</div>
 
 </div>
 
 
-<div id="contents_align_div_ry" class="contents_align_div height200">
-	<div id="contents_align_div_ry_cont" class="contents_wrap_t2 height150">
+<div id="contents_align_div_ry" class="contents_align_div">
+	<div id="contents_align_div_ry_cont" class="contents_wrap_t2">
 			
 			<div class="font_about_me_content">구현 기능과 학습한 점 소개(클릭하면 해당 소개문으로 이동합니다)</div>
 			</br><span class="space10"></span></br>

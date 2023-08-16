@@ -15,9 +15,9 @@ public class FileDAO {
 	@Inject //�ڹٿ��� �����ϴ� �ش� ���������Ŀ� ���� �����͸� �����ϴ� ������̼�
 	private SqlSession sqlSession;
 	
-	public List<FileVO> selectFileMenuList(String atchFileId) throws Exception {
+	public List<FileVO> selectFileMenuList(FileVO mFileVO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.ljy.third.dao.FileMapper.selectFileList", atchFileId);
+		return sqlSession.selectList("com.ljy.third.dao.FileMapper.selectFileList", mFileVO);
 	}
 
 	public int selectAtchFileCount(String fid) {

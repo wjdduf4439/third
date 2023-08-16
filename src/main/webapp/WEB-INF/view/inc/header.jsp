@@ -73,22 +73,32 @@
 		
 		var windowWidth = $( window ).width();
 		var t1_width = $( "#contents_align_div_t1" ).width();
-		   
-		   if(windowWidth < 1170) {
+		
+		var navContent_height = $("#navContent").height();
+		
+		
+		if (windowWidth >= 1170) {
+			//창 가로 크기가 1170 보다 클 경우
+			//div_t3_image 네임 width45p 설정
+			
+				$("#navContent").css('height', '50px');
+				
+				
+			} else if(windowWidth < 1170 && windowWidth > 550 ) {
 			//창 가로 크기가 1170 미만일 경우 
 			//div_t3_image 네임 width95p 설정
 			
-				$("#navContent").removeClass('height60');
-				$("#navContent").addClass('height150');
+				$("#navContent").css('height', '100px');
 				
-			} else {
-			//창 가로 크기가 1170 보다 클 경우
-			//div_t3_image 네임 width45p 설정
 				
-				$("#navContent").removeClass('height150');
-				$("#navContent").addClass('height60');
+			} else if(windowWidth <= 550) {				
+				//창 가로 크기가 400 미만일 경우 
+				//contents_align_div1_mv + cont height 200으로 설정
+				
+				$("#navContent").css('height', '150px');
+				
 			}
-		   
+		
 	}
 	
 	
@@ -166,7 +176,7 @@
 		%>
 	
 		
-		<div id="navContent" class="inline-flex width100p height150">
+		<div id="navContent" class="width100p">
 		
 			<nav id="topMenu">
 					<ul>
@@ -371,10 +381,9 @@
 		
 		</div>
 		
-		<!-- 로그인 화면 전용 마스크 -->
-		<div id="loginmask"></div>
+		
 		<!-- 로그인 화면 전용 폼-->
-		<div id="loginformBox"><c:import url="/AdminLoginFormBox.go" /></div>
+		<c:import url="/AdminLoginFormBox.go" />
 		
 		
 

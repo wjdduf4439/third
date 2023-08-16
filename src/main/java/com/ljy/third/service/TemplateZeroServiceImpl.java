@@ -127,16 +127,15 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			System.out.println("f_code : " + f_code);
 			
 			int temp = Integer.parseInt(f_code); temp ++;			//������ �ڵ忡 �� temp ����
-			int counttemp = Integer.parseInt(templateZeroDAO.maxTableAtchFileId(templateZeroVO))+1; //������ �� f_id ����
+			int counttemp = Integer.parseInt(templateZeroDAO.maxTableAtchFileId(templateZeroVO))+1; //최대 fid에 1을 더함
 			
 			templateZeroVO.setB_file_id(Integer.toString(counttemp));//file_table�� f_id�� �� ���� ���̵� ����
-			templateZeroVO.setAtchFileId(Integer.toString(counttemp));
 
-			List<String> newCodeList = new ArrayList<String>();		//������ ÷���� ����ŭ file_table�� �� "������"�ڵ� ����
+			List<String> newCodeList = new ArrayList<String>();		//file_table에 나올 복수형의 파일을 동시에 등록하기 위한 codelist
+			String newCode = "FILE_";											//file_table에 나올 복수형의 파일을 동시에 등록하기 위한 code의 temp
 			
 			for(int i = 0; i < templateZeroVO.getB_filename().size(); i++) {
-				
-				String newCode = "FILE_";
+
 				int j = 1;
 				
 				while(temp >= 10) { temp /= 10; j++; }
@@ -148,7 +147,11 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				
 				newCodeList.add(newCode);
 				
+				templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + newCode);
+				
 			}
+			//AtchFileid의 형식을 FileCode를 만든 다음 설정하는것으로 변경
+			//AtchFileid의 형식을 숫자에서 숫자 _AND_ code의 형식으로의 변환이 필요함
 
 			String originFilename = "";
 			List<FileVO> fileVO = new ArrayList<FileVO>();
@@ -239,10 +242,9 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 			//System.out.println("countid : " + countAtchFileId);
 			
-			if(countAtchFileId == null || countAtchFileId.equals("")) { System.out.println("atchfileid����"); atchFileId = "1"; }		//�Խ��ǿ� atchfileid�� ������ 1���� ����
-			else if(templateZeroVO.getAtchFileId().equals("")) {											//�Խù��� atchfileid�� ������
+			if(countAtchFileId == null || countAtchFileId.equals("")) { System.out.println("atchfileid없음"); atchFileId = "1"; }		
+			else if(templateZeroVO.getAtchFileId().equals("")) {											
 				
-				System.out.println("�� atchfileid����");
 				System.out.println("atchfileId = " + atchFileId);
 				
 				int countAtchFileNumber = Integer.parseInt(countAtchFileId)+1;
