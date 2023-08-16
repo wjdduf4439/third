@@ -146,9 +146,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				System.out.println("newcode : " + newCode);
 				
 				newCodeList.add(newCode);
-				
-				
-				
+				newCode = "FILE_";
 			}
 			//AtchFileid의 형식을 FileCode를 만든 다음 설정하는것으로 변경
 			//AtchFileid의 형식을 숫자에서 fid _AND_ siteCode의 형식으로의 변환이 필요함
@@ -156,8 +154,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 
 			String originFilename = "";
 			List<FileVO> fileVO = new ArrayList<FileVO>();
-			
-			//file_table�� ����ؾ��� filevo�� ����Ʈ
 			
 			for(int i = 0 ; i < templateZeroVO.getB_filename().size(); i++  ) {
 	
@@ -234,6 +230,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				System.out.println("newcode : " + newCode);
 				
 				newCodeList.add(newCode);
+				newCode = "FILE_";
 				
 			}
 			

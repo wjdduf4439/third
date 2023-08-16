@@ -186,7 +186,8 @@
 		
 		DELETE FROM
 			FILE_TABLE
-		WHERE fid = #{atchFileId}
+		WHERE fid = #{b_file_id}
+		and siteCode = ${siteCode}
 		
 	
 	</delete>
