@@ -19,8 +19,8 @@ public class TemplateZeroVO extends VOobject {
 	private String lastUpdtPnttm;
 	private String lastUpdtNm;
 
-	private String b_file_id;
-	private String b_file_name;
+	private String b_file_id = "";
+	private String b_file_name = "";
 	private List<String> b_fileCode;
 	private List<MultipartFile> b_filename;//���� ���� ���� �ڷ�
 	private String noticeSwitch = "0";

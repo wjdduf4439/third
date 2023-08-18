@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 	
-	$(document).ready(function(){ fn_setWidth(); fn_setRV('1','0'); });
+	$(document).ready(function(){ fn_setWidth(); fn_setRV('3','0'); });
 	
 	$( window ).resize(function() {
 			fn_setWidth();
@@ -81,13 +81,9 @@
 		
 		$( "#contents_align_div_rv"+buttonid ).show(); $( "#contents_align_div_rvcon"+buttonid ).show();
 		
-		if(buttonid == '1'){
-			fn_setHeight(buttonid, '1650');
-		}else if(buttonid == '2'){
-			fn_setHeight(buttonid, '800');
-		}else if(buttonid == '3'){
-			fn_setHeight(buttonid, '2500');
-		}
+		if(buttonid == '1'){ fn_setHeight(buttonid, '1650'); }
+		else if(buttonid == '2'){ fn_setHeight(buttonid, '800'); }
+		else if(buttonid == '3'){ fn_setHeight(buttonid, '2850'); }
 		
 		
 		if(mode == '1'){ var offset = $( "#contents_align_span_rv"+buttonid ).offset(); $('html, body').animate({scrollTop : offset.top}, 400); }
@@ -157,6 +153,11 @@
 			<div class="font_about_me_content">구현 기능과 학습한 점 소개(클릭하면 해당 소개문으로 이동합니다)</div>
 			</br><span class="space10"></span></br>
 			<div style="display:inline-block;">
+				
+				
+				<button id="rv3" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('3','1');">
+					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845754.png" class="btn_rv1"/></br>AWS 활용에 대한 경험
+				</button>
 			
 				<button id="rv1" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('1','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9846051.png" class="btn_rv1"/></br>항목과 게시판의 생성
@@ -164,10 +165,6 @@
 				
 				<button id="rv2" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('2','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845968.png" class="btn_rv1"/></br>로그 테이블
-				</button>
-				
-				<button id="rv3" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('3','1');">
-					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845754.png" class="btn_rv1"/></br>AWS 활용에 대한 경험
 				</button>
 			
 			</div>
@@ -271,11 +268,18 @@
 		</div>
 		</br><span class="space20"></span></br>
 		<span>
+		
 			홈페이지의 사이트를 관리하는 관리자가 홈페이지 관리 도중 문제를 확인할 때 보는 웹 로그를 구현해 보았습니다.
 			</br></br>
 			특정한 ip가 특정한 뷰를 조회하였는지를 파악하여 기능이 정상적으로 이루어져 있는지 확인할 수 있게 만들었습니다. 
 			</br></br>
 			간단하게나마 사용자 활동에 대한 데이터를 수집하고 시각화하는 능력을 키울수 있었습니다.
+			</br></br>
+			만약 개발자로 입사해서 더 넓은 시야를 가지고 필요에 따른 요구사항에 대한 정리가 되면 더 세부적으로 기록할 것이 많을 것이고,
+			</br></br>
+			그렇게 되면 더 다양한 형태의 기록을 인지하고 받아들여서 기록할 수 있는 역량을 키워냈으면 좋겠습니다. 
+			
+		
 		</span>
 		</br><span class="space10"></span></br>
 		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/logAdmin-step.png"/>
@@ -307,15 +311,21 @@
 			</br></br>
 			 이 프로젝트를 통해 새로운 분야에 도전하고 배움을 얻는 과정이 매우 의미있었다고 생각해서 걱정보다 몸이 먼저 움직인 덕분에 이 프로젝트를 여기까지 진행시켰을 수 있다고 생각합니다.
 			</br> </br>
-			 이 경험을 통해 나는 아직 배울 점이 많고 부족한 점이 많지만, 새로운 분야에 도전하고 성장하는 의지와 노력을 가지고 있다는 것을 느낄 수 있었습니다. 
+			 이 경험을 통해 저는 아직 배울 점이 많고 부족한 점이 많지만, 새로운 분야에 도전하고 성장하는 의지와 노력을 가지고 있다는 것을 느낄 수 있었습니다. 
 			 
 			</br></br></br>
 			
-			이 프로젝트를 제작하면서 목표로 삼았던 것은 웹을 통한 컨텐츠 상호 작용을 제공하고 이를 관리하는 관리자 기능을 만드는 것이었습니다.
+			이 프로젝트를 제작하면서 목표로 삼았던 것은 웹을 통한 기본적인 컨텐츠 상호 작용을 제공하고 이를 관리하는 관리자 기능을 만드는 것이었습니다.
 			</br></br>
+			하지만 기본적인 상호작용조차 개발에 있어서 처음인 제가 함부로 할만한 일이 아니라는걸 깨닫는 데에는 1주일도 안걸렸습니다. 정말 힘들더라구요 
+			 
+			</br></br></br>
+			
 			Amazon EC2 인스턴스를 활용하여 웹 서버를 구축하였고, VPC, 보안그룹, 보안 그룹, 웹 애플리케이션 계층과 데이터베이스 계층을 분리하기 위해 rds 페이지를 활용하여 프로젝트를 만들었습니다.
 			</br></br>
 			이 서버에 Tomcat 서버를 설치하여 로컬에서 springboot의 프로젝트를 만들어 GIT로 전송할 다리를 만든 다음, 동적인 콘텐츠 생성과 관리를 수행하는 기능을 구현할 수 있었습니다.
+			</br></br>
+			제가 이렇게 만든 홈페이지는 저에게 실제로 개발자가 된 경험을 주었고, 더 나은 기술 발전을 위한 첫 걸음이라고 생각합니다. 회사에 입하하여 경험을 더 키울 수 있으면 그만큼 더 배울수 있을것이라고 확신합니다.
 		</span>
 		</br><span class="space20"></span></br>
 		<div class="font_about_me_content">AWS의 EC2 인스턴스 화면 </div>
@@ -331,6 +341,11 @@
 		<div class="font_about_me_content">AWS의 보안 그룹 화면 </div>
 		</br><span class="space10"></span>
 		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/security-step_b.png"/>
+		
+		</br><span class="space20"></span></br>
+		<div class="font_about_me_content">Tomcat의 포트 연결 및 webapp 설정 화면 </div>
+		</br><span class="space10"></span>
+		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/tomcat-step_d.png"/>
 
 	
 	</div>

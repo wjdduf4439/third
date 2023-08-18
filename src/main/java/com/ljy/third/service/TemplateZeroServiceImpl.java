@@ -305,7 +305,9 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	@Override
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
 		// TODO Auto-generated method stub
-		templateZeroDAO.deleteFileRecord(templateZeroVO);
+		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
+			templateZeroDAO.deleteFileRecord(templateZeroVO);
+		}
 		templateZeroDAO.deleteTableRecord(templateZeroVO);
 	}
 	

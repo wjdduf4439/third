@@ -9,6 +9,7 @@
 
 <script>
 
+
 var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
 var flag = 0;
 $(document).ready(function() {
@@ -156,6 +157,39 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
 		</div>
 		</div>
+						
+		<script>
+		
+		
+
+			//붙여넣기 이엡트
+			$("#thirdContextArea").on('change input paste',function(e){
+				
+				console.log("붙여넣기 이벤트 인식");
+				
+			    var el = $(this);
+			    setTimeout(function(){
+			        var text = $(el).val();
+			    	console.log(text);
+			    },100);
+			    alert("changed!");
+			});
+			
+			var oldVal = $("#title").val(); 
+			$("#title").on("change keyup paste", function() {
+				
+				console.log("붙여넣기 이벤트 인식");
+				
+			    var currentVal = $(this).val();
+			    if(currentVal == oldVal) {
+			        return;
+			    }
+			 
+			    oldVal = currentVal;
+			    alert("changed!");
+			});
+		</script>
 
 </div>
+
 </body>
