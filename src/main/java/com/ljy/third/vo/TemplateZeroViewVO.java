@@ -18,6 +18,7 @@ public class TemplateZeroViewVO extends VOobject {
 	private String frstRegistNm;
 	private String lastUpdtPnttm;
 	private String lastUpdtNm;
+	private int viewNum;
 
 	private String b_file_id;
 	private String b_file_name;
@@ -91,6 +92,12 @@ public class TemplateZeroViewVO extends VOobject {
 	}
 	public void setLastUpdtNm(String lastUpdtNm) {
 		this.lastUpdtNm = lastUpdtNm;
+	}
+	public int getViewNum() {
+		return viewNum;
+	}
+	public void setViewNum(int viewNum) {
+		this.viewNum = viewNum;
 	}
 	public String getB_file_id() {
 		return b_file_id;

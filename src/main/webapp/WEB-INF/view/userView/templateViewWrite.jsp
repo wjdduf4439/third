@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+	
+<%@ page import="com.ljy.third.vo.TemplateZeroViewVO" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/AdminHeader.go" />
@@ -12,21 +14,41 @@
 var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
 var flag = 0;
 $(document).ready(function() {
-	// Editor Setting 
-	nhn.husky.EZCreator.createInIFrame({ 
-		oAppRef : oEditors, // 전역변수 명과 동일해야 함. 
-		elPlaceHolder : "contexteditor", // 에디터가 그려질 textarea ID 값과 동일 해야 함. 
-		sSkinURI : "${pageContext.request.contextPath}/resources/js/smarteditor2-master/workspace/SmartEditor2Skin.html", // Editor HTML 
-		fCreator : "createSEditor2", // SE2BasicCreator.js 메소드명이니 변경 금지 X 
-		htParams : { 
-			// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
-			bUseToolbar : true, 
-			// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
-			bUseVerticalResizer : true, 
-			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
-			bUseModeChanger : true, 
-		} 
-	});
+	
+	<%
+		//TemplateZeroViewVO ajaxTemplateZeroViewVO = (TemplateZeroViewVO) request.getAttribute("resultList");
+		TemplateZeroViewVO ajaxTemplateZeroViewVO = (TemplateZeroViewVO) request.getAttribute("searchVO");
+	
+		String ajaxSiteCode = ajaxTemplateZeroViewVO.getSiteCode();
+		String ajaxCode = ajaxTemplateZeroViewVO.getCode();
+	%>
+	
+	//조회수 +1 ajax
+	var ajaxSiteCode = '<%=ajaxSiteCode%>';
+	var ajaxCode = '<%=ajaxCode%>';
+	
+	var url = "<c:url value='/ViewNumPlus.go?siteCode="+ajaxSiteCode+"&code="+ajaxCode+"'/>";
+	
+	//로그 기입 ajax 넣기
+	$.ajax({      
+        type:"get",  
+        url : url,
+        async: true,
+        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        dataType : 'text',
+        processData : false,
+        contentType : false,
+        beforeSend : function(xmlHttpRequest){
+        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){   
+        	//alert(args);
+        },   
+        error:function(e){  
+            //alert("조회수 추가 실패" + e.responseText);  
+        }  
+    }); 
+	
 });
 
 
@@ -46,12 +68,7 @@ function fn_validate(){
 	return true;
 }
 
-function fn_back(){
-	
-	document.frm.action = '<c:url value="/template/templateInfo.go"/>';
-	document.frm.submit();
-	
-}
+function fn_back(){ history.back(); }
 
 function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recordCountPerPage});} 
 
@@ -84,7 +101,9 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				
 				<tr>
 					<th>제목</th>
-					<td colspan="3">${resultList.title }</td>
+					<td colspan="1">${resultList.title }</td>
+					<th>조회수</th>
+					<td colspan="1">${resultList.viewNum + 1 }</td>
 				</tr>
 				<tr>
 					<th>작성자 이름</th>

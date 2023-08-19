@@ -79,12 +79,7 @@ function fn_delete(){
 	
 }
 
-function fn_back(){
-	
-	document.frm.action = '<c:url value="/template/templateInfo.go"/>';
-	document.frm.submit();
-	
-}
+function fn_back(){ history.back(); }
 
 function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recordCountPerPage});} 
 
@@ -128,10 +123,13 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				</tr>
 				<tr>
 					<th> <i class="icono-asterisk"></i>   작성자 이름</th>
-					<td colspan="3">
+					<td colspan="1">
 						<input type="text" name="frstRegistNm" id="frstRegistNm" value="관리자" readonly="readonly"  />
 						<!--  <input type="text" name="frstRegistNm" id="frstRegistNm" value="${resultList.frstRegistNm }"value="관리자" readonly="readonly"  /> --> 
 					</td>
+					<th>조회수</th>
+					<td colspan="1">${resultList.viewNum }</td>
+				</tr>
 				</tr>
 				<tr>
 					<th> <i class="icono-asterisk"></i>   작성자 id</th>
@@ -157,38 +155,6 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
 		</div>
 		</div>
-						
-		<script>
-		
-		
-
-			//붙여넣기 이엡트
-			$("#thirdContextArea").on('change input paste',function(e){
-				
-				console.log("붙여넣기 이벤트 인식");
-				
-			    var el = $(this);
-			    setTimeout(function(){
-			        var text = $(el).val();
-			    	console.log(text);
-			    },100);
-			    alert("changed!");
-			});
-			
-			var oldVal = $("#title").val(); 
-			$("#title").on("change keyup paste", function() {
-				
-				console.log("붙여넣기 이벤트 인식");
-				
-			    var currentVal = $(this).val();
-			    if(currentVal == oldVal) {
-			        return;
-			    }
-			 
-			    oldVal = currentVal;
-			    alert("changed!");
-			});
-		</script>
 
 </div>
 

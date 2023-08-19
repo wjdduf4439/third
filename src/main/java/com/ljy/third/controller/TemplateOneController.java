@@ -25,6 +25,8 @@ import com.ljy.third.vo.FileVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateOneVO;
 
+
+//템플릿 게시판의 동작을 담당하는 컨트롤러, 현재 모양도 못잡음
 @Controller
 public class TemplateOneController {	
 

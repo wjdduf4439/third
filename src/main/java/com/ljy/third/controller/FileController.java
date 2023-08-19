@@ -18,6 +18,7 @@ import com.ljy.third.service.FileService;
 import com.ljy.third.vo.BoardVO;
 import com.ljy.third.vo.FileVO;
 
+//파일 뷰 폼 표시, 파일 다운로드 및 파일 업로드 기능을 담당하는 컨트롤러
 @Controller
 public class FileController {
 

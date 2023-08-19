@@ -77,13 +77,14 @@
 		//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
 		 
 		
-		for(i=1; i<4; i++){ fn_hideHeight(i); }
+		for(i=1; i<5; i++){ fn_hideHeight(i); }
 		
 		$( "#contents_align_div_rv"+buttonid ).show(); $( "#contents_align_div_rvcon"+buttonid ).show();
 		
 		if(buttonid == '1'){ fn_setHeight(buttonid, '1650'); }
 		else if(buttonid == '2'){ fn_setHeight(buttonid, '800'); }
 		else if(buttonid == '3'){ fn_setHeight(buttonid, '2850'); }
+		else if(buttonid == '2'){ fn_setHeight(buttonid, '1200'); }
 		
 		
 		if(mode == '1'){ var offset = $( "#contents_align_span_rv"+buttonid ).offset(); $('html, body').animate({scrollTop : offset.top}, 400); }
@@ -166,6 +167,12 @@
 				<button id="rv2" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('2','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845968.png" class="btn_rv1"/></br>로그 테이블
 				</button>
+				
+				<!--
+				<button id="rv4" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('4','1');">
+					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845968.png" class="btn_rv1"/></br>db의 구조와 다이어그램
+				</button>
+				 -->
 			
 			</div>
 			
@@ -325,7 +332,7 @@
 			</br></br>
 			이 서버에 Tomcat 서버를 설치하여 로컬에서 springboot의 프로젝트를 만들어 GIT로 전송할 다리를 만든 다음, 동적인 콘텐츠 생성과 관리를 수행하는 기능을 구현할 수 있었습니다.
 			</br></br>
-			제가 이렇게 만든 홈페이지는 저에게 실제로 개발자가 된 경험을 주었고, 더 나은 기술 발전을 위한 첫 걸음이라고 생각합니다. 회사에 입하하여 경험을 더 키울 수 있으면 그만큼 더 배울수 있을것이라고 확신합니다.
+			제가 이렇게 만든 홈페이지는 저에게 실제로 개발자가 된 경험을 주었고, 더 나은 실력 발전을 위한 첫 걸음이라고 생각합니다. 회사에 입하하여 경험을 더 키울 수 있으면 그만큼 더 배울수 있을것이라고 확신합니다.
 		</span>
 		</br><span class="space20"></span></br>
 		<div class="font_about_me_content">AWS의 EC2 인스턴스 화면 </div>
@@ -342,10 +349,10 @@
 		</br><span class="space10"></span>
 		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/security-step_b.png"/>
 		
-		</br><span class="space20"></span></br>
+		<%-- </br><span class="space20"></span></br>
 		<div class="font_about_me_content">Tomcat의 포트 연결 및 webapp 설정 화면 </div>
 		</br><span class="space10"></span>
-		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/tomcat-step_d.png"/>
+		<img name="div_t3_image" class="border3_black width95p" src="${pageContext.request.contextPath}/resources/siteStep/tomcat-step_d.png"/> --%>
 
 	
 	</div>

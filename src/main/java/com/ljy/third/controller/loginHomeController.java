@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ljy.third.service.loginHomeService;
 import com.ljy.third.vo.loginHomeVO;
 
+//login초기화면과 login동작과 관련된 동작을 담당하는 컨트롤러
 @Controller
 public class loginHomeController{
 	
@@ -36,10 +37,11 @@ public class loginHomeController{
 	@RequestMapping("/accLoginHome.go")
 	public String accLoginHome(ModelMap map, @ModelAttribute("loginHomeVO")loginHomeVO mloginHomeVO, HttpServletRequest req) throws Exception {
 		
-		System.out.println("in id : " + mloginHomeVO.getId());
-		System.out.println("in pw : " + mloginHomeVO.getPw());
-		
-		System.out.println("access Login Controller");
+		/*
+		 System.out.println("in id : " + mloginHomeVO.getId());
+		 System.out.println("in pw : " + mloginHomeVO.getPw());
+		 System.out.println("access Login Controller");
+		 */
 		loginHomeVO registedLoginHomeVO = mloginHomeService.accLoginHome(mloginHomeVO);
 		
 		System.out.println("regist id : " + registedLoginHomeVO.getId());

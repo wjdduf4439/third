@@ -19,6 +19,8 @@ import com.ljy.third.vo.SiteMenuVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateZeroVO;
 
+
+//일반 게시판의 동작을 담당하는 컨트롤러
 @Controller
 public class TemplateZeroController {	
 

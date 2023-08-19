@@ -131,65 +131,6 @@
         LIMIT 1
 		 
 	</select>
-	
-	<insert id="insertTableRecord">
-		 
-			INSERT INTO TB_${siteCode} (
-				code
-				,title
-				,context
-				,atchFileId
-				,writerID
-				,frstRegistNm
-				,frstRegistPnttm
-				
-			) VALUES (
-				#{code}
-				,#{title}
-				,#{context}
-				,#{atchFileId}
-				,#{writerID}
-				,#{frstRegistNm}
-				,now()
-				
-			)
-	</insert>
-	
-	<update id="updateTableRecord">
-		 
-		UPDATE	TB_${siteCode}
-			
-		SET
-			title = #{title}
-			,context=#{context}
-			,writerID = #{writerID}
-			,atchFileId = #{atchFileId}
-			,frstRegistNm  = #{frstRegistNm}
-			,lastUpdtNm  = "수정자"
-			,lastUpdtPnttm=now()
-			
-		WHERE code = #{code}
-			
-			
-	</update>
-	
-	<delete id="deleteTableRecord">
-		
-		DELETE FROM
-			TB_${siteCode}
-		WHERE code = #{code}
-		
-	
-	</delete>
-	
-	<delete id="deleteFileRecord">
-		
-		DELETE FROM
-			FILE_TABLE
-		WHERE fid = #{atchFileId}
-		
-	
-	</delete>
 
 
 </mapper>

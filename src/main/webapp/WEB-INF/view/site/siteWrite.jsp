@@ -117,13 +117,12 @@ function fn_checked(m){
 
 function fn_template(){
 
-	console.log($("#templateType").val());
+	console.log(" templateTypeSelect : " + $("#templateTypeSelect").val());
 	
-	$("#templeteplace").empty();
 	
 	var template = '';
 	
-	if($("#templateTypeOption").val() == "0"){
+	if($("#templateTypeSelect").val() == "0"){
 		
 			template +='<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" onclick="javascript:fn_checked(2);" /> 제목';
 			template +='<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" onclick="javascript:fn_checked(3);" /> 내용';
@@ -133,10 +132,11 @@ function fn_template(){
 			template +='<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" onclick="javascript:fn_checked(7);" /> 최초작성자';
 			template +='<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최종수정일" onclick="javascript:fn_checked(8);" /> 최종수정일';
 			template +='<input type="checkbox" id="placeRow" name="placeRow" value="9" placeholder="최종수정자" onclick="javascript:fn_checked(9);" /> 최종수정자';
+			template +='<input type="checkbox" id="placeRow" name="placeRow" value="10" placeholder="조회수" onclick="javascript:fn_checked(10);" /> 조회수';
 			
 			
 		
-	}else if($("#templateTypeOption").val() == "1"){
+	}else if($("#templateTypeSelect").val() == "1"){
 		
 		template +='<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" /> 제목';
 		template +='<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" /> 내용';
@@ -148,7 +148,8 @@ function fn_template(){
 	}else{
 		
 	}
-	
+
+	$("#templateplace").empty();
 	$("#templateplace").append(template);
 	
 }
@@ -328,7 +329,7 @@ function fn_back(){
 			            <td colspan="100">
 				            <select  id="templateTypeSelect" name="templateTypeSelect" class="selectText width150" onchange="javascript:fn_template();" <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >
 				            	<!-- 차후 자바스크립트 수정 필요! -->
-				            	<option value="">::: 선택 :::</option>
+				            	<option value="9">::: 선택 :::</option>
 				            	<option id="templateTypeOption" value="0" <c:out value="${resultList.templateType == '0' ? 'selected' : ''}"/> <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >일반</option>
 				            	<option id="templateTypeOption" value="1" <c:out value="${resultList.templateType == '1' ? 'selected' : ''}"/> <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >템플릿</option>
 				            </select>
@@ -349,6 +350,7 @@ function fn_back(){
 								<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '7') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(7);"/> 최초작성자
 								<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최종수정일" <c:out value="${fn:contains(resultList.placeRow, '8') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(8);"/> 최종수정일
 								<input type="checkbox" id="placeRow" name="placeRow" value="9" placeholder="최종수정자" <c:out value="${fn:contains(resultList.placeRow, '9') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(9);"/> 최종수정자
+								<input type="checkbox" id="placeRow" name="placeRow" value="10" placeholder="조회수" <c:out value="${fn:contains(resultList.placeRow, '10') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(10);"/> 조회수
 			            	
 			            		
 			            	</c:if>
@@ -361,8 +363,9 @@ function fn_back(){
 								<input type="checkbox" id="placeRow" name="placeRow" value="5" placeholder="아이디" <c:out value="${fn:contains(resultList.placeRow, '5') == true? 'checked' : ''}"/>/> 아이디			
 								<input type="checkbox" id="placeRow" name="placeRow" value="6" placeholder="최초작성일" <c:out value="${fn:contains(resultList.placeRow, '6') == true? 'checked' : ''}"/>/> 최초작성일
 								<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '7') == true? 'checked' : ''}"/>/> 최초작성자
+								<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '8') == true? 'checked' : ''}"/>/> 조회수
 			            	
-			            	</c:if> <!-- 자바스크립트로 해당 코드를 넣는경오 fn:함수가 제대로 작동하지 않음 -->
+			            	</c:if> <!-- 자바스크립트로 해당 코드를 넣는경우 fn:함수가 제대로 작동하지 않음 -->
 
 			            </td>
 		        	</tr>

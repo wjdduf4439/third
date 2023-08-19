@@ -29,7 +29,7 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.ljy.third.vo.FileVO;
 
 
-
+//실제로 파일 다운로드를 담당하는 컨트롤러. fileController에서 이어짐
 @Controller
 public class FileDownloadView {
 

@@ -13,6 +13,7 @@ import com.ljy.third.service.logAdminService;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.vo.logAdminVO;
 
+//로그 기록과 관련된 동작을 기록한 컨트롤러
 @Controller
 public class logAdminController {
 
@@ -36,24 +37,6 @@ public class logAdminController {
 		map.addAttribute("paging", paging);
 		
 		return "/log/logAdmin";
-	}
-	
-	
-	//ajax처리로 로그 테이블을 기록하는 용도로 쓰임
-	@RequestMapping(value = "/log/logInsert.go")
-	public void logInsert(ModelMap map, logAdminVO logAdminVO) throws Exception {
-		
-		/*
-		 * System.out.println("logInsert 메소드 접속"); System.out.println("ip : " +
-		 * logAdminVO.getIp()); System.out.println("logReq : " +
-		 * logAdminVO.getLogReq());
-		 */
-		//logCode는 service에서 결정		
-		//logtime는 db에서 설정
-		
-		logAdminService.insertlogAdmin(logAdminVO);
-		
-		//return "success";
 	}
 	
 }

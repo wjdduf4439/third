@@ -14,6 +14,7 @@ import com.ljy.third.util.PageSet;
 import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SiteMenuVO;
 
+//항목 생성 기능을 담당하는 컨트롤러
 @Controller
 public class FormController {
 

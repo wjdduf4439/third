@@ -11,31 +11,33 @@ import com.ljy.third.service.TemplateInfoService;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateViewInfoVO;
 
+
+//게시판의 모든 형식 및 모양 및 타입을 관리하는 컨트롤러, 각 게시판으로 통하는 게이트웨이 역할을 함
 @Controller
 public class TemplateInfoController {
 
 	@Resource(name ="TemplateInfoService")
-	private TemplateInfoService templateInfoService; //�ش� ���� ���� ����
+	private TemplateInfoService templateInfoService;
 	
 	
 	@RequestMapping("/template/templateInfo.go")
 	public String templeteInfo(@ModelAttribute("searchVO") TemplateInfoVO templateInfoVO ,ModelMap map) throws Exception {
 		
-		String[] fieldNumber;	//������ �ʵ��ȣ �����ϴ� ����
-		String[] fieldName;		//������ �ʵ���� �����ϴ� ����
-		String[] fieldWidth = {"50"};	//������ �ʵ�ʺ� �����ϴ� ����
+		String[] fieldNumber;		//게시판에 나오는 항목들의 순번을 결정하는 값
+		String[] fieldName;			//게시판의 나오는 항목들의 이름을 결정할 값
+		String[] fieldWidth = {"50"};	//게시판의 폭을 결정할 값
 		
 		TemplateInfoVO tableName = templateInfoService.selectTableName(templateInfoVO);
 		templateInfoVO.setSiteCode(tableName.getSiteCode());
 		templateInfoVO.setTitle(tableName.getTitle());
 		
 		fieldNumber = tableName.getPlaceRow().toString().split(",");//������ �ʵ���� �����ϴ� ����
-		templateInfoVO.setFieldNumber(fieldNumber);//�迭�� ��ȯ �� vo�� ����
+		templateInfoVO.setFieldNumber(fieldNumber);//배열로 변환된 값을 삽입
 		
 		fieldName = tableName.getPlaceName().toString().split(",");//������ �ʵ���� �����ϴ� ����
-		templateInfoVO.setFieldName(fieldName);//�迭�� ��ȯ �� vo�� ����
+		templateInfoVO.setFieldName(fieldName);//배열로 변환된 값을 삽입
 		
-		try { //�� �Խ��� ������ �Խ����� width�ڷᰡ �ʿ� ������ ����ó�� ����
+		try { 
 		
 			fieldWidth = tableName.getPlaceWidth().toString().split(",");//������ �ʵ�ʺ� �����ϴ� ����
 			

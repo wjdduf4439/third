@@ -144,6 +144,7 @@
 				`frstRegistNm` VARCHAR(50) NULL DEFAULT NULL COMMENT '최초 게시물 작성자',
 				`lastUpdtPnttm` DATETIME NULL DEFAULT NULL COMMENT '최종 게시물 수정시간',
 				`lastUpdtNm` VARCHAR(50) NULL DEFAULT NULL COMMENT '최종 게시물 수정자',
+				`viewNum` INT NOT NULL DEFAULT 0 COMMENT '조회수',
 				PRIMARY KEY (`CODE`)
 			)
 			COMMENT='사이트관리 >> 게시판관리 >> ${siteCode} >> 생성된 테이블\r\n'

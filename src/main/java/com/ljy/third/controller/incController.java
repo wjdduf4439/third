@@ -13,6 +13,8 @@ import com.ljy.third.service.FormService;
 import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SiteMenuVO;
 
+
+//header와 관련된 동작을 기록한 controller
 @Controller
 public class incController {
 	

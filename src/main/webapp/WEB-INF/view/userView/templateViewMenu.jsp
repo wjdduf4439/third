@@ -99,6 +99,7 @@
 											<c:if test="${notice2.ordinal_Position == 7 }"><td>${notice.frstRegistNm}</td></c:if>
 											<c:if test="${notice2.ordinal_Position == 8 }"><td>${notice.lastUpdtPnttm}</td></c:if>
 											<c:if test="${notice2.ordinal_Position == 9 }"><td>${notice.lastUpdtNm}</td></c:if>
+											<c:if test="${notice2.ordinal_Position == 10 }"><td>${notice.viewNum}</td></c:if>
 										</c:forEach>
 									</tr>
 								</c:forEach>
@@ -116,6 +117,7 @@
 										<c:if test="${result2.ordinal_Position == 7 }"><td>${result.frstRegistNm}</td></c:if>
 										<c:if test="${result2.ordinal_Position == 8 }"><td>${result.lastUpdtPnttm}</td></c:if>
 										<c:if test="${result2.ordinal_Position == 9 }"><td>${result.lastUpdtNm}</td></c:if>
+										<c:if test="${result2.ordinal_Position == 10 }"><td>${result.viewNum}</td></c:if> 
 									</c:forEach>
 								</tr>
 							</c:forEach>

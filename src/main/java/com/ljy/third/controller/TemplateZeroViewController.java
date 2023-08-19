@@ -18,6 +18,7 @@ import com.ljy.third.vo.SiteMenuVO;
 import com.ljy.third.vo.TemplateViewInfoVO;
 import com.ljy.third.vo.TemplateZeroViewVO;
 
+//일반 게시판의 사용자 전용 뷰를 담당하는 컨트롤러.
 @Controller
 public class TemplateZeroViewController {	
 
@@ -32,6 +33,7 @@ public class TemplateZeroViewController {
 		
 		TemplateViewInfoVO templateViewInfoVO =  (TemplateViewInfoVO) req.getAttribute("templateViewInfoVO");
 		System.out.println("TemplateZeroViewList 전달받은 게시판 제목 : " + templateViewInfoVO.getTitle());
+		System.out.println("TemplateZeroViewList 전달받은 게시판 코드 : " + templateZeroViewVO.getSiteCode());
 		templateZeroViewVO.setSiteTitle(templateViewInfoVO.getTitle());
 
 		int countList = templateZeroViewService.selectTableRecordListCount(templateViewInfoVO);// ������ �Խ����� �Խù��� ���� ���� �� �÷� ���ϱ�
@@ -89,7 +91,8 @@ public class TemplateZeroViewController {
 	
 	@RequestMapping("/template/templateZeroViewWrite.go")
 	public String TemplateZeroViewWrite(@ModelAttribute("searchVO") TemplateZeroViewVO templateZeroViewVO  ,ModelMap map) throws Exception {
-		
+
+		System.out.println("TemplateZeroViewList 전달받은 게시판 코드 : " + templateZeroViewVO.getSiteCode());
 
 		TemplateZeroViewVO resultVO = templateZeroViewService.selectTableRecordOne(templateZeroViewVO);
 		

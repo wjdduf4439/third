@@ -13,6 +13,8 @@ import com.ljy.third.util.PageSet;
 import com.ljy.third.service.SiteService;
 import com.ljy.third.vo.SiteMenuVO;
 
+
+//게시판 생성 기능을 담당하는 컨트롤러
 @Controller
 public class SiteController {
 
@@ -120,8 +122,6 @@ public class SiteController {
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
-			
 			List<SiteMenuVO> fieldList = siteService.selectSiteField(siteMenuVO);
 			
 			String placename = "";

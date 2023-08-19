@@ -61,8 +61,8 @@
 				cIpAddress = request.getRemoteAddr();
 			}
 			
-			System.out.println("url1 : " + url1);
-			System.out.println("cIpAddress : " + cIpAddress);
+			/* System.out.println("url1 : " + url1);
+			System.out.println("cIpAddress : " + cIpAddress); */
 		%>
 
 <script type="text/javascript">
@@ -125,17 +125,17 @@
 	        url : url,
 	        async: true,
 	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
-	        dataType : 'json',
+	        dataType : 'text',
 	        processData : false,
 	        contentType : false,
 	        beforeSend : function(xmlHttpRequest){
 	        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
 	        	  },    
 	        success:function(args){   
-	                  
+	        	//alert(args);
 	        },   
 	        error:function(e){  
-	            //alert("log 기입 실패" + e.responseText);  
+	            alert("log 기입 실패" + e.responseText);  
 	        }  
 	    });  
 			
