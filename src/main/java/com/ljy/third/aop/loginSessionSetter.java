@@ -109,7 +109,7 @@ public class loginSessionSetter {
 			if("pass" != session.getAttribute("sessionPass")) {
 				
 				//header에 세션을 새로 만들게 시키고 loginhome로 되돌아가도록 만들기
-				System.out.println("세션 초기화 명령 주입");
+				System.out.println("세션 초기화");
 				session.setAttribute("sessionPass", "aop locked"); 
 				
 			}

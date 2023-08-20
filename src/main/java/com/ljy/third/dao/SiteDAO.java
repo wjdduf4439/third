@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.SysCodeVO;
 
 @Repository("SiteDAO")
 public class SiteDAO {
@@ -89,6 +90,13 @@ public class SiteDAO {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.ljy.third.dao.updateSiteField", siteMenuVO);
 	}
+	
+	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.siteFieldInput", sysCodeVO);
+	}
+	
+	
 
 
 	
