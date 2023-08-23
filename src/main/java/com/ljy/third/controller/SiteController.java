@@ -113,17 +113,6 @@ public class SiteController {
 		return "redirect:/site/siteAdmin.go";
 	}
 	
-	//ajax호출로 input 태그 만들기 동작을 수행하는 컨트롤러
-	@RequestMapping(value = "/site/siteFieldInput.go")
-	public String siteFieldInput(ModelMap map, @ModelAttribute("searchVO")SiteMenuVO siteMenuVO) throws Exception {
-		
-		List<SysCodeVO> msysCodeVO = new ArrayList<SysCodeVO>();
-		
-		String inputResult = "";
-		
-		return inputResult;
-	}
-	
 	//��ȣ�� ǥ�õ� �迭 �׸���� �Ӽ������� ġȯ�� �� �ְ� �ϴ� �޼���
 		public void siteMakeTable(SiteMenuVO siteMenuVO) throws Exception{
 			

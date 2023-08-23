@@ -2,27 +2,50 @@ package com.ljy.third.vo;
 
 public class SysCodeVO {
 	
-	private String sysCode;
-	private String sysCodeName;
-	private String sysCodeValue;
+	private String code;
+	private String temCodeHead;
+	private int temCodeNum;
+	private String temFieldName;
+	private String temFieldCharge;
+	private int sysOutNum;
 	
-	public String getSysCode() {
-		return sysCode;
+	public String getCode() {
+		return code;
 	}
-	public void setSysCode(String sysCode) {
-		this.sysCode = sysCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
-	public String getSysCodeName() {
-		return sysCodeName;
+	public String getTemCodeHead() {
+		return temCodeHead;
 	}
-	public void setSysCodeName(String sysCodeName) {
-		this.sysCodeName = sysCodeName;
+	public void setTemCodeHead(String temCodeHead) {
+		this.temCodeHead = temCodeHead;
 	}
-	public String getSysCodeValue() {
-		return sysCodeValue;
+	public int getTemCodeNum() {
+		return temCodeNum;
 	}
-	public void setSysCodeValue(String sysCodeValue) {
-		this.sysCodeValue = sysCodeValue;
+	public void setTemCodeNum(int temCodeNum) {
+		this.temCodeNum = temCodeNum;
 	}
+	public String getTemFieldName() {
+		return temFieldName;
+	}
+	public void setTemFieldName(String temFieldName) {
+		this.temFieldName = temFieldName;
+	}
+	public String getTemFieldCharge() {
+		return temFieldCharge;
+	}
+	public void setTemFieldCharge(String temFieldCharge) {
+		this.temFieldCharge = temFieldCharge;
+	}
+	public int getSysOutNum() {
+		return sysOutNum;
+	}
+	public void setSysOutNum(int sysOutNum) {
+		this.sysOutNum = sysOutNum;
+	}
+	
+	
 
 }

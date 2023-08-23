@@ -186,5 +186,14 @@
 			WHERE siteCode = #{siteCode}
 		
 	</delete>
+	
+	<!-- 게시판 작성 화면의 field값을 불러오는 sql문 -->
+	<select id="siteFieldInput" resultType="com.ljy.third.vo.SysCodeVO">
+			
+	        SELECT temFieldName, temFieldCharge, sysOutNum
+	        FROM TEMPLATEFIELDCODE_TABLE
+	        WHERE temCodeHead LIKE CONCAT('${temCodeHead}' ,'%')
+	        
+    </select>
 
 </mapper>

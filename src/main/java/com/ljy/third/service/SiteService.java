@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.SysCodeVO;
 
 public interface SiteService {
 
@@ -28,5 +29,7 @@ public interface SiteService {
 	public void updateSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
 
 	public void updateSiteField(SiteMenuVO siteMenuVO) throws Exception;
+	
+	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception;
 	
 }

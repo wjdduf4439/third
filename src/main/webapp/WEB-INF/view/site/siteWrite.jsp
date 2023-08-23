@@ -8,11 +8,9 @@
 <c:import url="/AdminHeader.go" />
 <script>
 
-$( document ).ready(function() {
-	
-	//console.log("${resultList.templateType}");
-	
-	<c:if test="${not empty resultList && resultList.templateType == '0' }">
+$( document ).ready(function() {		
+		
+	<c:if test="${not empty resultList }">
 	
 		var placeRowStr = "${resultList.placeRow}";
 		var placeRowArray = placeRowStr.split(",");
@@ -20,24 +18,73 @@ $( document ).ready(function() {
 		var placeWidthStr = "${resultList.placeWidth}";
 		var placeWidthArray = placeWidthStr.split(",");
 		
-		console.log(placeRowArray[0]);
-		console.log(placeWidthArray[0]);
+		var tCode = '${resultList.templateType}';
 		
-		var template = '';
-		for(var i = Number(placeRowArray[0]); i < Number(placeRowArray[0]) + placeRowArray.length; i++){
-			
-			template += '<input  type="number" id="placeWidthOption'+i+'" name="placeWidthOption'+i+'" class ="width150" value="" placeholder="속성'+i+'" /></br>';
-			
-		}
+		var url = "<c:url value='/site/siteUpdateInput.go?tCode=" + tCode + "&placeRowStr=" + placeRowStr + "'/>";
 		
-		$("#lengthInput").append(template);
+		//sitefield checkbox ajax 넣기
+		$.ajax({      
+	        type:"get",  
+	        url : url,
+	        async: true,
+	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+	        dataType : 'text',
+	        processData : false,
+	        contentType : false,
+	        beforeSend : function(xmlHttpRequest){
+	        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+	        	  },    
+	        success:function(args){   
+	        	//alert(args);
+	        	$("#templateplace").empty();
+	        	$("#templateplace").append(args);
+	        	
+	        	/* var template = '';
+	    		for(var i = Number(placeRowArray[0]); i < Number(placeRowArray[0]) + placeRowArray.length; i++){
+	    			
+	    			template += '<input  type="number" id="placeWidthOption'+i+'" name="placeWidthOption'+i+'" class ="width150" value="" placeholder="속성'+i+'" /></br>';
+	    			
+	    		}
+	        	
+	        	$("#lengthInput").append(template);
+	        	$("input:checkbox[name=placeRow]:checked").each(function(i){ 
+	    			
+	    			$("#placeWidthOption"+this.value+"").after(":"+$(this).attr('placeholder'));
+	    			$("#placeWidthOption"+this.value+"").val(placeWidthArray[i]);
+	    			
+	    		});  */
+	        	
+	        },   
+	        error:function(e){  
+	            alert("sitefieldajax 실패" + e.responseText);  
+	        }  
+	    }); 
+	
 		
-		$("input:checkbox[name=placeRow]:checked").each(function(i){ 
-			
-			$("#placeWidthOption"+this.value+"").after(":"+$(this).attr('placeholder'));
-			$("#placeWidthOption"+this.value+"").val(placeWidthArray[i]);
-			
-		});
+		var url = "<c:url value='/site/siteUpdateWidthInput.go?placeRowStr=" + placeRowStr + "&placeWidthStr=" + placeWidthStr + "'/>";
+		
+		//sitefield checkbox ajax 넣기
+		$.ajax({      
+	        type:"get",  
+	        url : url,
+	        async: true,
+	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+	        dataType : 'text',
+	        processData : false,
+	        contentType : false,
+	        beforeSend : function(xmlHttpRequest){
+	        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+	        	  },    
+	        success:function(args){   
+	        	//alert(args);
+	        	$("#lengthInput").empty();
+	        	$("#lengthInput").append(args);
+	        	
+	        },   
+	        error:function(e){  
+	            alert("sitewidthajax 실패" + e.responseText);  
+	        }  
+	    }); 
 	
 	</c:if>
 	
@@ -89,7 +136,7 @@ function fn_checked(m){
 	
 	$("input:checkbox[name=placeRow]:checked").each(function(i){ 
 		
-		template += '<input  type="number" id="placeWidthOption'+this.value+'" name="placeWidthOption'+this.value+'" class ="width150" value="" placeholder="속성'+(i+1)+'" /> : ' + $(this).attr('placeholder') +'</br>';
+		template += '<input  type="number" id="placeWidthOption'+this.value+'" name="placeWidthOption'+this.value+'" class ="width150" value="" placeholder="속성'+(i+1)+'" /> </br>';
 		
 	})
 	
@@ -116,41 +163,35 @@ function fn_checked(m){
 }
 
 function fn_template(){
-
-	console.log(" templateTypeSelect : " + $("#templateTypeSelect").val());
 	
 	
 	var template = '';
 	
-	if($("#templateTypeSelect").val() == "0"){
-		
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" onclick="javascript:fn_checked(2);" /> 제목';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" onclick="javascript:fn_checked(3);" /> 내용';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="4" placeholder="첨부파일" onclick="javascript:fn_checked(4);" /> 첨부파일';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="5" placeholder="아이디" onclick="javascript:fn_checked(5);" /> 아이디';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="6" placeholder="최초작성일" onclick="javascript:fn_checked(6);" /> 최초작성일';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" onclick="javascript:fn_checked(7);" /> 최초작성자';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최종수정일" onclick="javascript:fn_checked(8);" /> 최종수정일';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="9" placeholder="최종수정자" onclick="javascript:fn_checked(9);" /> 최종수정자';
-			template +='<input type="checkbox" id="placeRow" name="placeRow" value="10" placeholder="조회수" onclick="javascript:fn_checked(10);" /> 조회수';
-			
-			
-		
-	}else if($("#templateTypeSelect").val() == "1"){
-		
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" /> 제목';
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" /> 내용';
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="4" placeholder="첨부파일" /> 첨부파일';
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="5" placeholder="아이디" /> 아이디';
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="6" placeholder="최초작성일" /> 최초작성일';
-		template +='<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" /> 최초작성자';
+	var tCode = $("#templateTypeSelect").val();
 	
-	}else{
-		
-	}
-
-	$("#templateplace").empty();
-	$("#templateplace").append(template);
+	var url = "<c:url value='/site/siteFieldInput.go?tCode="+tCode+"'/>";
+	
+	//로그 기입 ajax 넣기
+	$.ajax({      
+        type:"get",  
+        url : url,
+        async: true,
+        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        dataType : 'text',
+        processData : false,
+        contentType : false,
+        beforeSend : function(xmlHttpRequest){
+        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){   
+        	//alert(args);
+        	$("#templateplace").empty();
+        	$("#templateplace").append(args);
+        },   
+        error:function(e){  
+            alert("siteajax 실패" + e.responseText);  
+        }  
+    }); 
 	
 }
 
@@ -338,42 +379,13 @@ function fn_back(){
 					<tr>
 		        		<th><i class="icono-asterisk"></i>   표시항목</th>
 			            <td id="templateplace" colspan="3">
-			            
-			            
-			            	<c:if test="${resultList.templateType == '0' }">
-			            	
-			            		<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" <c:out value="${fn:contains(resultList.placeRow, '2') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(2);"/> 제목
-			            		<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" <c:out value="${fn:contains(resultList.placeRow, '3') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(3);"/> 내용
-								<input type="checkbox" id="placeRow" name="placeRow" value="4" placeholder="첨부파일" <c:out value="${fn:contains(resultList.placeRow, '4') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(4);"/> 첨부파일
-								<input type="checkbox" id="placeRow" name="placeRow" value="5" placeholder="아이디" <c:out value="${fn:contains(resultList.placeRow, '5') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(5);"/> 아이디
-								<input type="checkbox" id="placeRow" name="placeRow" value="6" placeholder="최초작성일" <c:out value="${fn:contains(resultList.placeRow, '6') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(6);"/> 최초작성일
-								<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '7') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(7);"/> 최초작성자
-								<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최종수정일" <c:out value="${fn:contains(resultList.placeRow, '8') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(8);"/> 최종수정일
-								<input type="checkbox" id="placeRow" name="placeRow" value="9" placeholder="최종수정자" <c:out value="${fn:contains(resultList.placeRow, '9') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(9);"/> 최종수정자
-								<input type="checkbox" id="placeRow" name="placeRow" value="10" placeholder="조회수" <c:out value="${fn:contains(resultList.placeRow, '10') == true? 'checked' : ''}"/> onclick="javascript:fn_checked(10);"/> 조회수
-			            	
-			            		
-			            	</c:if>
-			            	
-			            	<c:if test="${resultList.templateType == '1' }">
-			            	
-			            		<input type="checkbox" id="placeRow" name="placeRow" value="2" placeholder="제목" <c:out value="${fn:contains(resultList.placeRow, '2') == true? 'checked' : ''}"/>/> 제목
-								<input type="checkbox" id="placeRow" name="placeRow" value="3" placeholder="내용" <c:out value="${fn:contains(resultList.placeRow, '3') == true? 'checked' : ''}"/>/> 내용
-								<input type="checkbox" id="placeRow" name="placeRow" value="4" placeholder="첨부파일" <c:out value="${fn:contains(resultList.placeRow, '4') == true? 'checked' : ''}"/>/> 첨부파일
-								<input type="checkbox" id="placeRow" name="placeRow" value="5" placeholder="아이디" <c:out value="${fn:contains(resultList.placeRow, '5') == true? 'checked' : ''}"/>/> 아이디			
-								<input type="checkbox" id="placeRow" name="placeRow" value="6" placeholder="최초작성일" <c:out value="${fn:contains(resultList.placeRow, '6') == true? 'checked' : ''}"/>/> 최초작성일
-								<input type="checkbox" id="placeRow" name="placeRow" value="7" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '7') == true? 'checked' : ''}"/>/> 최초작성자
-								<input type="checkbox" id="placeRow" name="placeRow" value="8" placeholder="최초작성자" <c:out value="${fn:contains(resultList.placeRow, '8') == true? 'checked' : ''}"/>/> 조회수
-			            	
-			            	</c:if> <!-- 자바스크립트로 해당 코드를 넣는경우 fn:함수가 제대로 작동하지 않음 -->
-
+							<!-- sitefield 정보 기입 구간 -->
 			            </td>
 		        	</tr>
 		        	<tr>
 		        		<th><i class="fa fa-asterisk" aria-hidden="true"></i>표시길이</th>
 		        		<td id ="lengthInput" >
-		        		
-		        		
+		        			<!-- sitewidthinput 정보 기입 구간 -->		        		
 		        		</td>
 		        	</tr>
 				</table>

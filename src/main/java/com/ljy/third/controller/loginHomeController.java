@@ -22,11 +22,13 @@ public class loginHomeController{
 	
 	@RequestMapping("/loginHome.go")
 	public String getLoginHome(ModelMap map, HttpServletRequest req) throws Exception { 
-		String resourceSrc = req.getSession().getServletContext().getRealPath("/"); 
-		System.out.println("resourceSrc : " + resourceSrc); 
-		
-		String processerName = System.getProperty("os.name").toLowerCase();
-		System.out.println("processerName : " + processerName); 
+		/*
+		 String resourceSrc = req.getSession().getServletContext().getRealPath("/");
+		 System.out.println("resourceSrc : " + resourceSrc);
+		  
+		 String processerName = System.getProperty("os.name").toLowerCase();
+		 System.out.println("processerName : " + processerName);
+		 */
 		
 		
 		

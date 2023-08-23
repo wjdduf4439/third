@@ -78,7 +78,7 @@
 		
 		$( "#contents_align_div_rv"+buttonid ).show(); $( "#contents_align_div_rvcon"+buttonid ).show();
 		
-		if(buttonid == '1'){ fn_setHeight(buttonid, '1650'); }
+		if(buttonid == '1'){  fn_setHeight(buttonid, '2750'); }
 		else if(buttonid == '2'){ fn_setHeight(buttonid, '800'); }
 		else if(buttonid == '3'){ fn_setHeight(buttonid, '2850'); }
 		else if(buttonid == '4'){ fn_setHeight(buttonid, '1000'); }
