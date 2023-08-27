@@ -7,11 +7,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="/AdminHeader.go" />
 
+<!--
+ckeditor 기능검색 위치 : 
+https://ckeditor.com/docs/index.html 
+-->
+<style>
+	.ck.ck-editor__editable_inline {
+
+	    height: 300px;
+	    
+	}
+
+</style>
+
+<script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/build/ckeditor.js"></script>
 <script>
 
+/* var flag = 0;
 
 var oEditors = []; // 개발되어 있는 소스에 맞추느라, 전역변수로 사용하였지만, 지역변수로 사용해도 전혀 무관 함.
-var flag = 0;
 $(document).ready(function() {
 	// Editor Setting 
 	nhn.husky.EZCreator.createInIFrame({ 
@@ -29,7 +43,20 @@ $(document).ready(function() {
 		} 
 	});
 });
+ */
 
+ $(document).ready(function() {
+	 
+	 ClassicEditor.create( document.querySelector( '#contexteditor' ) )
+	 .then( newEditor => {
+		 	//에디터의 변수 지정
+	        editor = newEditor;
+	    })
+	 .catch( error => {
+            console.error( error );
+     	});
+
+ });
 
 function fn_validate(){
 	
@@ -40,9 +67,12 @@ function fn_validate(){
 	if($("#writerID").val() == "")
 		{ alert("작성자 id 항목은 필수 항목입니다."); return false; }
 	
-	var context = oEditors.getById["contexteditor"].getIR();
-	$("#context").val(context);
-	oEditors.getById["contexteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+	//var context = oEditors.getById["contexteditor"].getIR();
+	//$("#context").val(context);
+	//oEditors.getById["contexteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	//만약 editor의 내용을 변경할 일이 있으면 setData 메소드 사용
+	$("#context").val(editor.getData());
 	
 	return true;
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -41,19 +43,22 @@ public class FileDownloadView {
 		
 		makedir(req);
 		this.PREFIX_URL += req.getAttribute("realFileName");
+		
 		System.out.println("다운로드 시도 PREFIX_URL : " + this.PREFIX_URL); 
+		System.out.println("다운로드 시도 파일명 : " + req.getAttribute("writeFileName")); 
 								
 		
 		try {
 			Path filePath = Paths.get(PREFIX_URL);
 			Resource resource = new InputStreamResource(Files.newInputStream(filePath)); // 파일 resource 얻기
-			
-			File file = new File(PREFIX_URL);
+			String downloadRealFileName = URLEncoder.encode(req.getAttribute("writeFileName").toString(), "UTF-8"); //파일 이름을 한글로도 다운로드 받을 수 있게 하기
 			
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file.getName()).build());  // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
+			headers.add("Content-Type", "application/json;charset=UTF-8");
+			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(downloadRealFileName).build());  // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
 			
 			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+			
 		} catch(Exception e) {
 			return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
 		}

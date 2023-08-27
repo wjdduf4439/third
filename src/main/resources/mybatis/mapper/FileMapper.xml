@@ -7,7 +7,7 @@
 
 
 	<select id="selectFileList" resultType="com.ljy.third.vo.FileVO">
-		SELECT code, fid, fsign, fpath, fname
+		SELECT code, fid, fsign, fpath, savingFname, fname
 		FROM FILE_TABLE
 		WHERE siteCode = #{code} 
 		AND fid = #{fid}

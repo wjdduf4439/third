@@ -8,8 +8,9 @@ public class FileVO {
 	private String fid;
 	private int fsign;
 	private String fpath;
+	private String savingFname;
 	private String fname;
-
+	
 	public String getCode() {
 		return code;
 	}
@@ -40,12 +41,20 @@ public class FileVO {
 	public void setFpath(String fpath) {
 		this.fpath = fpath;
 	}
+	public String getSavingFname() {
+		return savingFname;
+	}
+	public void setSavingFname(String savingFname) {
+		this.savingFname = savingFname;
+	}
 	public String getFname() {
 		return fname;
 	}
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
+	
 	
 }
 

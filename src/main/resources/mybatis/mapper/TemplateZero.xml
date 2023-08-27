@@ -187,7 +187,7 @@
 		DELETE FROM
 			FILE_TABLE
 		WHERE fid = #{b_file_id}
-		and siteCode = ${siteCode}
+		<![CDATA[	AND   ]]> siteCode = #{siteCode}
 		
 	
 	</delete>

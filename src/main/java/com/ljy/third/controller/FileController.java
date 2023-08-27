@@ -40,12 +40,13 @@ public class FileController {
 		FileVO mfileVO = mBoardService.lookOneFileBoardService(mboardVO);
 		
 		File downloadFile = new File(mfileVO.getFpath());
-		File realFileName = new File(mfileVO.getFname()); 
+		File realFileName = new File(mfileVO.getSavingFname()); 
 		
 		if(!downloadFile.canRead()) { return "redirect:/mainboard.go"; }
 		
 		map.addAttribute("downloadFile", downloadFile);
 		map.addAttribute("realFileName", realFileName);//��¥ ���� �̸����� �ٿ�ε��ϱ� ���� ����
+		map.addAttribute("writeFileName", mfileVO.getFname());
 		
 		return "fileDownloadView";
 	}
@@ -95,19 +96,19 @@ public class FileController {
 	public String fileDown(String code, ModelMap map, HttpServletRequest req) throws Exception {
 		
 		FileVO mfileVO = mBoardService.lookOneFileBoardService(code);
-		
+
 		File downloadFile = new File(mfileVO.getFpath());
-		File realFileName = new File(mfileVO.getFname());//
+		File realFileName = new File(mfileVO.getSavingFname()); 
 		
 		
 		if(!downloadFile.canRead()) { return "redirect:/mainboard.go"; }
 		
-		/*
+		System.out.println("fname : " + mfileVO.getFname());
+
 		map.addAttribute("downloadFile", downloadFile);
-		map.addAttribute("realFileName", realFileName);//
-		*/
+		map.addAttribute("realFileName", realFileName);//��¥ ���� �̸����� �ٿ�ε��ϱ� ���� ����
+		map.addAttribute("writeFileName", mfileVO.getFname());
 		
-		req.setAttribute("realFileName", realFileName);
 		System.out.println("1차 완료 realFileName : " + realFileName);
 		
 		return "forward:/fileDownloadView";

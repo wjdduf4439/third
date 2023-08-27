@@ -3,7 +3,11 @@ package com.ljy.third.service;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -140,7 +144,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				
 				while(temp >= 10) { temp /= 10; j++; }
 				
-				for(int k = 0; k < 15-j ; k++) { newCode += "0";  }	//����ִ� �ڸ����ڸ�ŭ 0�� ä��
+				for(int k = 0; k < 15-j ; k++) { newCode += "0";  }	
 				
 				newCode = newCode + (i+temp);					//file_0000,,,������ �ڵ� ����
 				System.out.println("newcode : " + newCode);
@@ -153,20 +157,34 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + templateZeroVO.getSiteCode());
 
 			String originFilename = "";
+			String savingFilename = "";
+			int savingFileTypeIndex = 0;
+			String savingFileType = "";
+			
 			List<FileVO> fileVO = new ArrayList<FileVO>();
 			
 			for(int i = 0 ; i < templateZeroVO.getB_filename().size(); i++  ) {
 	
 				FileVO mfileVO = new FileVO(); mfileVO.setSiteCode(templateZeroVO.getSiteCode());
 				//새로운 filevo 선언 후 sitecode에 현재 사용하고 있는 게시판 코드를 집어넣음
+
+				//savingfname으로 파일 저장, savingFileTypeIndex으로 파일 형식의 온점 마크 위치를 찾음
+				originFilename = templateZeroVO.getB_filename().get(i).getOriginalFilename();
+				savingFilename = makeSavingFileCode( templateZeroVO.getCode(), templateZeroVO.getB_file_id() , i);
 				
-				originFilename = templateZeroVO.getB_filename().get(i).getOriginalFilename();//������ Ȯ���ڸ� ������ �̸�(���ϸ�)
-				writeFile(templateZeroVO.getB_filename().get(i), originFilename);//���ε� ������ ���� ���ε�
+				//savingFileTypeIndex으로 파일 형식의 온점 마크 위치를 찾고 파일 형식을 잘라내어 저장함
+				savingFileTypeIndex = makeSavingFileTypeIndex(originFilename);
+				savingFileType = originFilename.substring(savingFileTypeIndex, originFilename.length());
+				
+				//최종 파일 저장 형식은 새로 지은 file의 이름과 파일 형식을 같이 하여 저장함
+				writeFile(templateZeroVO.getB_filename().get(i), savingFilename + savingFileType);
 				
 				mfileVO.setCode(newCodeList.get(i));
 				mfileVO.setFid(templateZeroVO.getB_file_id());
 				mfileVO.setFsign(i);							 //������ ����
-				mfileVO.setFpath( PREFIX_URL + originFilename); //������ ��� + ������ �̸����� �������ϰ�� ����
+				mfileVO.setFpath( PREFIX_URL + savingFilename + savingFileType); 
+				//fname는 그대로 두고, savingfname는 날짜 + 시간 + code로 설정
+				mfileVO.setSavingFname(savingFilename + savingFileType);
 				mfileVO.setFname(originFilename); //������ �̸�
 				
 				fileVO.add(mfileVO);
@@ -178,6 +196,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			System.out.println(fileVO.get(0).getFid());
 			System.out.println(fileVO.get(0).getFsign());
 			System.out.println(fileVO.get(0).getFpath());
+			System.out.println(fileVO.get(0).getSavingFname());
 			System.out.println(fileVO.get(0).getFname());
 			System.out.println("-------------------------------------------------------------------");
 		     
@@ -260,10 +279,12 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 
 			try { sign = fileDAO.selectFileSign(atchFileId); }catch (Exception e) {	sign = 0; }		//f_sign�ִ밪 ����
 			System.out.println("fsign�� : " + sign);
-			
-			
-			
+
 			String originFilename = "";
+			String savingFilename = "";
+			int savingFileTypeIndex = 0;
+			String savingFileType = "";
+			
 			List<FileVO> fileVO = new ArrayList<FileVO>();
 			//System.out.println("�ڵ� : " + fileDAO.selectFileCodeMax().getCode() );
 			
@@ -273,14 +294,21 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				//새로운 filevo 선언 후 sitecode에 현재 사용하고 있는 게시판 코드를 집어넣음
 				
 				originFilename = templateZeroVO.getB_filename().get(i - sign).getOriginalFilename();
-				writeFile(templateZeroVO.getB_filename().get(i - sign), originFilename);//���ε� ������ ���� ���ε�
+				savingFilename = makeSavingFileCode( templateZeroVO.getCode(), templateZeroVO.getB_file_id() , i);
 				
-				System.out.println("��ȣ : " + Integer.toString(sign + templateZeroVO.getB_filename().size() - i));
+				//savingFileTypeIndex으로 파일 형식의 온점 마크 위치를 찾고 파일 형식을 잘라내어 저장함
+				savingFileTypeIndex = makeSavingFileTypeIndex(originFilename);
+				savingFileType = originFilename.substring(savingFileTypeIndex, originFilename.length());
+				
+				//최종 파일 저장 형식은 새로 지은 file의 이름과 파일 형식을 같이 하여 저장함
+				writeFile(templateZeroVO.getB_filename().get(i - sign), savingFilename + savingFileType);
+				
 				mfileVO.setCode(templateZeroVO.getB_fileCode().get(sign + templateZeroVO.getB_filename().size() - i - 1));
 				//update의 setfid는 기존 사용하던 fid를 사용해야함
 				mfileVO.setFid(templateZeroVO.getB_file_id());
 				mfileVO.setFsign(i);							 //������ ����
-				mfileVO.setFpath( PREFIX_URL + originFilename); //������ ��� + ������ �̸����� �������ϰ�� ����
+				mfileVO.setFpath( PREFIX_URL + savingFilename + savingFileType); 
+				mfileVO.setSavingFname(savingFilename + savingFileType);
 				mfileVO.setFname(originFilename); //������ �̸�
 				
 				fileVO.add(mfileVO);
@@ -305,8 +333,13 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	@Override
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
 		// TODO Auto-generated method stub
-		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
+		
+		System.out.println("b_file_id : " + templateZeroVO.getB_file_id());
+		
+		if( Integer.parseInt(templateZeroVO.getB_file_id()) > 0 ){
+			
 			templateZeroDAO.deleteFileRecord(templateZeroVO);
+			
 		}
 		templateZeroDAO.deleteTableRecord(templateZeroVO);
 	}
@@ -349,6 +382,38 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		this.PREFIX_URL =  SAVE_PATH + "/";
 		
+	}
+	
+	//파일을 기입하거나 저장할때 현재 시간과 fid, sign에 기반해서 코드를 생성
+	private String makeSavingFileCode( String code, String fid, int fsign ) {
+
+		LocalDate  savingDate = LocalDate.now();
+		DateTimeFormatter savingDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		
+		LocalTime  savingTime = LocalTime.now();
+		DateTimeFormatter savingTimeFormatter = DateTimeFormatter.ofPattern("HH-mm-ss");
+		
+		return code + "_" + fid + "_" + fsign + "_" + savingDate.format(savingDateFormatter)+ "_" + savingTime.format(savingTimeFormatter);
+	}
+	
+	
+	
+	private int makeSavingFileTypeIndex( String originFileName ) {
+
+		List<Integer> indexList = new ArrayList<Integer> ();
+		String fileTypeMark = ".";
+		int savingFileTypeIndex = originFileName.indexOf(fileTypeMark);
+		
+		while(savingFileTypeIndex != -1) {
+			
+			if(savingFileTypeIndex == -1) break;
+			
+			indexList.add(savingFileTypeIndex);
+			savingFileTypeIndex = originFileName.indexOf(fileTypeMark, savingFileTypeIndex + fileTypeMark.length());
+		}
+		
+		return indexList.get(indexList.size() - 1);
 	}
 
 }
