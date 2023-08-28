@@ -44,18 +44,22 @@ $(document).ready(function() {
 	});
 });
  */
+ //에디터 선언을 위한 let변수
 
  $(document).ready(function() {
 	 
-	 ClassicEditor.create( document.querySelector( '#contexteditor' ) )
+	 let editor;
+	 
+	 ClassicEditor.create( document.querySelector('#contexteditor') )
 	 .then( newEditor => {
 		 	//에디터의 변수 지정
+		 	window.editor = newEditor;
 	        editor = newEditor;
 	    })
 	 .catch( error => {
-            console.error( error );
-     	});
-
+	           console.error( error );
+	    	});
+	
  });
 
 function fn_validate(){
@@ -167,7 +171,9 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="3"><input type="text" name="contexteditor" id="contexteditor" class="width800" value="${resultList.context }" /></td>
+					<!-- <td colspan="3"><input type="text" name="contexteditor" id="contexteditor" class="width800" value="" /></td> -->
+					<td colspan="3"><textarea  name="contexteditor" id="contexteditor" class="width800"> ${resultList.context } </textarea></td>
+					
 				</tr>
 				
 				<c:import url="/file/fileAdmin.go" charEncoding="utf-8">        
