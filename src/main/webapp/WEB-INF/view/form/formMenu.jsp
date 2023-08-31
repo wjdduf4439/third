@@ -31,7 +31,7 @@
 	
 	function fn_update(code){
 		
-		document.frm.siteCode.value = code ;
+		document.frm.formCode.value = code ;
 		document.frm.action = '<c:url value="/form/formWrite.go"/>';
 		document.frm.submit();
 		
@@ -88,7 +88,7 @@
 						<tbody>
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
-								<tr>
+								<tr onclick="javascript:fn_update('${result.formCode}')">
 									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
 									<td> ${result.formName }</td>
 									<td> ${result.frstRegistNm }</td>
