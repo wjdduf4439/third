@@ -108,9 +108,9 @@ public class SiteAjaxController {
 		
 		for(int i = 0; i < placeRowArray.length; i++ ) { 
 			
-			inputHtml += "<input  type='number' id='placeWidthOption' ";
+			inputHtml += "<input  type='number' id='placeWidthOption";
 			inputHtml += placeRowArray[i];
-			inputHtml += " name='placeWidthOption";
+			inputHtml += "' name='placeWidthOption";
 			inputHtml += placeRowArray[i];
 			inputHtml += "' class ='width150' value='";
 			inputHtml += placeWidthStrArray[i];

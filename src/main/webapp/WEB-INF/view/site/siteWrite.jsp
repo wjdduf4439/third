@@ -240,8 +240,8 @@ function fn_insert(){
 	placeWidthVal = placeWidthVal.substring(0,placeWidthVal.length-1);
 	$('#placeWidth').val(placeWidthVal);
 	
-	/*alert($('#placeWidth').val());
-	
+	alert($('#placeWidth').val());
+	/*
 	return;
 	*/
 	

@@ -3,6 +3,7 @@ package com.ljy.third;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.ljy.third.filter.searchFilter;
 import com.ljy.third.filter.uriFilter;
@@ -37,5 +38,10 @@ public class servletConfig {
 
 	        return registrationBean;
 	    }    
+	    
+	    @Bean
+		MappingJackson2JsonView jsonView() {
+			return new MappingJackson2JsonView();
+		}
 	  
 }

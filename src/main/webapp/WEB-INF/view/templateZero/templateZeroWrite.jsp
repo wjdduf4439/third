@@ -20,7 +20,9 @@ https://ckeditor.com/docs/index.html
 
 </style>
 
+<!-- ckeditor과 그 이미지 첨부 기능을 선언 -->
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/build/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/ckeditorUploadAdapter.js"></script>
 <script>
 
 /* var flag = 0;
@@ -45,20 +47,39 @@ $(document).ready(function() {
 });
  */
  //에디터 선언을 위한 let변수
+ 
+ //ckeditor에 플러그인으로 선언할 함수 생성
+ function editorUploadAdapter(editor) {
+	//에디터의 초기선언이 끝나면 이미지 첨부 어댑터(직접만들어야함)을 플러그인으로 선언
+	editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+	    return new ckeditorUploadAdapter(loader);
+	  };
+ }
 
+	 
+ let editor;
+ 
  $(document).ready(function() {
 	 
-	 let editor;
 	 
-	 ClassicEditor.create( document.querySelector('#contexteditor') )
-	 .then( newEditor => {
+	 ClassicEditor.create( document.querySelector('#contexteditor'),{
+		 		//이미지 업로드 기능 
+		 		extraPlugins: [editorUploadAdapter],
+		        ckfinder: {
+					uploadUrl : '/ckeditorCon/upload.go'
+				}
+		 
+			}).then( newEditor => {
 		 	//에디터의 변수 지정
 		 	window.editor = newEditor;
 	        editor = newEditor;
-	    })
-	 .catch( error => {
-	           console.error( error );
-	    	});
+	        
+	    	})
+			 .catch( error => {
+			           console.error( error );
+			});
+	
+		
 	
  });
 
