@@ -101,7 +101,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 				
 			}
 			
-			for(int j = 0; j < 14-i ; j++) { newCode += "0"; System.out.println(newCode); }
+			for(int j = 0; j < 14-i ; j++) { newCode += "0"; }
 			newCode += Integer.toString(tailNumber);
 			
 			System.out.println(newCode);

@@ -51,8 +51,9 @@ $(document).ready(function() {
  //ckeditor에 플러그인으로 선언할 함수 생성
  function editorUploadAdapter(editor) {
 	//에디터의 초기선언이 끝나면 이미지 첨부 어댑터(직접만들어야함)을 플러그인으로 선언
+	//sitecode까지 함께 보내서 해당 어댑터를 초기선언
 	editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
-	    return new ckeditorUploadAdapter(loader);
+	    return new ckeditorUploadAdapter(loader, '${searchVO.siteCode }' );
 	  };
  }
 
@@ -70,13 +71,13 @@ $(document).ready(function() {
 				}
 		 
 			}).then( newEditor => {
-		 	//에디터의 변수 지정
-		 	window.editor = newEditor;
-	        editor = newEditor;
+			 	//에디터의 변수 지정
+			 	window.editor = newEditor;
+		        editor = newEditor;
 	        
 	    	})
 			 .catch( error => {
-			           console.error( error );
+			    console.error( error );
 			});
 	
 		
