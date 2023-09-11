@@ -150,9 +150,9 @@
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9846025.png" class="btn_rv1"/></br>aop 활용
 				</button>
 				
-				<button id="rv5" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('5','1');">
+				<%-- <button id="rv5" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('5','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9845814.png" class="btn_rv1"/></br>이미지 내용 첨부 기능 구현
-				</button>
+				</button> --%>
 			
 			</div>
 			

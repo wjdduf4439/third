@@ -106,7 +106,7 @@ public class fileEditorContentServiceImpl implements FileEditorContentService {
 		//System.out.println("processerName : " + processerName); 
 		
 		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/ckeditor_upload"; }
-		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
+		else { this.SAVE_PATH = "/ckeditor_FileDir"; }
 				
 		this.PREFIX_URL =  SAVE_PATH + "/";
 		
