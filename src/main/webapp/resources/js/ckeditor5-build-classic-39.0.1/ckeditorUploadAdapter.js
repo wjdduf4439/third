@@ -17,11 +17,10 @@ class ckeditorUploadAdapter {
 	
 	if (ua.match(/Win(dows )/)){
 		this.url = 'http://localhost:8081/third/ckeditorCon/upload.go';
-		this.realPath = 'C:/ckeditor_upload';
 	} else { 
 		this.url = 'http://35.78.200.75:8081/third/ckeditorCon/upload.go';
-		this.realPath = '/home/ec2-user/ckeditor_FileDir';
 	}
+		this.realPath = '/ckeditor_upload/';
 	
 	console.log(' this.realPath : ' + this.realPath);
   }
@@ -64,10 +63,10 @@ class ckeditorUploadAdapter {
           response && response.error ? response.error.message : genericErrorText
         );
       }
-      // If the upload is successful, resolve the upload promise with an object containing
-      // at least the "default" URL, pointing to the image on the server.
+      // 만약 업로드가 성공했다면, 업로드 프로미스를 적어도 default URL을 담은 객체와 함께 resolve하라. 
+      // 이 URL은 서버에 업로드된 이미지를 가리키며, 컨텐츠에 이미지를 표시하기 위해 사용된다.
       resolve({
-        default: getDownloadUrl(response[0]),
+        default: getDownloadUrl( this.realPath, response),
       });
     });
     if (xhr.upload) {
@@ -87,9 +86,8 @@ class ckeditorUploadAdapter {
      
     // set jwt token if required.
 	//authHeader가 뭔데? --> 여기 예시에서 임의로 추가시킨 가상의 메소드, 말그대로 없어도된다
-    /*
-	that.xhr.setRequestHeader("Authorization", authHeader().Authorization);
-	*/
+    // 여기가 인증이나 CSRF 방어와 같은 방어 로직을 작성하기 좋은 곳이다. 
+    // 예를들어, XHR.setREquestHeader()를 사용해 요청 헤더에 CSRF 토큰을 넣을 수 있다.
     file.then(function (result) {
       //wait for the promise to finish then continue
 		data.append("upload", result);
@@ -106,7 +104,7 @@ class ckeditorUploadAdapter {
 	실제 파일이 저장된 위치를 따라감
  * @param {*} item 
  */
-function getDownloadUrl(item) {
-  //console.log(' this.realPath + item.linkId : ' + this.realPath + item.linkId );
-  return encodeURI(this.realPath + item.url);
+function getDownloadUrl(realPath, item) {
+  console.log(' this.realPath + item.linkId : ' + realPath + item.url );
+  return encodeURI(realPath + item.url);
 }

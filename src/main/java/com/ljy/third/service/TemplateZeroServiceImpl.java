@@ -104,8 +104,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			for(int j = 0; j < 14-i ; j++) { newCode += "0"; }
 			newCode += Integer.toString(tailNumber);
 			
-			System.out.println(newCode);
-			
 			templateZeroVO.setCode(newCode);
 			
 			
@@ -218,10 +216,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			int tailNumber;
 			//String maxCode = templateZeroDAO.selectTableFileListMax(templateZeroVO);
 			String maxCode = fileDAO.selectFileCodeMax().getCode();
-			System.out.println("maxcode : " + maxCode);
-			
-			
-			
 			
 			try { //������ ÷�εǾ� �������� maxcode ����(0�̸� catch)
 				
@@ -350,7 +344,8 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		FileOutputStream fos;
 			
-		String path = "c:/upload";
+		//String path = "c:/upload";
+		String path = this.SAVE_PATH;
 		File Folder = new File(path);
 		
 		if (!Folder.isDirectory()) {
@@ -365,7 +360,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			    
 		}
 		
-		try {fos = new FileOutputStream(SAVE_PATH + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
+		try {fos = new FileOutputStream(path + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
 		
 		
 	}

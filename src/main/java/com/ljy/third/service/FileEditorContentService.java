@@ -1,10 +1,12 @@
 package com.ljy.third.service;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.ljy.third.vo.FileEditorContentVO;
 
 public interface FileEditorContentService {
 
-	public void insertContentFile(FileEditorContentVO mFileEditorContentVO) throws Exception;
+	public FileEditorContentVO insertContentFile(FileEditorContentVO mFileEditorContentVO, MultipartHttpServletRequest request) throws Exception;
 	
 	
 }
