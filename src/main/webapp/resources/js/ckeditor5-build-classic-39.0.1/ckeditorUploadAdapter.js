@@ -9,19 +9,20 @@ class ckeditorUploadAdapter {
 	this.siteCode = siteCode;
     // URL where to send files.
 	// 컨트롤러 요청명 선언 부분
-    this.url = '';
+    this.url = window.location.href; 
 	
 	
 	var os = '';
-	var ua = navigator.userAgent;
+	var ua = window.location.href;
 	
-	if (ua.match(/Win(dows )/)){
-		this.url = 'http://localhost:8081/third/ckeditorCon/upload.go';
-	} else { 
+	if (ua.match(/35.78.200.75:8081/)){
 		this.url = 'http://35.78.200.75:8081/third/ckeditorCon/upload.go';
+	} else { 
+		this.url = 'http://localhost:8081/third/ckeditorCon/upload.go';
 	}
 		this.realPath = '/ckeditor_upload/';
 	
+	console.log(" url : " + this.url);
 	console.log(' this.realPath : ' + this.realPath);
   }
   // Starts the upload process.
