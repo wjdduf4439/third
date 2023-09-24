@@ -29,6 +29,21 @@
 	  
 	  </insert>
 	  
+	  <update id="updateEditorContentFid">
+		 
+		UPDATE	FILE_EDITORCONTENT_TABLE
+			
+		SET fid = #{fid}
+			
+		WHERE sitecode = #{siteCode} 
+		AND code IN 
+		        <foreach item="item" index="index" collection="editorImageArray"  open="(" close=")"  separator="," >
+				        '${item}'
+				</foreach>
+			
+			
+	</update>
+	  
     
 
 </mapper>

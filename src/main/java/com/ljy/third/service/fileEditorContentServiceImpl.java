@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.ljy.third.dao.fileEditorContentDAO;
+import com.ljy.third.dao.FileEditorContentDAO;
 import com.ljy.third.vo.FileEditorContentVO;
 
 @Service("fileEditorContentService")
 public class fileEditorContentServiceImpl implements FileEditorContentService {
 
-	@Resource(name = "fileEditorContentDAO")
-	private fileEditorContentDAO mfileEditorContentDAO;
+	@Resource(name = "FileEditorContentDAO")
+	private FileEditorContentDAO mfileEditorContentDAO;
 
 	private String SAVE_PATH =  "";
 	private String PREFIX_URL =  SAVE_PATH + "/";

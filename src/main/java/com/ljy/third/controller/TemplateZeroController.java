@@ -123,17 +123,16 @@ public class TemplateZeroController {
 		TemplateZeroVO refreshVO = new TemplateZeroVO();
 		refreshVO = templateZeroService.selectTableRecordRecent(templateZeroVO);
 		
+		//공지사항 표시용 sitemenuvo
+		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
+		
 		if(countRecord != 0) {
-			System.out.println("���� ����" + templateZeroVO.getNoticeSwitch());
 			
 			refreshVO = templateZeroService.selectTableRecordRecent(templateZeroVO);
 			
-			if( !refreshVO.getContext().equals( templateZeroVO.getContext() ) ) { templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req); } 
-			//ù �۸� �ƴ϶�� rvo�� �ش� �Խñ��� ������ ��, ���ΰ�ħ�� ���� ���ؼ���
+			if( !refreshVO.getContext().equals( templateZeroVO.getContext() ) ) { templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req); }
 			
 			if(templateZeroVO.getNoticeSwitch().equals("1")) {
-				
-				SiteMenuVO mSiteMenuVO = new SiteMenuVO();
 				mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
 				
 				SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
@@ -153,6 +152,7 @@ public class TemplateZeroController {
 			
 			templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
 		
+			//
 		}
 		
 		

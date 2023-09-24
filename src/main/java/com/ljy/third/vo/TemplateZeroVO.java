@@ -23,9 +23,11 @@ public class TemplateZeroVO extends VOobject {
 	private String b_file_id = "";
 	private String b_file_name = "";
 	private List<String> b_fileCode;
-	private List<MultipartFile> b_filename;//���� ���� ���� �ڷ�
+	private List<MultipartFile> b_filename;
 	private String noticeSwitch = "0";
 	
+	//FileEditorContentVO에 전송하기 위한 에디터 내용첨부이미지 변수
+	private String editorImage = "";
 	
 	public String getSiteCode() {
 		return siteCode;
@@ -128,6 +130,12 @@ public class TemplateZeroVO extends VOobject {
 	}
 	public void setNoticeSwitch(String noticeSwitch) {
 		this.noticeSwitch = noticeSwitch;
+	}
+	public String getEditorImage() {
+		return editorImage;
+	}
+	public void setEditorImage(String editorImage) {
+		this.editorImage = editorImage;
 	}
 	
 	

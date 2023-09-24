@@ -11,6 +11,9 @@ public class FileEditorContentVO {
 	private String savingFname;
 	private String fname;
 	
+	private String editorImage = "";
+	private String[] editorImageArray;
+	
 	public String getCode() {
 		return code;
 	}
@@ -53,7 +56,18 @@ public class FileEditorContentVO {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-
+	public String getEditorImage() {
+		return editorImage;
+	}
+	public void setEditorImage(String editorImage) {
+		this.editorImage = editorImage;
+	}
+	public String[] getEditorImageArray() {
+		return editorImageArray;
+	}
+	public void setEditorImageArray(String[] editorImageArray) {
+		this.editorImageArray = editorImageArray;
+	}
 	
 	
 }

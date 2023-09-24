@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ljy.third.dao.BoardDAO;
 import com.ljy.third.dao.FileDAO;
+import com.ljy.third.dao.FileEditorContentDAO;
 import com.ljy.third.dao.TemplateZeroDAO;
+import com.ljy.third.vo.FileEditorContentVO;
 import com.ljy.third.vo.FileVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateZeroVO;
@@ -32,6 +34,9 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	
 	@Resource(name = "FileDAO")
 	FileDAO fileDAO;
+	
+	@Resource(name = "FileEditorContentDAO")
+	FileEditorContentDAO fileEditorContentDAO;
 
 	@Resource(name = "BoardDAO")
 	private BoardDAO mboardDAO;
@@ -202,6 +207,27 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 		}
 		
+		//글내용 첨부이미지 ECFILE CODE 모음을 mFileEditorContentVO에 배열로 재구성하여 dao로 
+		//FILE_EDITORCONTENT_TABLE의 EditorImageCode배열에 해당하는 FILE_EDITORCONTENT_TABLE.code필드의 값을 대상으로 하여
+		//FILE_EDITORCONTENT_TABLE.fid의 값을 현재 등록하는 게시물의 코드값으로 설정 
+		
+		if(!"".equals(templateZeroVO.getEditorImage())){
+
+			FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
+			mFileEditorContentVO.setEditorImageArray(templateZeroVO.getEditorImage().split(","));
+			mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
+			mFileEditorContentVO.setFid(templateZeroVO.getCode());
+			
+
+			System.out.println("내용첨부이미지 Fid : " + mFileEditorContentVO.getFid());
+			System.out.println("내용첨부이미지 siteCode : " + mFileEditorContentVO.getSiteCode());
+			System.out.println("내용첨부이미지 EditorImageArray : " + Arrays.toString(mFileEditorContentVO.getEditorImageArray()));
+			
+			fileEditorContentDAO.updateEditorContentFid(mFileEditorContentVO);
+			
+		}
+		
+		//최종 글 내용 레코드 등록
 		templateZeroDAO.insertTableRecord(templateZeroVO);
 	}
 
@@ -330,8 +356,9 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		System.out.println("b_file_id : " + templateZeroVO.getB_file_id());
 		
-		if( Integer.parseInt(templateZeroVO.getB_file_id()) > 0 ){
-			
+		//templateZeroVO.getB_file_id()가 ""일때가 귀찮아
+		if( !"".equals(templateZeroVO.getB_file_id())  && Integer.parseInt(templateZeroVO.getB_file_id()) > 0 ){
+			 
 			templateZeroDAO.deleteFileRecord(templateZeroVO);
 			
 		}

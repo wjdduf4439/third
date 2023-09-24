@@ -26,7 +26,20 @@ spring:
     url: jdbc:mysql://ljy-db.c60dwjop3klp.ap-northeast-1.rds.amazonaws.com:3306/THIRD_DB
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: LJY_Amazon
-    password: dl!wjd2duf    
+    password: dl!wjd2duf
+---
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://ljy-db.c60dwjop3klp.ap-northeast-1.rds.amazonaws.com:3306/THIRD_DB
+    
+logging:
+  level:
+    org.springframwork.web : warn
+    sql : off
+    jdbc : off
+    jdbc.sqlonly : info    
     
 ---
     
@@ -34,6 +47,9 @@ mybatis:
   type-aliases-package: com.ljy.third.dao
   mapper-locations: 
     - classpath:mybatis/mapper/*.xml
+    
+---
+
     
     
 #<beans:bean id="fileDownloadView" class="com.first.service.FileDownloadView"/>

@@ -22,6 +22,7 @@ https://ckeditor.com/docs/index.html
 
 <!-- ckeditor과 그 이미지 첨부 기능을 선언 -->
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/build/ckeditor.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/build/cdn.ckeditor.com_ckeditor5_39.0.2_classic_ckeditor.js"></script> --%>
 <script src="${pageContext.request.contextPath}/resources/js/ckeditor5-build-classic-39.0.1/ckeditorUploadAdapter.js"></script>
 <script>
 
@@ -59,6 +60,12 @@ $(document).ready(function() {
 
 	 
  let editor;
+ var pastContent = '';
+	<c:if test="${not empty resultList}">
+		pastContent = '${resultList.context }';
+	</c:if>
+	
+var nowContent = '';
  
  $(document).ready(function() {
 	 
@@ -74,6 +81,18 @@ $(document).ready(function() {
 			 	//에디터의 변수 지정
 			 	window.editor = newEditor;
 		        editor = newEditor;
+		        /* https://stackoverflow.com/questions/60762205/ckeditor-5-change-height-event 여기 참고*/
+		        editor.model.document.on( 'change:data', () => {     
+	                //alert('height'); // ?????
+		        	/*
+		        		load_editorImage = 
+		        		editorImage
+		        	*/
+	                
+		        	//마지막에는 변경한 내용부분을 계속 비교할 수 있도록 past를 갱신
+		        	pastContent = nowContent;
+	                
+	            } );    
 	        
 	    	})
 			 .catch( error => {
@@ -83,6 +102,17 @@ $(document).ready(function() {
 		
 	
  });
+ 
+/* $('.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred').on('change', function(){ alert("내용 변경"); }); */
+ 
+ 
+/*  ClassicEditor.model.change( writer => {
+	    // Move selection to the end of the document.
+	    writer.setSelection(
+	        writer.createPositionAt( editor.model.document.getRoot(), 'end' )
+	    );
+
+ } ); */
 
 function fn_validate(){
 	
@@ -119,6 +149,42 @@ function fn_insert(){
 	<c:if test="${not empty resultList}">
 		document.frm.action = '<c:url value="/template/templateZeroUpdate.go"/>';
 	</c:if>
+	
+	console.log($("#context").val());
+	
+	
+	var contentText = $("#context").val();
+	var targetText = '<img src="/ckeditor_upload/';
+	var acc = 1;
+	
+	var ecfileText = '';
+	var ecfileTotalText = '';
+	
+	//img 태그의 위치 찾기
+	//ecfile코드 분리 후 editorImage input에 주입 - ecfile코드에 맞는지 형식 검사 해야함
+	//img 태그의 위치를 찾고 ecfile 코드를 분리하면 나머지를 통하여 다시 img태그를 찾아야함	
+	//잘라낸 텍스트 상관없이 contentText는 그대로 놔두고 다음 img 태그를 찾도록 유도
+	
+	
+	while( acc = 1 ){
+		
+		var imgsrcText =  contentText.indexOf(targetText);
+		if(imgsrcText === -1) { break; } //console.log("추출한 imgsrcText : " + imgsrcText);
+		
+		ecfileText = contentText.substr(imgsrcText + targetText.length, 20); //console.log("추출한 ecfileText : " + ecfileText);
+		
+		
+		console.log("ECFILE_ 검출결과 " + ecfileText.includes( 'ECFILE_' ));
+		if( true == ecfileText.includes( 'ECFILE_' ) ){ ecfileTotalText = ecfileTotalText.concat(ecfileText,','); }
+		
+		contentText = contentText.substr(imgsrcText + targetText.length);
+		
+	}
+	ecfileTotalText = ecfileTotalText.substr(0, ecfileTotalText.length - 1);//while문이 끝나면 ecfileTotal의 맨 끝 ,를 제거하기
+	$('#editorImage').val(ecfileTotalText);
+	
+	//console.log('최종 ecfileTotal : ' + $('#editorImage').val());
+	//console.log('imgsrcText : ' + imgsrcText);
 	
 	document.frm.submit();
 	
@@ -160,6 +226,11 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<input type="hidden" id="atchFileId" name="atchFileId" value="${resultList.atchFileId }"/>
 			<input type="hidden" id="context" name="context" value=""/>
 			<input type="hidden" id="noticeSwitch" name="noticeSwitch" value="${resultList.noticeSwitch }"/>
+			
+			<input type="hidden" id="load_editorImage" name="load_editorImage" value="${editorImageCode.code }"/>
+			<input type="hidden" id="editorImage" name="editorImage" value=""/>
+			<input type="hidden" id="load_editorImage" name="save_editorImage" value=""/>
+			<input type="hidden" id="load_editorImage" name="drop_editorImage" value=""/>
 			
 			<table class="tablewrite tableline">
 				<colgroup>
