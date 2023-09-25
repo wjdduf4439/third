@@ -1,6 +1,8 @@
 package com.ljy.third.dao;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +15,11 @@ public class FileEditorContentDAO {
 	
 	@Inject //�ڹٿ��� �����ϴ� �ش� ���������Ŀ� ���� �����͸� �����ϴ� ������̼�
 	private SqlSession sqlSession;
+	
+	public List<FileEditorContentVO> selectTableRecordList(FileEditorContentVO mFileEditorContentVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.fileEditorContentMapper.selectTableRecordList", mFileEditorContentVO );
+	}
 	
 	public String selectTableRecordListMax(FileEditorContentVO mFileEditorContentVO) {
 		// TODO Auto-generated method stub
@@ -27,6 +34,11 @@ public class FileEditorContentDAO {
 	public void updateEditorContentFid(FileEditorContentVO mFileEditorContentVO) {
 		// TODO Auto-generated method stub
 		sqlSession.selectOne("com.ljy.third.dao.fileEditorContentMapper.updateEditorContentFid", mFileEditorContentVO);
+	}
+	
+	public void deleteEditorContent_Fid(FileEditorContentVO mFileEditorContentVO) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.fileEditorContentMapper.deleteEditorContent_Fid", mFileEditorContentVO);
 	}
 
 }

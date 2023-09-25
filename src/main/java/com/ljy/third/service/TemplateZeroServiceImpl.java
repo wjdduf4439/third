@@ -354,7 +354,27 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
 		// TODO Auto-generated method stub
 		
+		System.out.println("editorImage : " + templateZeroVO.getEditorImage());
 		System.out.println("b_file_id : " + templateZeroVO.getB_file_id());
+		
+		
+		//
+		FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
+		mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
+		mFileEditorContentVO.setFid(templateZeroVO.getCode());
+		
+		List<FileEditorContentVO> resultF_E_C_VOList = fileEditorContentDAO.selectTableRecordList(mFileEditorContentVO);
+		
+		System.out.println("추출한 fpath" + resultF_E_C_VOList.get(0).getFpath());
+		for(int i = 0; i < resultF_E_C_VOList.size(); i++ ) {
+			
+			File file = new File(resultF_E_C_VOList.get(i).getFpath());
+			
+			//파일 존재 시 파일 삭제
+			if( file.exists() ){ file.delete(); }
+			
+		}
+		fileEditorContentDAO.deleteEditorContent_Fid(mFileEditorContentVO);
 		
 		//templateZeroVO.getB_file_id()가 ""일때가 귀찮아
 		if( !"".equals(templateZeroVO.getB_file_id())  && Integer.parseInt(templateZeroVO.getB_file_id()) > 0 ){

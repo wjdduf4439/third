@@ -5,6 +5,16 @@
  
 <mapper namespace="com.ljy.third.dao.fileEditorContentMapper">
 
+	<select id="selectTableRecordList" resultType="com.ljy.third.vo.FileEditorContentVO"  >
+		
+		
+        SELECT	fpath
+		FROM	FILE_EDITORCONTENT_TABLE
+		WHERE	sitecode = #{siteCode} 
+		AND		fid = #{fid}
+	
+	</select>
+
 	<select id="fileEditorContentListMax" resultType="String">
 	 
 		SELECT MAX(CODE)
@@ -27,9 +37,9 @@
 				#{fname}
 	         )
 	  
-	  </insert>
+	</insert>
 	  
-	  <update id="updateEditorContentFid">
+	<update id="updateEditorContentFid">
 		 
 		UPDATE	FILE_EDITORCONTENT_TABLE
 			
@@ -44,6 +54,13 @@
 			
 	</update>
 	  
+	  
+	<delete id="deleteEditorContent_Fid">
+		 
+			DELETE FROM FILE_EDITORCONTENT_TABLE
+			WHERE sitecode = #{siteCode} AND fid = #{fid}
+		
+	</delete>
     
 
 </mapper>
