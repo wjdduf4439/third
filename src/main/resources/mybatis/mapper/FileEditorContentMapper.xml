@@ -5,13 +5,34 @@
  
 <mapper namespace="com.ljy.third.dao.fileEditorContentMapper">
 
-	<select id="selectTableRecordList" resultType="com.ljy.third.vo.FileEditorContentVO"  >
+
+	<select id="selectTableRecordList_Code" resultType="com.ljy.third.vo.FileEditorContentVO"  >
 		
+        SELECT	code
+		FROM	FILE_EDITORCONTENT_TABLE
+		WHERE	sitecode = #{siteCode} 
+		AND		fid = #{fid}
+	
+	</select>
+
+
+	<select id="selectTableRecordList_Fpath" resultType="com.ljy.third.vo.FileEditorContentVO"  >
 		
         SELECT	fpath
 		FROM	FILE_EDITORCONTENT_TABLE
 		WHERE	sitecode = #{siteCode} 
 		AND		fid = #{fid}
+	
+	</select>
+	
+	<select id="selectTableRecordList_Fpath_whereCode" resultType="com.ljy.third.vo.FileEditorContentVO"  >
+		
+        SELECT	fpath
+		FROM	FILE_EDITORCONTENT_TABLE
+		WHERE	code IN 
+				 <foreach item="item" index="index" collection="editorImageArray"  open="(" close=")"  separator="," >
+				        '${item}'
+				</foreach>
 	
 	</select>
 
@@ -59,6 +80,16 @@
 		 
 			DELETE FROM FILE_EDITORCONTENT_TABLE
 			WHERE sitecode = #{siteCode} AND fid = #{fid}
+		
+	</delete>
+	
+	<delete id="deleteEditorContent_dropEditorImageArray">
+		 
+			DELETE FROM FILE_EDITORCONTENT_TABLE
+			WHERE sitecode = #{siteCode} AND code IN
+				<foreach item="item" index="index" collection="editorImageArray"  open="(" close=")"  separator="," >
+				        '${item}'
+				</foreach>
 		
 	</delete>
     

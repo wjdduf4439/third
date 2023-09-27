@@ -88,6 +88,33 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	}
 
 	@Override
+	public TemplateZeroVO selectTableECFRecordList(TemplateZeroVO templateZeroVO) throws Exception {
+		// TODO Auto-generated method stub
+		TemplateZeroVO ECFresultVO = new TemplateZeroVO();
+		
+		String ecfileTotalText = "";
+		FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
+		mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
+		mFileEditorContentVO.setFid(templateZeroVO.getCode());
+		
+		List<FileEditorContentVO> resultF_E_C_VOList = fileEditorContentDAO.selectTableRecordList_Code(mFileEditorContentVO);
+		if(resultF_E_C_VOList.size() > 0) {
+
+			//추출한 FILE_EDITORCONTENT_TABLE의 값을 ,로 구분한 문자열로 구축해서 TemplateZeroVO에 담기
+			//System.out.println("resultF_E_C_VOList Code : " + resultF_E_C_VOList.get(i).getCode());
+			for(int i = 0; i < resultF_E_C_VOList.size(); i++ ) { ecfileTotalText += resultF_E_C_VOList.get(i).getCode(); ecfileTotalText += ","; }
+			ecfileTotalText = ecfileTotalText.substring(0, ecfileTotalText.length() - 1);
+			//System.out.println("최종 ecfileTotal : " + ecfileTotalText);
+			
+		}
+		
+		//이미첨부 기능이 없는 게시물이나 처음 화면에서 불러올때를 대비해 null대비함
+		if( null != ecfileTotalText && !"".equals(ecfileTotalText)) { ECFresultVO.setEditorImage(ecfileTotalText); }
+		 
+		return ECFresultVO;
+	}
+
+	@Override
 	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -99,18 +126,12 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			String newCode = "TZERO_";
 			int i = 1;
 			
-			while(temp >= 10) {
-				
-				temp /= 10;
-				i++;
-				
-			}
+			while(temp >= 10) { temp /= 10; i++; }
 			
 			for(int j = 0; j < 14-i ; j++) { newCode += "0"; }
 			newCode += Integer.toString(tailNumber);
 			
 			templateZeroVO.setCode(newCode);
-			
 			
 		}catch(Exception e) {
 			
@@ -347,6 +368,40 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 		}
 		
+
+		//내용첨부이미지의 "save_editorImage", "drop_editorImage"를 컨트롤러에 받아서 save_editorImage의 값의 fid를 등록시키고, drop_editorImage의 테이블 삭제 및 파일 삭제하기\
+		
+		if(!"".equals(templateZeroVO.getEditorImage())){
+			
+			//drop_editorImage작업 - selectTableRecordList_Fpath, deleteEditorContent_Fid 활용
+			//drop_editorImage 배열을 작업하고 등록시켜야함
+			//drop_editorImage의 fpath를 가져올 select문 만들기 - selectTableRecordList_Fpath_whereCode
+			//drop_editorImage의 코드를 가지고 drop 시킬 delete문 만들기 - deleteEditorContent_Code
+			
+			FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
+			mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
+			mFileEditorContentVO.setFid(templateZeroVO.getCode());
+			
+			mFileEditorContentVO.setEditorImageArray(templateZeroVO.getDrop_editorImage().split(","));
+			List<FileEditorContentVO> resultF_E_C_VOList = fileEditorContentDAO.selectTableRecordList_Fpath_whereCode(mFileEditorContentVO);
+			
+			for(int i = 0; i < resultF_E_C_VOList.size(); i++ ) {
+				System.out.println("updateTableRecord 추출한 fpath" + resultF_E_C_VOList.get(0).getFpath());
+				File file = new File(resultF_E_C_VOList.get(i).getFpath());
+				
+				//파일 존재 시 파일 삭제
+				if( file.exists() ){ file.delete(); }
+				
+			}
+			fileEditorContentDAO.deleteEditorContent_dropEditorImageArray(mFileEditorContentVO);
+			
+			//save_editorImage작업 - updateEditorContentFid 활용
+			
+			mFileEditorContentVO.setEditorImageArray(templateZeroVO.getSave_editorImage().split(","));
+			fileEditorContentDAO.updateEditorContentFid(mFileEditorContentVO);
+			
+		}
+		
 		templateZeroDAO.updateTableRecord(templateZeroVO);
 	}
 
@@ -356,16 +411,15 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		System.out.println("editorImage : " + templateZeroVO.getEditorImage());
 		System.out.println("b_file_id : " + templateZeroVO.getB_file_id());
-		
-		
-		//
+
+
 		FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
 		mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
 		mFileEditorContentVO.setFid(templateZeroVO.getCode());
 		
-		List<FileEditorContentVO> resultF_E_C_VOList = fileEditorContentDAO.selectTableRecordList(mFileEditorContentVO);
+		List<FileEditorContentVO> resultF_E_C_VOList = fileEditorContentDAO.selectTableRecordList_Fpath(mFileEditorContentVO);
 		
-		System.out.println("추출한 fpath" + resultF_E_C_VOList.get(0).getFpath());
+		//System.out.println("추출한 fpath" + resultF_E_C_VOList.get(0).getFpath());
 		for(int i = 0; i < resultF_E_C_VOList.size(); i++ ) {
 			
 			File file = new File(resultF_E_C_VOList.get(i).getFpath());

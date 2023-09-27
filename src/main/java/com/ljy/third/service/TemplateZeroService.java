@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ljy.third.vo.FileEditorContentVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateOneVO;
 import com.ljy.third.vo.TemplateZeroVO;
@@ -23,6 +24,8 @@ public interface TemplateZeroService {
 	public TemplateZeroVO selectTableRecordOne(TemplateZeroVO templateZeroVO) throws Exception;
 	
 	public TemplateZeroVO selectTableRecordRecent(TemplateZeroVO templateZeroVO) throws Exception;
+	
+	public TemplateZeroVO selectTableECFRecordList(TemplateZeroVO templateZeroVO) throws Exception;
 	
 	public void insertTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	

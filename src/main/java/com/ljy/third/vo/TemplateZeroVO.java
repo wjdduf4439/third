@@ -28,6 +28,8 @@ public class TemplateZeroVO extends VOobject {
 	
 	//FileEditorContentVO에 전송하기 위한 에디터 내용첨부이미지 변수
 	private String editorImage = "";
+	private String save_editorImage = "";
+	private String drop_editorImage = "";
 	
 	public String getSiteCode() {
 		return siteCode;
@@ -136,6 +138,18 @@ public class TemplateZeroVO extends VOobject {
 	}
 	public void setEditorImage(String editorImage) {
 		this.editorImage = editorImage;
+	}
+	public String getSave_editorImage() {
+		return save_editorImage;
+	}
+	public void setSave_editorImage(String save_editorImage) {
+		this.save_editorImage = save_editorImage;
+	}
+	public String getDrop_editorImage() {
+		return drop_editorImage;
+	}
+	public void setDrop_editorImage(String drop_editorImage) {
+		this.drop_editorImage = drop_editorImage;
 	}
 	
 	

@@ -49,7 +49,7 @@ public class TemplateZeroController {
 		//System.out.println("ù��° �Խù� : " + resultList.get(0).getTitle());
 		
 		//���� ������ �����ͼ� list�� ��� �۾�
-		List<TemplateZeroVO> noticeList = new ArrayList<TemplateZeroVO>(); // ���� ������ ���� list
+		List<TemplateZeroVO> noticeList = new ArrayList<TemplateZeroVO>(); //공지사항 리스트 가져오기
 		{
 			
 			SiteMenuVO mSiteMenuVO = new SiteMenuVO();									//�ش� site�� ������ �����ͼ� �����Ű�� ���� vo
@@ -107,7 +107,17 @@ public class TemplateZeroController {
 			for(int i = 0; i < nArray.length; i++) { if( nArray[i].equals ( templateZeroVO.getCode() ) ){ resultVO.setNoticeSwitch("1"); } }
 		
 		}
-		
+
+		//내용 첨부 이미지 불러오기
+		//code 값이 없으면 내용첨부이미지 확인 절차를 생략하고, code 값이 있으면 내용첨부이미지 확인 절차 진행
+		//System.out.println("들어올 때의 code값 : " + templateZeroVO.getCode() );
+		if( !"".equals(templateZeroVO.getCode()) ) {
+
+			TemplateZeroVO ECFresultVO = templateZeroService.selectTableECFRecordList(templateZeroVO);
+			//이미첨부 기능이 없는 게시물이나 처음 화면에서 불러올때를 대비해 null대비함
+			if(!"".equals(ECFresultVO.getEditorImage())) { resultVO.setEditorImage(ECFresultVO.getEditorImage()); }
+			
+		}
 		
 		map.addAttribute("resultList", resultVO);
 		
@@ -202,6 +212,8 @@ public class TemplateZeroController {
 			
 			
 		}
+		
+		
 		
 		return "forward:/template/templateInfo.go";
 	}

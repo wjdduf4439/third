@@ -13,6 +13,10 @@ public class FileEditorContentVO {
 	
 	private String editorImage = "";
 	private String[] editorImageArray;
+	private String save_editorImage = "";
+	private String[] save_editorImageArray;
+	private String drop_editorImage = "";
+	private String[] drop_editorImageArray;
 	
 	public String getCode() {
 		return code;
@@ -67,6 +71,30 @@ public class FileEditorContentVO {
 	}
 	public void setEditorImageArray(String[] editorImageArray) {
 		this.editorImageArray = editorImageArray;
+	}
+	public String getSave_editorImage() {
+		return save_editorImage;
+	}
+	public void setSave_editorImage(String save_editorImage) {
+		this.save_editorImage = save_editorImage;
+	}
+	public String[] getSave_editorImageArray() {
+		return save_editorImageArray;
+	}
+	public void setSave_editorImageArray(String[] save_editorImageArray) {
+		this.save_editorImageArray = save_editorImageArray;
+	}
+	public String getDrop_editorImage() {
+		return drop_editorImage;
+	}
+	public void setDrop_editorImage(String drop_editorImage) {
+		this.drop_editorImage = drop_editorImage;
+	}
+	public String[] getDrop_editorImageArray() {
+		return drop_editorImageArray;
+	}
+	public void setDrop_editorImageArray(String[] drop_editorImageArray) {
+		this.drop_editorImageArray = drop_editorImageArray;
 	}
 	
 	

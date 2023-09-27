@@ -16,9 +16,19 @@ public class FileEditorContentDAO {
 	@Inject //�ڹٿ��� �����ϴ� �ش� ���������Ŀ� ���� �����͸� �����ϴ� ������̼�
 	private SqlSession sqlSession;
 	
-	public List<FileEditorContentVO> selectTableRecordList(FileEditorContentVO mFileEditorContentVO) {
+	public List<FileEditorContentVO> selectTableRecordList_Code(FileEditorContentVO mFileEditorContentVO) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.ljy.third.dao.fileEditorContentMapper.selectTableRecordList", mFileEditorContentVO );
+		return sqlSession.selectList("com.ljy.third.dao.fileEditorContentMapper.selectTableRecordList_Code", mFileEditorContentVO );
+	}
+	
+	public List<FileEditorContentVO> selectTableRecordList_Fpath(FileEditorContentVO mFileEditorContentVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.fileEditorContentMapper.selectTableRecordList_Fpath", mFileEditorContentVO );
+	}
+	
+	public List<FileEditorContentVO> selectTableRecordList_Fpath_whereCode(FileEditorContentVO mFileEditorContentVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.fileEditorContentMapper.selectTableRecordList_Fpath_whereCode", mFileEditorContentVO );
 	}
 	
 	public String selectTableRecordListMax(FileEditorContentVO mFileEditorContentVO) {
@@ -39,6 +49,11 @@ public class FileEditorContentDAO {
 	public void deleteEditorContent_Fid(FileEditorContentVO mFileEditorContentVO) {
 		// TODO Auto-generated method stub
 		sqlSession.selectOne("com.ljy.third.dao.fileEditorContentMapper.deleteEditorContent_Fid", mFileEditorContentVO);
+	}
+	
+	public void deleteEditorContent_dropEditorImageArray(FileEditorContentVO mFileEditorContentVO) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.fileEditorContentMapper.deleteEditorContent_dropEditorImageArray", mFileEditorContentVO);
 	}
 
 }
