@@ -48,12 +48,4 @@ mybatis:
   mapper-locations: 
     - classpath:mybatis/mapper/*.xml
     
----
-
-    
-    
-#<beans:bean id="fileDownloadView" class="com.first.service.FileDownloadView"/>
-   
-  
-    
   

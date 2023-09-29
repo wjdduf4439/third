@@ -16,7 +16,7 @@ class ckeditorUploadAdapter {
 	var ua = window.location.href;
 	
 	if (ua.match(/52.199.73.178:8081/)){
-		this.url = 'http://52.199.73.178:8081//third/ckeditorCon/upload.go';
+		this.url = 'http://52.199.73.178:8081/third/ckeditorCon/upload.go';
 	} else { 
 		this.url = 'http://localhost:8081/third/ckeditorCon/upload.go';
 	}
