@@ -12,15 +12,15 @@
 		</br><span class="space10"></span></br>
 		
 		<div class="font_about_me_content">
-			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/edit_icon_250480.png"/>  항목과 게시판의 생성
+			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/edit_icon_250480.png"/>  이미지 첨부 기능 구현
 		</div>
 		</br><span class="space20"></span></br>
 		<span>
-			홈페이지의 사이트를 관리하는 관리자가 개발 관련 지식이 없어도 홈페이지 관리 업무를 할 수 있도록 
+			만약 제가 한 회사의 홈페이지의 사이트를 관리하는 관리자가 된다면, 별도의 쿼리 작업과 뷰 생성 작업을 생략하고 홈페이지 관리 업무를 할 수 있도록 
 			</br></br>
 			게시판을 한번에 묶어서 관리하는 항목과, 각 게시판을 만드는 기능을 구현해 보았습니다.
 			</br></br>
-			서버의 성능이 좋지 못해서 사용자가 익명이나 회원가입을 통하여 게시물을 만드는 기능을 넣지 않았습니다. 
+			서버의 성능이 좋지 못해서 사용자가 익명이나 회원가입을 통하여 게시물을 만드는 기능을 넣지 않았습니다. 현재 아마존 프리티어 서버의 용량이 85퍼센트를 넘어갔습니다. 죄송합니다. 
 			
 			</br></br></br>
 			

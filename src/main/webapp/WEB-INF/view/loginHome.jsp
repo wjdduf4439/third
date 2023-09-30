@@ -60,13 +60,6 @@
 		
 	}
 	
-	function fn_gotoRV(buttonid){
-		
-		
-		
-		
-	}
-	
 	
 	function fn_setRV(buttonid,mode){
 		
@@ -74,7 +67,7 @@
 		//mode가 0이면 스크롤 이동 없음, 1이면 기능 소개 부분으로 스크롤 이동
 		 
 		
-		for(i=1; i<5; i++){ fn_hideHeight(i); }
+		for(i=1; i<7; i++){ fn_hideHeight(i); }
 		
 		$( "#contents_align_div_rv"+buttonid ).show(); $( "#contents_align_div_rvcon"+buttonid ).show();
 		
@@ -82,12 +75,12 @@
 		else if(buttonid == '2'){ fn_setHeight(buttonid, '800'); }
 		else if(buttonid == '3'){ fn_setHeight(buttonid, '2850'); }
 		else if(buttonid == '4'){ fn_setHeight(buttonid, '1000'); }
+		else if(buttonid == '6'){ fn_setHeight(buttonid, '2550'); }
 		
-		
-		if(mode == '1'){ var offset = $( "#contents_align_span_rv"+buttonid ).offset(); $('html, body').animate({scrollTop : offset.top}, 400); }
+
 		//contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 
+		if(mode == '1'){ var offset = $( "#contents_align_span_rv"+buttonid ).offset(); $('html, body').animate({scrollTop : offset.top}, 400); }
 		 
-		
 	}
 	
 	
@@ -115,11 +108,13 @@
 			</br></br>
 			과거에는 홈페이지 유지보수 일을 함으로서 웹사이트 안정성과 기능 개선을 담당했으며, 이번에는 백엔드 개발 분야로 나아가고자 합니다. 
 			</br></br>
-			유지보수를 통해 다양한 문제를 해결하고 협업을 경험한 덕분에 효율적인 문제 해결과 팀워크의 중요성을 깨닫게 되었습니다. 
+			유지보수를 통해 다양한 문제를 해결하고 협업을 경험한 덕분에 효율적인 문제 해결 능력이 개발자의 기본적이고 핵심적인 능력이라고 생각하게 되었습니다. 
 			</br></br>
-			전반적인 홈페이지 개발을 통해 더욱 깊이 있는 기술과 솔루션을 탐구하며, 새로운 도전에 적극적으로 참여해 보고 싶습니다.
+			전반적인 홈페이지 개발을 통해 더욱 깊이 있는 기술과 솔루션을 탐구하며, 회사에 기여하면서 개발자의 삶을 살고 싶습니다.
 			</br></br>
 			이 aws 서버에서 배포한 프로젝트로 지원하고자 하는 회사에 저의 기술과 솔루션에 대한 관심을 표현하고자 합니다.
+			</br></br>
+			서버가 좋지 않은 관계로 회원가입과 같은 다른 사용자들의 참여가 필요한 부분을 최소화 했습니다.
 			</br></br>
 			잘부탁드립니다.
 	</div>
@@ -148,6 +143,10 @@
 				
 				<button id="rv4" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('4','1');">
 					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9846025.png" class="btn_rv1"/></br>aop 활용
+				</button>
+				
+				<button id="rv6" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('6','1');">
+					<img src="${pageContext.request.contextPath}/resources/icon_loginview/9846186.png" class="btn_rv1"/></br>이미지 내용첨부 기능
 				</button>
 				
 				<%-- <button id="rv5" type="button" class="btn_rv1_div" onclick="javascript:fn_setRV('5','1');">
@@ -185,7 +184,7 @@
 		</br><span class="space10"></span></br>
 		
 			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-link-181531.png"/>
-			<span>skill : </span><span>spring, php, java, c++</span>
+			<span>skill : </span><span>spring, php, java</span>
 			
 				
 	
@@ -203,5 +202,8 @@
 
 <span id="contents_align_span_rv4" ></span><!-- contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 -->
 <jsp:include page="/WEB-INF/view/loginHomeIntroduction/contents_align_div_rv4.jsp"/>
+
+<span id="contents_align_span_rv6" ></span><!-- contents_align_div_rv를 호출하는 동안 해당 display의 좌표가 00으로 잡히는 버그가 있어서 span들을 여기저기 뿌린 다음 거기로 좌표를 잡기 -->
+<jsp:include page="/WEB-INF/view/loginHomeIntroduction/contents_align_div_rv6.jsp"/>
 	
 </body>

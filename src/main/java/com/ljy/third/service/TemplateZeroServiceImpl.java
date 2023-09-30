@@ -239,11 +239,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
 			mFileEditorContentVO.setFid(templateZeroVO.getCode());
 			
-
-			System.out.println("내용첨부이미지 Fid : " + mFileEditorContentVO.getFid());
-			System.out.println("내용첨부이미지 siteCode : " + mFileEditorContentVO.getSiteCode());
-			System.out.println("내용첨부이미지 EditorImageArray : " + Arrays.toString(mFileEditorContentVO.getEditorImageArray()));
-			
 			fileEditorContentDAO.updateEditorContentFid(mFileEditorContentVO);
 			
 		}

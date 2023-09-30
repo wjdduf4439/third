@@ -83,7 +83,8 @@ var nowContent = '';
 		        editor = newEditor;
 		        /* https://stackoverflow.com/questions/60762205/ckeditor-5-change-height-event 여기 참고*/
 		        editor.model.document.on( 'change:data', () => {     
-	                //alert('height'); // ?????
+	                
+	                
 		        	/*
 		        		load_editorImage = 
 		        		editorImage

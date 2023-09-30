@@ -27,7 +27,6 @@ class ckeditorUploadAdapter {
   }
   // Starts the upload process.
   upload() {
-	console.log('upload 프로세스 실시');
     return new Promise((resolve, reject) => {
       this._initRequest();
       this._initListeners(resolve, reject);
@@ -42,14 +41,12 @@ class ckeditorUploadAdapter {
   }
   // Example implementation using XMLHttpRequest.
   _initRequest() {
-	console.log('_initRequest 프로세스 실시');
     const xhr = (this.xhr = new XMLHttpRequest());
     xhr.open("POST", this.url, true);
     xhr.responseType = "json";
   }
   // Initializes XMLHttpRequest listeners.
   _initListeners(resolve, reject) {
-	console.log('_initListeners 프로세스 실시');
     const xhr = this.xhr;
     const loader = this.loader;
     const genericErrorText = "Couldn't upload file:" + ` ${loader.file.name}.`;
