@@ -128,13 +128,15 @@ public class TemplateZeroController {
 	public String TemplateZeroInsert(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") TemplateZeroVO templateZeroVO  ,ModelMap map, HttpServletRequest req) throws Exception {
 
 		
+		
+		//공지사항 표시용 sitemenuvo
+		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
+		
+		/*
 		int countRecord = templateZeroService.selectTableRecordListCount(templateZeroVO);
 		
 		TemplateZeroVO refreshVO = new TemplateZeroVO();
 		refreshVO = templateZeroService.selectTableRecordRecent(templateZeroVO);
-		
-		//공지사항 표시용 sitemenuvo
-		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
 		
 		if(countRecord != 0) {
 			
@@ -142,27 +144,34 @@ public class TemplateZeroController {
 			
 			if( !refreshVO.getContext().equals( templateZeroVO.getContext() ) ) { templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req); }
 			
-			if(templateZeroVO.getNoticeSwitch().equals("1")) {
-				mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
-				
-				SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
-				String reNoticeSwitch = "";
-				
-				if(null != resultSiteMenuVO.getNoticeSwitch() && !resultSiteMenuVO.getNoticeSwitch().equals("")) { templateZeroVO.setNoticeSwitch(resultSiteMenuVO.getNoticeSwitch() + "," + templateZeroVO.getCode()); }
-				else { reNoticeSwitch = templateZeroVO.getNoticeSwitch(); }
-				
-				System.out.println("공지 전환 여부" + reNoticeSwitch);
-				
-				resultSiteMenuVO.setNoticeSwitch(templateZeroVO.getCode());
-				siteService.updateSiteMenu(resultSiteMenuVO);
-				
-			}
-			
 		} else {
 			
 			templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
+			
+		}
+		*/
 		
-			//
+		templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
+		
+		//공지사항을 등록하는 과정은 서비스impl에서 처리해야할까?
+		
+		//게시물 등록 후 공지사항 여부 등록]
+		//등록된 글의 update과정에서의 공지사항 등록과는 다르기 때문에 레코드를 먼저 등록하고 공지사항 정보를 등록한다.
+		if(templateZeroVO.getNoticeSwitch().equals("1")) {
+			mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
+			
+			SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
+			String reNoticeSwitch = "";
+			
+			if(null != resultSiteMenuVO.getNoticeSwitch() && !resultSiteMenuVO.getNoticeSwitch().equals("")) { templateZeroVO.setNoticeSwitch(resultSiteMenuVO.getNoticeSwitch() + "," + templateZeroVO.getCode()); }
+			else { reNoticeSwitch = templateZeroVO.getNoticeSwitch(); }
+			
+			System.out.println("공지 전환 여부" + reNoticeSwitch);
+			
+			//공지사항에 해당 게시물 최종 등록
+			resultSiteMenuVO.setNoticeSwitch(templateZeroVO.getCode());
+			siteService.updateSiteMenu(resultSiteMenuVO);
+			
 		}
 		
 		

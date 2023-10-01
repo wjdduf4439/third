@@ -106,6 +106,14 @@
 		</dependency>
 		
 		
+		<!-- javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		
+		
 		<!--
 		AspectJ는 대표적인 AOP 프레임워크이며, 인터페이스를 구현한 클래스에만 적용됩니다. 만약 인터페이스 구현 없는 순수 클래스의 경우 적용이 되지 않는 점에 유의해야 합니다.
 		그리고 만약 @Aspect 어노테이션을 사용해 Advice 클래스를 구현하고 Pointcut의 표현식을 사용하기 위해서는 추가로 aspectjweaver 라이브러리를 사용해야 합니다. 아래와 같이 의존 설정을 해주면 됩니다.

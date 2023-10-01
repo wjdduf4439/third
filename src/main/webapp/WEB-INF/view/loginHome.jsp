@@ -179,7 +179,7 @@
 		</br><span class="space10"></span></br>
 		
 			<img class="icon_20" src="${pageContext.request.contextPath}/resources/icon_loginview/free-icon-email-181535.png"/>
-			<span>email : </span><span>wjdduf4439@gmail.com</span>
+			<span>email : </span><span>wjdduf4439@gmail.com</span> <!-- 📩 -->
 			
 		</br><span class="space10"></span></br>
 		

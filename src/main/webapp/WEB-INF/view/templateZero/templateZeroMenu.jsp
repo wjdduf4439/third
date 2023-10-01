@@ -69,7 +69,7 @@
 						<option value="0" <c:if test='${searchVO.searchCnd == "0"}'> selected </c:if>>제목</option>
 						<option value="1" <c:if test='${searchVO.searchCnd == "1"}'> selected </c:if>>관리자</option>
 					</select>
-					<input type="text" name="searchWrd" value="<c:out value="${searchVO.searchWrd }"/>" onkeypress="javascript:fn_searchKeyPressed(event);" class="inputText width240 mr0" placeholder="검색어를 입력하세요">
+					<input type="text" name="searchWrd" value="<c:out value='${searchVO.searchWrd }'/>" onkeypress="javascript:fn_searchKeyPressed(event);" class="inputText width240 mr0" placeholder="검색어를 입력하세요">
 					<button type="button" class="btn01" onclick="javascript:fn_list('0');">검색</button>
 				</div>
 				
@@ -90,7 +90,6 @@
 						<tbody>
 						
 							<c:if test="${ not empty noticeList }">
-								<c:out value="${fn:length(noticeList)}"/><c:out value="${noticeList[0].code}"/> 
 								<c:forEach var="notice" items="${noticeList }" varStatus="status1">
 									<tr onclick="javascript:fn_update('${notice.code}')">
 										<td> [공지] </td>

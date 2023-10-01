@@ -407,6 +407,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		System.out.println("editorImage : " + templateZeroVO.getEditorImage());
 		System.out.println("b_file_id : " + templateZeroVO.getB_file_id());
 
+		//공지사항 여부도 삭제하는 과정 주입하기
 
 		FileEditorContentVO mFileEditorContentVO = new FileEditorContentVO();
 		mFileEditorContentVO.setSiteCode(templateZeroVO.getSiteCode());
