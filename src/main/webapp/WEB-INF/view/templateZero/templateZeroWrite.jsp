@@ -12,6 +12,7 @@ ckeditor 기능검색 위치 :
 https://ckeditor.com/docs/index.html 
 -->
 <style>
+	/* .ck.ck-editor { max-width: 500px; } */
 	.ck.ck-editor__editable_inline {
 
 	    height: 750px;
@@ -302,7 +303,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				
 				<tr>
 					<th> <i class="icono-asterisk"></i>   제목</th>
-					<td><input type="text" name="title" id="title" class="width500" value="${resultList.title }"/></td>
+					<td><input type="text" name="title" id="title" class="maxwidth200" value="${resultList.title }"/></td>
 					<th>공지여부확인</th>
 					<td >
 						<input type='checkbox' id='noticeSwitchBox' name='noticeSwitchBox' value='1' <c:out value="${resultList.noticeSwitch == '1' ? 'checked' : ''}"/> >
@@ -311,7 +312,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				<tr>
 					<th> <i class="icono-asterisk"></i>   작성자 이름</th>
 					<td colspan="1">
-						<input type="text" name="frstRegistNm" id="frstRegistNm" value="관리자" readonly="readonly"  />
+						<input type="text" class="maxwidth200" name="frstRegistNm" id="frstRegistNm" value="관리자" readonly="readonly"  />
 						<!--  <input type="text" name="frstRegistNm" id="frstRegistNm" value="${resultList.frstRegistNm }"value="관리자" readonly="readonly"  /> --> 
 					</td>
 					<th>조회수</th>
@@ -320,12 +321,12 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 				</tr>
 				<tr>
 					<th> <i class="icono-asterisk"></i>   작성자 id</th>
-					<td colspan="3"><input type="text" name="writerID" id="writerID" class="width500" value="${sessionScope.id}" readonly="readonly"  /></td>
+					<td colspan="3"><input type="text" name="writerID" id="writerID" class="maxwidth200" value="${sessionScope.id}" readonly="readonly"  /></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<!-- <td colspan="3"><input type="text" name="contexteditor" id="contexteditor" class="width800" value="" /></td> -->
-					<td colspan="3"><textarea  name="contexteditor" id="contexteditor" class="width800"> ${resultList.context } </textarea></td>
+					<td colspan="3"><textarea  name="contexteditor" id="contexteditor" class="maxwidth800"> ${resultList.context } </textarea></td>
 					
 				</tr>
 				

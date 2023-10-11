@@ -71,13 +71,13 @@
 								<tr>
 								
 									<th>id<th>
-									<td> <input type="text" id="id" name="id" value="" class="width90p" > </td>
+									<td> <input type="text" id="id" name="id" value="" class="max-width90p" > </td>
 								
 								</tr>
 								<tr>
 								
 									<th>pw<th>
-									<td> <input type="password" id="pw" name="pw" value="" class="width90p" > </td>
+									<td> <input type="password" id="pw" name="pw" value="" class="max-width90p" > </td>
 								
 								</tr>
 							</tbody>

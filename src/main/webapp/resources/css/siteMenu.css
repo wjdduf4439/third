@@ -129,7 +129,7 @@ table tbody tr td { line-height:2 !important; }
 .tableline tr th { font-size:1.0rem; font-weight:400; padding:10px 5px; background:#c8c8c8; color:#000; text-align:center; border-bottom:1px solid #8b8e94; border-top:1px solid #8b8e94 !important; vertical-align:middle; letter-spacing:0; border-left:1px solid #e2e5ec; }
 .tableline th a, .tableline th a:hover, .tableline th a:visited {color:#000 !important;}
 .tableline td { border-bottom:1px solid #ddd; border-left:1px solid #dedede; font-weight:300; padding:5px 15px; color:#6f6f6f; text-align:center; vertical-align:middle; font-size:1.0rem; line-height:1.6; letter-spacing:0; background:#fff; }
-.tableline td img { width: 750px; height: auto; vertical-align: baseline}
+.tableline td img { max-width: 750px; height: auto; vertical-align: baseline}
 .tableline td a, .tableline td a:visited, .tableline td a:hover { color:#01579b; }
 .tableline td a i.fa-caret-circle-up, .tableline td a i.fa-caret-circle-down { color: #4d6fff !important}
 .tableline td a i.fa-times-circle { color: #ff282d !important}
@@ -156,7 +156,7 @@ table tbody tr td { line-height:2 !important; }
 .tableline_login tr th { font-size:1.0rem; font-weight:400; padding:10px 5px; background:#c8c8c8; color:#000; text-align:center; border-bottom:1px solid #8b8e94; border-top:1px solid #8b8e94 !important; vertical-align:middle; letter-spacing:0; border-left:1px solid #e2e5ec; }
 .tableline_login th a, .tableline_login th a:hover, .tableline_login th a:visited {color:#000 !important;}
 .tableline_login td { border-bottom:1px solid #ddd; border-left:1px solid #dedede; font-weight:300; padding:5px 15px; color:#6f6f6f; text-align:center; vertical-align:middle; font-size:1.0rem; line-height:1.6; letter-spacing:0; background:#fff; }
-.tableline_login td img { width: 750px; height: auto; vertical-align: baseline}
+.tableline_login td img { max-width: 750px; height: auto; vertical-align: baseline}
 .tableline_login td a, .tableline_login td a:visited, .tableline_login td a:hover { color:#01579b; }
 .tableline_login td a i.fa-caret-circle-up, .tableline_login td a i.fa-caret-circle-down { color: #4d6fff !important}
 .tableline_login td a i.fa-times-circle { color: #ff282d !important}
