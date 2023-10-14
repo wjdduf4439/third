@@ -117,15 +117,24 @@
 		var logReq = '<%= url1 %>';
 		var cIpAddress = '<%= cIpAddress %>';
 		
-		var url = "<c:url value='/log/logInsert.go?ip="+cIpAddress+"&logReq="+logReq+"'/>";
+		//var url = "<c:url value='/log/logInsert.go?ip="+cIpAddress+"&logReq="+logReq+"'/>";
+		var url = "<c:url value='/log/logInsert.go'/>";
+
+		// [요청 json 데이터 선언]
+		var jsonData = { // Body에 첨부할 json 데이터
+				"ip" : cIpAddress,
+				"logReq" : logReq
+			};
+		
 		
 		//로그 기입 ajax 넣기
 		$.ajax({      
-	        type:"get",  
+	        type:"post",  
 	        url : url,
 	        async: true,
 	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
-	        dataType : 'text',
+	        dataType : 'text', // 받을 data type
+	        data : JSON.stringify(jsonData),
 	        processData : false,
 	        contentType : false,
 	        beforeSend : function(xmlHttpRequest){

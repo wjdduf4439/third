@@ -35,7 +35,6 @@ public class loginHomeController{
 		return "loginHome"; 
 	}
 	
-	
 	@RequestMapping("/accLoginHome.go")
 	public String accLoginHome(ModelMap map, @ModelAttribute("loginHomeVO")loginHomeVO mloginHomeVO, HttpServletRequest req) throws Exception {
 		
