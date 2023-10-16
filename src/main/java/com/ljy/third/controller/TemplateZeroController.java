@@ -19,6 +19,8 @@ import com.ljy.third.vo.SiteMenuVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateZeroVO;
 
+//json 데이터 vo로 파싱하는법
+//https://ynzu-dev.tistory.com/entry/JAVA-json-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-VO%EB%A1%9C-%ED%8C%8C%EC%8B%B1-%EB%B3%80%ED%99%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-json-to-java-class
 
 //일반 게시판의 동작을 담당하는 컨트롤러
 @Controller

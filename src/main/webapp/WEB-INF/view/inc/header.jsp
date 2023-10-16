@@ -365,6 +365,7 @@
 							<form id="sitefrm" name="sitefrm" method="post">
 	
 								<input type="hidden" id="siteCode" name="siteCode" value="" />
+								<input type="hidden" id="siteCode_json" name="siteCode_json" value="" />
 							
 							</form>
 						 	
@@ -372,6 +373,11 @@
 	
 								function fn_SiteLink(siteCode){
 								
+									
+									let siteCode_jsontest = { 'siteCode_json':siteCode };
+									$('#siteCode_json').val(JSON.stringify(siteCode_jsontest));
+									alert($('#siteCode_json').val());
+									
 									document.sitefrm.siteCode.value = siteCode;
 									document.sitefrm.action = '<c:url value="/template/templateInfo.go"/>';
 									document.sitefrm.submit();

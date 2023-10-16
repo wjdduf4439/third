@@ -1,12 +1,16 @@
 package com.ljy.third;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.ljy.third.filter.searchFilter;
 import com.ljy.third.filter.uriFilter;
+import com.ljy.third.interceptor.TemplateInterceptor;
 
 
 /*스프링 컨테이너는 @Configuration이 붙어있는 클래스를 자동으로 빈으로 등록해두고, 해당 클래스를 파싱해서 @Bean이 있는 메소드를 찾아서 빈을 생성해준다.
@@ -17,8 +21,16 @@ import com.ljy.third.filter.uriFilter;
 @Bean은 반드시 @Configuration 안에서 사용되어야 한다. 
 */
 @Configuration
-public class servletConfig {
+public class servletConfig implements WebMvcConfigurer{
 	
+		//실질적인 인터셉터 등록
+		@Autowired
+		private TemplateInterceptor mtemplateInterceptor;
+		
+		// Interceptor에서 제외되는 URL 주소
+	    private static final String[] EXCLUDE_PATHS = { "/api/error", };
+	
+		//필터 빈
 	 	@Bean
 	    public FilterRegistrationBean<uriFilter> uriFilterRegistrationBean() {
 	        FilterRegistrationBean<uriFilter> registrationBean = new FilterRegistrationBean<>();
@@ -29,6 +41,7 @@ public class servletConfig {
 	        return registrationBean;
 	    }
 	    
+	    //필터 빈
 	    @Bean
 	    public FilterRegistrationBean<searchFilter> searchFilterRegistrationBean() {
 	        FilterRegistrationBean<searchFilter> registrationBean = new FilterRegistrationBean<>();
@@ -38,6 +51,15 @@ public class servletConfig {
 
 	        return registrationBean;
 	    }    
+	    
+	    @Override
+	    public void addInterceptors(InterceptorRegistry registry){
+	        registry.addInterceptor(mtemplateInterceptor)
+	        		//intercepter 주입 구간
+	                .addPathPatterns("/template/templateInfo*")
+	                // Interceptor에서 제외되는 URL 주소 기입
+	                .excludePathPatterns(EXCLUDE_PATHS);
+	    }
 	    
 	    @Bean
 		MappingJackson2JsonView jsonView() {

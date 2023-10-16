@@ -38,12 +38,12 @@ public class logInsertController {
 		
 		ServletInputStream inputStream = request.getInputStream();
 		String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-		System.out.println("messageBody={} : " + messageBody);
+		//System.out.println("messageBody={} : " + messageBody);
 		
 		logAdminVO logAdminVO = objectMapper.readValue(messageBody, logAdminVO.class);
 		
-		System.out.println("ip : " + logAdminVO.getIp());
-		System.out.println("logReq : " + logAdminVO.getLogReq());
+		//System.out.println("ip : " + logAdminVO.getIp());
+		//System.out.println("logReq : " + logAdminVO.getLogReq());
 		
 		logAdminService.insertlogAdmin(logAdminVO);
 		

@@ -98,6 +98,12 @@
 		    <artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		<!-- springboot aop 추가설정 패키지 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
