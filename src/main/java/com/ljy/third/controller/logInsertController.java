@@ -45,7 +45,12 @@ public class logInsertController {
 		//System.out.println("ip : " + logAdminVO.getIp());
 		//System.out.println("logReq : " + logAdminVO.getLogReq());
 		
-		logAdminService.insertlogAdmin(logAdminVO);
+		//로그 기입하지 않을 조건 입력
+		if(		!"0:0:0:0:0:0:0:1".equals(logAdminVO.getIp()) ||
+				!"118.235.33.94".equals(logAdminVO.getIp()) ||
+				!"175.121.12.84".equals(logAdminVO.getIp()) ||
+				!"58.230.12.254".equals(logAdminVO.getIp())
+				) { logAdminService.insertlogAdmin(logAdminVO); }
 		
 		return "success";
 	}

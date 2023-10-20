@@ -284,6 +284,7 @@
 								
 									document.userSitefrm.siteCode.value = siteCode;
 									document.userSitefrm.action = '<c:url value="/template/templeteViewInfo.go"/>';
+									//document.userSitefrm.action = '<c:url value="/template/templeteViewZero.go"/>';
 									document.userSitefrm.submit();
 									
 								}
