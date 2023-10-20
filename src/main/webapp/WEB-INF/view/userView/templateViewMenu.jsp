@@ -86,7 +86,7 @@
 						<tbody>
 						
 							<c:if test="${ not empty noticeList }">
-								<c:out value="${fn:length(noticeList)}"/><c:out value="${noticeList[0].code}"/> 
+								<c:out value="${fn:length(noticeList)}"/>
 								<c:forEach var="notice" items="${noticeList }" varStatus="status1">
 									<tr onclick="javascript:fn_view('${notice.code}')">
 										<td> [공지] </td>

@@ -70,5 +70,17 @@
 			) 
 		
 	</insert>
+	
+	<delete id="deleteMYlog">
+	
+	DELETE FROM LOG_TABLE
+	WHERE ip = '0:0:0:0:0:0:0:1'
+		or ip = '118.235.33.94'
+		or ip = '175.121.12.84'
+		or ip = '58.230.12.254'
+		or ip is null
+	
+	</delete>
+	
 
 </mapper>

@@ -376,10 +376,10 @@
 									
 									let siteCode_jsontest = { 'siteCode_json':siteCode };
 									$('#siteCode_json').val(JSON.stringify(siteCode_jsontest));
-									alert($('#siteCode_json').val());
 									
 									document.sitefrm.siteCode.value = siteCode;
-									document.sitefrm.action = '<c:url value="/template/templateInfo.go"/>';
+									//document.sitefrm.action = '<c:url value="/template/templateInfo.go"/>';
+									document.sitefrm.action = '<c:url value="/template/templateZeroList.go"/>';
 									document.sitefrm.submit();
 									
 								}

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.ljy.third.filter.searchFilter;
 import com.ljy.third.filter.uriFilter;
 import com.ljy.third.interceptor.TemplateInterceptor;
+import com.ljy.third.vo.TemplateInfoVO;
 
 
 /*스프링 컨테이너는 @Configuration이 붙어있는 클래스를 자동으로 빈으로 등록해두고, 해당 클래스를 파싱해서 @Bean이 있는 메소드를 찾아서 빈을 생성해준다.
@@ -52,11 +53,13 @@ public class servletConfig implements WebMvcConfigurer{
 	        return registrationBean;
 	    }    
 	    
+	    //인터셉터 등록 빈
 	    @Override
 	    public void addInterceptors(InterceptorRegistry registry){
 	        registry.addInterceptor(mtemplateInterceptor)
 	        		//intercepter 주입 구간
-	                .addPathPatterns("/template/templateInfo*")
+	                //.addPathPatterns("/template/templateInfo*")
+	        		.addPathPatterns("/template/**")
 	                // Interceptor에서 제외되는 URL 주소 기입
 	                .excludePathPatterns(EXCLUDE_PATHS);
 	    }

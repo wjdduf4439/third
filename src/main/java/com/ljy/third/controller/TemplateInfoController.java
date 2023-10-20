@@ -19,7 +19,7 @@ public class TemplateInfoController {
 	@Resource(name ="TemplateInfoService")
 	private TemplateInfoService templateInfoService;
 	
-	
+	/*
 	@RequestMapping("/template/templateInfo.go")
 	public String templeteInfo(@ModelAttribute("searchVO") TemplateInfoVO templateInfoVO ,ModelMap map) throws Exception {
 		
@@ -45,10 +45,7 @@ public class TemplateInfoController {
 			
 		}
 		
-		templateInfoVO.setFieldWidth(fieldWidth);//�迭�� ��ȯ �� vo�� ����
-		
-		
-		map.addAttribute("templateInfoVO", templateInfoVO);
+		 map.addAttribute("templateInfoVO", templateInfoVO);
 		
 		//System.out.println("templatetype : " + tableName.getTemplateType());
 		System.out.println("info페이지 인덱스 : " + templateInfoVO.getPageIndex());
@@ -65,6 +62,7 @@ public class TemplateInfoController {
 		
 		return "templateZero/templateZeroMenu";
 	}
+	*/
 	
 	
 	@RequestMapping("/template/templeteViewInfo.go")
