@@ -177,7 +177,8 @@ public class TemplateZeroController {
 		}
 		
 		
-		return "forward:/template/templateInfo.go";
+		//return "forward:/template/templateInfo.go";
+		return "forward:/template/templateZeroList.go";
 	}
 	
 	@RequestMapping("/template/templateZeroUpdate.go")
@@ -226,7 +227,8 @@ public class TemplateZeroController {
 		
 		
 		
-		return "forward:/template/templateInfo.go";
+		//return "forward:/template/templateInfo.go";
+		return "forward:/template/templateZeroList.go";
 	}
 	
 	@RequestMapping("/template/templateZeroDelete.go")
@@ -234,7 +236,8 @@ public class TemplateZeroController {
 		
 		templateZeroService.deleteTableRecord(templateZeroVO);
 		
-		return "forward:/template/templateInfo.go";
+		//return "forward:/template/templateInfo.go";
+		return "forward:/template/templateZeroList.go";
 	}
 	
 }
