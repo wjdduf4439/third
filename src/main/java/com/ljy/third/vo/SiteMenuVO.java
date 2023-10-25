@@ -15,6 +15,10 @@ public class SiteMenuVO extends VOobject {
 	private String[] fieldNumber;
 	private String column_Name;
 	
+	private String maxFileUploadNumber;
+	private String fileUploadType;
+	private String[] fileUploadTypeArr;
+	
 	private String placeName;
 	private String placeWidth;
 	
@@ -118,6 +122,24 @@ public class SiteMenuVO extends VOobject {
 	}
 	public void setColumn_Name(String column_Name) {
 		this.column_Name = column_Name;
+	}
+	public String getMaxFileUploadNumber() {
+		return maxFileUploadNumber;
+	}
+	public void setMaxFileUploadNumber(String maxFileUploadNumber) {
+		this.maxFileUploadNumber = maxFileUploadNumber;
+	}
+	public String getFileUploadType() {
+		return fileUploadType;
+	}
+	public void setFileUploadType(String fileUploadType) {
+		this.fileUploadType = fileUploadType;
+	}
+	public String[] getFileUploadTypeArr() {
+		return fileUploadTypeArr;
+	}
+	public void setFileUploadTypeArr(String[] fileUploadTypeArr) {
+		this.fileUploadTypeArr = fileUploadTypeArr;
 	}
 	public String[] getPlaceRowArray() {
 		return placeRowArray;

@@ -70,6 +70,8 @@
 	        	adminName,
 	        	typeName,
 	        	templateType,
+	        	maxFileUploadNumber,
+	        	fileUploadType,
 	        	placeRow,
 	        	placeName,
 	        	placeWidth
@@ -115,6 +117,8 @@
 				adminName,
 				formCode,
 				templateType,
+				maxFileUploadNumber,
+				fileUploadType,
 				placeRow,
 				placeWidth,
 				frstRegistPnttm
@@ -125,6 +129,8 @@
 				#{adminName},
 				#{formCode},
 				#{templateType},
+				#{maxFileUploadNumber},
+				#{fileUploadType},
 				#{placeRow},
 				#{placeWidth},
 				now()
@@ -161,6 +167,8 @@
 			,formCode = #{formCode}
 			,noticeSwitch = #{noticeSwitch}
 			,templateType  = #{templateType}
+			,maxFileUploadNumber  = #{maxFileUploadNumber}
+			,fileUploadType  = #{fileUploadType}
 			,placeRow  = #{placeRow}
 			,placeWidth  = #{placeWidth}
 			,lastUpdtPnttm=now()

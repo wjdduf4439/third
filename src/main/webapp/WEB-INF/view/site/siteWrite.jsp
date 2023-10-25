@@ -85,6 +85,16 @@ $( document ).ready(function() {
 	            alert("sitewidthajax 실패" + e.responseText);  
 	        }  
 	    }); 
+		
+		//fileUploadType 부분 체크박스 값 불러오기
+		let fileUploadTypeVal = '${resultList.fileUploadType}';
+		let fileUploadTypeArr = [];
+		fileUploadTypeArr = fileUploadTypeVal.split(",");
+		
+		for( let i = 0; i < fileUploadTypeArr.length; i++ ){
+			
+			$("#fileUploadType_" + fileUploadTypeArr[i]).prop("checked", true);
+		}
 	
 	</c:if>
 	
@@ -103,7 +113,7 @@ function fn_checked(m){
 		$("input:checkbox[name=placeRow]:checked").each(function(i){
 			
 			if(this.value != m){
-	
+				//체크하지 않은 부분의 width정보를 모아서 별도로 배열에 보관
 				console.log(this.value + " - " + m);
 				
 				placeRowVal += this.value;
@@ -114,7 +124,7 @@ function fn_checked(m){
 				placeWidthVal += ',';	
 				
 			}else{
-				
+				//체크한 부분은 공백값이 당연하기 때문에 배열 내에 빈 공간을 생성
 				placeRowVal += ',';
 				placeWidthVal += ',';
 				
@@ -160,6 +170,17 @@ function fn_checked(m){
 	//새로운 row 를 체크했을 시 해당 배열에는 값을 미배정
 	//if index i+2 == placerowwidth[i]의 값	
 		
+}
+
+function fn_fileUploadTypeChecked(m){
+	
+	let fileUploadTypeVal = '';
+	let fileUploadTypeArr = [];
+	
+	$("input:checkbox[name=fileUploadType_chkbox]:checked").each(function(i){ fileUploadTypeVal +=  this.value; fileUploadTypeVal +=  ',' });
+	fileUploadTypeVal = fileUploadTypeVal.substring(0,fileUploadTypeVal.length-1);
+	$('#fileUploadType').val(fileUploadTypeVal);
+	
 }
 
 function fn_template(){
@@ -240,7 +261,7 @@ function fn_insert(){
 	placeWidthVal = placeWidthVal.substring(0,placeWidthVal.length-1);
 	$('#placeWidth').val(placeWidthVal);
 	
-	alert($('#placeWidth').val());
+	
 	/*
 	return;
 	*/
@@ -322,6 +343,7 @@ function fn_back(){
 				
 				<!-- <input type="hidden" id="placeRow" name="placeRow" value="${resultList.placeRow}" /> -->
 				<input type="hidden" id="placeWidth" name="placeWidth" value="${resultList.placeWidth}" />
+				<input type="hidden" id="fileUploadType" name="fileUploadType" value="${resultList.fileUploadType}" />
 				
 				<input type="hidden" id="context" name="context" value=""/>
 				<table class="tablewrite nohover">
@@ -386,6 +408,26 @@ function fn_back(){
 		        		<th><i class="fa fa-asterisk" aria-hidden="true"></i>표시길이</th>
 		        		<td id ="lengthInput" >
 		        			<!-- sitewidthinput 정보 기입 구간 -->		        		
+		        		</td>
+		        	</tr>
+		        	<tr>
+		        		<th><i class="fa fa-asterisk" aria-hidden="true"></i>첨부파일 허용 갯수 </th>
+		        		<td id ="allowFileTypeInput" >	
+							여기서 갯수를 저장한 다음, insert, update 기능 시 해당 첨부파일의 갯수를 따지고 허용/반려하는식의 로직 짜기
+							</br>
+							<input type="text" name="maxFileUploadNumber" id="maxFileUploadNumber" class="width200" value="${resultList.maxFileUploadNumber }" />
+		        		</td>
+		        	</tr>
+		        	<tr>
+		        		<th><i class="fa fa-asterisk" aria-hidden="true"></i>허용 파일 타입(추가구성)</th>
+		        		<td id ="allowFileTypeInput" >
+		        			여기서 체크박스로 여러 타입의 파일 형식을 체크하고 저장하여 db에 저장한 다음, insert, update 기능 시 해당 첨부파일의 파일 형식을 따져 허용/반려하는식의 로직 짜기
+		        			</br>        		
+		        			<input type="checkbox" id="fileUploadType_jpg" name="fileUploadType_chkbox" value="jpg" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('jpg');" >jpg
+		        			<input type="checkbox" id="fileUploadType_png" name="fileUploadType_chkbox" value="png" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('png');" >png
+		        			<input type="checkbox" id="fileUploadType_pdf" name="fileUploadType_chkbox" value="pdf" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('pdf');" >pdf
+		        			<input type="checkbox" id="fileUploadType_zip" name="fileUploadType_chkbox" value="zip" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('zip');" >zip
+		        			<input type="checkbox" id="fileUploadType_webp" name="fileUploadType_chkbox" value="webp" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('webp');" >webp
 		        		</td>
 		        	</tr>
 				</table>
