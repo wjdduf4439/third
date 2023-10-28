@@ -108,6 +108,12 @@
 			ORDER BY ORDINAL_POSITION
     
     </select>
+    
+    <select id="selectFileValidateInfo" resultType="com.ljy.third.vo.SiteMenuVO">
+	        SELECT siteCode, maxFileUploadNumber, fileUploadType
+	        FROM SITE_TABLE
+	        WHERE siteCode = #{siteCode}
+	 </select>
 
 	<insert id="insertSiteMenu">
 		 

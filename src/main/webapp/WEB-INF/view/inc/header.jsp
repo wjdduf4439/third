@@ -103,11 +103,19 @@
 	
 	
 	$(document).ready(function(){ fn_setNavWidth();  });
-	
+	    
+	<c:if test="${not empty System_errMessage}">
+
+		window.addEventListener('load', function() {
+		        alert('<c:out value="${System_errMessage}"/>');
+	    });
+		
+	</c:if>	
+
 	$( window ).resize(function() {
 		fn_setNavWidth();
 	});	
-
+	
 	<%
 		//log테이블 이외의 페이지에 로그 남기도록 하기
 		if(url1.contains("log/") != true){

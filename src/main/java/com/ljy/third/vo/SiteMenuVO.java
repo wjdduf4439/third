@@ -1,5 +1,7 @@
 package com.ljy.third.vo;
 
+import org.springframework.stereotype.Component;
+
 public class SiteMenuVO extends VOobject {
 
 	private String siteCode;

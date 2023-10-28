@@ -29,7 +29,7 @@ public class SiteDAO {
 	}
 
 
-	public String selectSiteMenuMax(SiteMenuVO siteMenuVO) {
+	public String selectSiteMenuMax(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.ljy.third.dao.selectSiteMenuMax", siteMenuVO );
 	}
@@ -41,19 +41,19 @@ public class SiteDAO {
 	}
 
 
-	public SiteMenuVO selectSiteMenuRecent() {
+	public SiteMenuVO selectSiteMenuRecent() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.ljy.third.dao.selectSiteMenuRecent");
 	}
 
 
-	public List<FormMenuVO> selectSiteMenuFormList() {
+	public List<FormMenuVO> selectSiteMenuFormList() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("com.ljy.third.dao.selectSiteMenuFormList");
 	}
 
 
-	public List<SiteMenuVO> selectSiteField(SiteMenuVO siteMenuVO) {
+	public List<SiteMenuVO> selectSiteField(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("com.ljy.third.dao.selectSiteField", siteMenuVO);
 	}

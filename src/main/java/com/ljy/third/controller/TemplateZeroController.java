@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ljy.third.util.FileUploadValidateWork;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.service.SiteService;
 import com.ljy.third.service.TemplateZeroService;
@@ -27,10 +28,10 @@ import com.ljy.third.vo.TemplateZeroVO;
 public class TemplateZeroController {	
 
 	@Resource(name ="TemplateZeroService")
-	private TemplateZeroService templateZeroService; //�ش� ���� ���� ����
+	private TemplateZeroService templateZeroService; 
 	
 	@Resource(name ="SiteService")
-	private SiteService siteService; //�ش� ���� ���� ����
+	private SiteService siteService; 
 	
 	@RequestMapping("/template/templateZeroList.go")
 	public String TemplateZeroList(@ModelAttribute("searchVO") TemplateZeroVO templateZeroVO  ,ModelMap map, HttpServletRequest req) throws Exception {
@@ -133,25 +134,18 @@ public class TemplateZeroController {
 		
 		//공지사항 표시용 sitemenuvo
 		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
+		mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
+		SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
 		
-		/*
-		int countRecord = templateZeroService.selectTableRecordListCount(templateZeroVO);
+		FileUploadValidateWork fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
+		boolean resultValidateWork = fValidate.isResultValidateWork();
 		
-		TemplateZeroVO refreshVO = new TemplateZeroVO();
-		refreshVO = templateZeroService.selectTableRecordRecent(templateZeroVO);
-		
-		if(countRecord != 0) {
-			
-			refreshVO = templateZeroService.selectTableRecordRecent(templateZeroVO);
-			
-			if( !refreshVO.getContext().equals( templateZeroVO.getContext() ) ) { templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req); }
-			
-		} else {
-			
-			templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
-			
+		//파일 검증 실패 시 
+		if(resultValidateWork == false) { 
+			System.out.println("파일 검증 실패 : " + fValidate.getMessage());
+			map.addAttribute("System_errMessage", fValidate.getMessage());
+			return "forward:/template/templateZeroList.go";
 		}
-		*/
 		
 		templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
 		
@@ -160,9 +154,7 @@ public class TemplateZeroController {
 		//게시물 등록 후 공지사항 여부 등록]
 		//등록된 글의 update과정에서의 공지사항 등록과는 다르기 때문에 레코드를 먼저 등록하고 공지사항 정보를 등록한다.
 		if(templateZeroVO.getNoticeSwitch().equals("1")) {
-			mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
 			
-			SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
 			String reNoticeSwitch = "";
 			
 			if(null != resultSiteMenuVO.getNoticeSwitch() && !resultSiteMenuVO.getNoticeSwitch().equals("")) { templateZeroVO.setNoticeSwitch(resultSiteMenuVO.getNoticeSwitch() + "," + templateZeroVO.getCode()); }
@@ -184,17 +176,25 @@ public class TemplateZeroController {
 	@RequestMapping("/template/templateZeroUpdate.go")
 	public String TemplateZeroUpdate(final MultipartHttpServletRequest multiRequest , @ModelAttribute("searchVO") TemplateZeroVO templateZeroVO ,ModelMap map, HttpServletRequest req) throws Exception {
 		
+
+		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
+		mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
+		SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
+		
+		FileUploadValidateWork fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
+		boolean resultValidateWork = fValidate.isResultValidateWork();
+		
+		//파일 검증 실패 시 
+		if(resultValidateWork == false) { 
+			System.out.println("파일 검증 실패 : " + fValidate.getMessage());
+			map.addAttribute("System_errMessage", fValidate.getMessage());
+			return "forward:/template/templateZeroList.go";
+		}
 		
 		templateZeroService.updateTableRecord(templateZeroVO, multiRequest, req);
 		
 		//System.out.println("notice : " + templateZeroVO.getNoticeSwitch());
 		//System.out.println("siteCode : " + templateZeroVO.getSiteCode());
-		
-
-		SiteMenuVO mSiteMenuVO = new SiteMenuVO();
-		mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
-		
-		SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
 		
 		if(templateZeroVO.getNoticeSwitch().equals("1")) {		//�޾Ƴ� notice�� ���������� �����ͼ� sitetable�� ������
 		

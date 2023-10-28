@@ -179,6 +179,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			//AtchFileid의 형식을 FileCode를 만든 다음 설정하는것으로 변경
 			//AtchFileid의 형식을 숫자에서 fid _AND_ siteCode의 형식으로의 변환이 필요함
 			templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + templateZeroVO.getSiteCode());
+			
 
 			String originFilename = "";
 			String savingFilename = "";
@@ -447,7 +448,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		
 		if (!Folder.isDirectory()) {
 			
-				System.out.println("����������");
+				
 			
 			    Folder.mkdir(); //���� �����մϴ�
 			    
@@ -490,7 +491,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	}
 	
 	
-	
+	//파일 이름을 받아서 확장자를 추출하는 메소드
 	private int makeSavingFileTypeIndex( String originFileName ) {
 
 		List<Integer> indexList = new ArrayList<Integer> ();
@@ -502,6 +503,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			if(savingFileTypeIndex == -1) break;
 			
 			indexList.add(savingFileTypeIndex);
+			//더이상 찾을 .이 없으면 originFileName.indexOf(의 값은 -1을 표시한다.
 			savingFileTypeIndex = originFileName.indexOf(fileTypeMark, savingFileTypeIndex + fileTypeMark.length());
 		}
 		
