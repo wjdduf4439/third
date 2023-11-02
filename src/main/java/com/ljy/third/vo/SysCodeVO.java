@@ -2,12 +2,18 @@ package com.ljy.third.vo;
 
 public class SysCodeVO {
 	
+	//TEMPLATEFIELD_TABLE, TEMPLATEFIELDCODE_TABLE 기본 키
 	private String code;
+	
+	//TEMPLATEFIELDCODE_TABLE field
 	private String temCodeHead;
 	private int temCodeNum;
 	private String temFieldName;
 	private String temFieldCharge;
 	private int sysOutNum;
+	
+	//TEMPLATEFIELD_TABLE field
+	private String formName;
 	
 	public String getCode() {
 		return code;
@@ -44,6 +50,12 @@ public class SysCodeVO {
 	}
 	public void setSysOutNum(int sysOutNum) {
 		this.sysOutNum = sysOutNum;
+	}
+	public String getFormName() {
+		return formName;
+	}
+	public void setFormName(String formName) {
+		this.formName = formName;
 	}
 	
 	

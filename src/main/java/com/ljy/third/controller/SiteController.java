@@ -50,11 +50,13 @@ public class SiteController {
 
 			if(!resultMenuVO.getSiteCode().equals("")) { resultMenuVO.setPlaceRowArray(resultMenuVO.getPlaceRow().split(",")); }
 			
+			System.out.println("siteAdminWrite templatetype : " + resultMenuVO.getTemplateType());
+			
 		}
 
 		//System.out.println("placerow : " + resultMenuVO.getPlaceRow());
 		//System.out.println("placeWidth : " + resultMenuVO.getPlaceWidth());
-		//System.out.println("templatetype : " + resultMenuVO.getTemplateType());
+		//System.out.println("siteAdminWrite templatetype : " + resultMenuVO.getTemplateType());
 		
 		map.addAttribute("formList", siteService.selectSiteMenuFormList());
 		map.addAttribute("resultList", siteService.selectSiteMenuOne(siteMenuVO));

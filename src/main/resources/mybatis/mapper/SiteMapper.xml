@@ -61,7 +61,7 @@
 	        FROM SITE_TABLE
 	 </select>
 
-	<select id="lookSiteMenuOne" resultType="com.ljy.third.vo.SiteMenuVO">
+	<select id="selectSiteMenuOne" resultType="com.ljy.third.vo.SiteMenuVO">
 	        SELECT 
 	        	siteCode,
 	        	title,
@@ -200,6 +200,20 @@
 			WHERE siteCode = #{siteCode}
 		
 	</delete>
+	
+		<!-- 게시판 작성 화면의 템플릿 유형을 불러오는 sql문 -->
+	<select id="siteTemplateTypeInput" resultType="com.ljy.third.vo.SysCodeVO">
+			
+	        SELECT code, formName
+	        FROM TEMPLATEFIELD_TABLE
+	        WHERE 
+	        <if test="code == 'NONE'" >
+	        	<![CDATA[	1 = 1  ]]>
+	        </if>
+	        <if test="code != 'NONE'" >
+	        	code = #{code}
+	        </if>
+    </select>
 	
 	<!-- 게시판 작성 화면의 field값을 불러오는 sql문 -->
 	<select id="siteFieldInput" resultType="com.ljy.third.vo.SysCodeVO">

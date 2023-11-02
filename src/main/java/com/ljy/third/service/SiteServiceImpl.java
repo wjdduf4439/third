@@ -113,6 +113,12 @@ public class SiteServiceImpl implements SiteService {
 		// TODO Auto-generated method stub
 		siteDAO.updateSiteField(siteMenuVO);
 	}
+	
+	@Override
+	public List<SysCodeVO> siteTemplateTypeInput(SysCodeVO sysCodeVO) throws Exception {
+		// TODO Auto-generated method stub
+		return siteDAO.siteTemplateTypeInput(sysCodeVO);
+	}
 
 	@Override
 	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception {

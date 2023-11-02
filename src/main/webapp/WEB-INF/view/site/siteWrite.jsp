@@ -10,6 +10,44 @@
 
 $( document ).ready(function() {		
 		
+	//유형 부분 select input박스 ajax 만들기 
+	/*  
+		
+		
+	*/
+	
+	var tCode = '';
+	
+	<c:if test="${not empty resultList }">
+		tCode = '${resultList.templateType}';
+		var url = "<c:url value='/site/templateTypeOptionInput.go?tCode=" + tCode + "'/>";
+	</c:if>
+	<c:if test="${empty resultList }">
+		tCode = 'NONE';
+		var url = "<c:url value='/site/templateTypeOptionInput.go?tCode=" + tCode + "'/>";
+	</c:if>
+	
+	$.ajax({      
+        type:"get",  
+        url : url,
+        async: true,
+        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        dataType : 'text',
+        processData : false,
+        contentType : false,
+        beforeSend : function(xmlHttpRequest){
+        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){   
+        	//alert(args);
+        	$("#templateTypePlace").empty();
+        	$("#templateTypePlace").append(args);
+        },   
+        error:function(e){  
+            alert("siteajax 실패" + e.responseText);  
+        }  
+    }); 
+	
 	<c:if test="${not empty resultList }">
 	
 		var placeRowStr = "${resultList.placeRow}";
@@ -100,6 +138,15 @@ $( document ).ready(function() {
 	
 });
 
+$(document).on("change","#templateTypeSelect",function(){
+
+    //템플릿 옵션 변경 이벤트 바인딩
+    console.log("변경전");
+	fn_template();
+	//$("#templateTypeSelect").val()의 값이 ''판정이라 제대로된 태그를 불러오지 않음
+	console.log("변경후");
+
+});
 
 
 function fn_template(){
@@ -108,6 +155,7 @@ function fn_template(){
 	var template = '';
 	
 	var tCode = $("#templateTypeSelect").val();
+	console.log("siteFieldInput tCode : " + tCode);
 	
 	var url = "<c:url value='/site/siteFieldInput.go?tCode="+tCode+"'/>";
 	
@@ -199,7 +247,9 @@ function fn_insert(){
 	
 	$("#templateType").val($("#templateTypeSelect option:selected").val());
 	
-	if($("#templateTypeSelect option:selected").val() == "0"){ //select-option 태그를 가져오는 val함수
+	//alert('$("#templateTypeSelect option:selected").val() : ' + $("#templateTypeSelect option:selected").val());
+	
+	if($("#templateTypeSelect option:selected").val() == "T0SF"){ //select-option 태그를 가져오는 val함수
 
 		
 		<c:if test="${not empty resultList }"> 
@@ -209,16 +259,6 @@ function fn_insert(){
 			document.frm.action = '<c:url value="/site/siteInsert.go"/>';
 		</c:if>
 	
-	}else if($("#templateTypeSelect option:selected").val() == "1"){
-
-		
-		<c:if test="${not empty resultList }"> 
-			document.frm.action = '<c:url value="/site/siteUpdate1.go"/>';
-		</c:if>
-		<c:if test="${empty resultList }">
-			document.frm.action = '<c:url value="/site/siteInsert1.go"/>';
-		</c:if>
-		
 	}else{
 		
 		alert("update실패" + $("#templateTypeSelect option:selected").val());
@@ -248,7 +288,10 @@ function fn_back(){
 
 
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/WEB-INF/view/site/checkBoxFunction.js"></script>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/site/checkBoxFunction.js"></script> 
+
 
 <div class="contents_wrap">
 		
@@ -317,13 +360,13 @@ function fn_back(){
 					</tr>
 					<tr>
 		        		<th><i class="icono-asterisk"></i>   유형</th>
-			            <td colspan="100">
-				            <select  id="templateTypeSelect" name="templateTypeSelect" class="selectText width150" onchange="javascript:fn_template();" <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >
-				            	<!-- 차후 자바스크립트 수정 필요! -->
-				            	<option value="9">::: 선택 :::</option>
-				            	<option id="templateTypeOption" value="0" <c:out value="${resultList.templateType == '0' ? 'selected' : ''}"/> <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >일반</option>
-				            	<option id="templateTypeOption" value="1" <c:out value="${resultList.templateType == '1' ? 'selected' : ''}"/> <c:out value="${ not empty resultList ? 'disabled' : '' }" /> >템플릿</option>
-				            </select>
+			            <td id="templateTypePlace" colspan="100">
+				            
+				            	<!-- 템플릿 표시 성공했으나, onchangeEvent가 제대로 동작하지 않음 -->
+				            	<!-- 동적 input 태그 이벤트 바인딩 -->
+				            	<!-- https://brunch.co.kr/@ourlove/98 -->
+				            	
+				            
 			            </td>
 		        	</tr>
 					<tr>

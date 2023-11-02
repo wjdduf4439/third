@@ -30,6 +30,8 @@ public interface SiteService {
 
 	public void updateSiteField(SiteMenuVO siteMenuVO) throws Exception;
 	
+	public List<SysCodeVO> siteTemplateTypeInput(SysCodeVO sysCodeVO) throws Exception;
+	
 	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception;
 	
 }

@@ -37,7 +37,7 @@ public class SiteDAO {
 	
 	public SiteMenuVO selectSiteMenuOne(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("com.ljy.third.dao.lookSiteMenuOne", siteMenuVO );
+		return sqlSession.selectOne("com.ljy.third.dao.selectSiteMenuOne", siteMenuVO );
 	}
 
 
@@ -89,6 +89,11 @@ public class SiteDAO {
 	public void updateSiteField(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.ljy.third.dao.updateSiteField", siteMenuVO);
+	}	
+	
+	public List<SysCodeVO> siteTemplateTypeInput(SysCodeVO sysCodeVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.siteTemplateTypeInput", sysCodeVO);
 	}
 	
 	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception {
