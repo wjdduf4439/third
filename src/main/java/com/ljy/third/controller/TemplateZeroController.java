@@ -137,14 +137,19 @@ public class TemplateZeroController {
 		mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
 		SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
 		
-		FileUploadValidateWork fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
-		boolean resultValidateWork = fValidate.isResultValidateWork();
-		
-		//파일 검증 실패 시 
-		if(resultValidateWork == false) { 
-			System.out.println("파일 검증 실패 : " + fValidate.getMessage());
-			map.addAttribute("System_errMessage", fValidate.getMessage());
-			return "forward:/template/templateZeroList.go";
+		//파일 검증 과정
+		FileUploadValidateWork fValidate = null;
+		boolean resultValidateWork = false;
+		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
+			fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
+			resultValidateWork = fValidate.isResultValidateWork();
+			
+			//파일 검증 실패 시 
+			if(resultValidateWork == false) { 
+				System.out.println("파일 검증 실패 : " + fValidate.getMessage());
+				map.addAttribute("System_errMessage", fValidate.getMessage());
+				return "forward:/template/templateZeroList.go";
+			}
 		}
 		
 		templateZeroService.insertTableRecord(templateZeroVO, multiRequest, req);
@@ -181,14 +186,19 @@ public class TemplateZeroController {
 		mSiteMenuVO.setSiteCode(templateZeroVO.getSiteCode());
 		SiteMenuVO resultSiteMenuVO = siteService.selectSiteMenuOne(mSiteMenuVO);
 		
-		FileUploadValidateWork fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
-		boolean resultValidateWork = fValidate.isResultValidateWork();
-		
-		//파일 검증 실패 시 
-		if(resultValidateWork == false) { 
-			System.out.println("파일 검증 실패 : " + fValidate.getMessage());
-			map.addAttribute("System_errMessage", fValidate.getMessage());
-			return "forward:/template/templateZeroList.go";
+		//파일 검증 과정
+		FileUploadValidateWork fValidate = null;
+		boolean resultValidateWork = false;
+		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
+			fValidate = new FileUploadValidateWork(multiRequest, resultSiteMenuVO);
+			resultValidateWork = fValidate.isResultValidateWork();
+			
+			//파일 검증 실패 시 
+			if(resultValidateWork == false) { 
+				System.out.println("파일 검증 실패 : " + fValidate.getMessage());
+				map.addAttribute("System_errMessage", fValidate.getMessage());
+				return "forward:/template/templateZeroList.go";
+			}
 		}
 		
 		templateZeroService.updateTableRecord(templateZeroVO, multiRequest, req);
