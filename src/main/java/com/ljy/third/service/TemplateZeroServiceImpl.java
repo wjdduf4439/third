@@ -140,8 +140,18 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		}
 		
 		
-		//filecode ����
-		
+		//filecode 새 작업
+		/*
+		 
+		1.templateZeroDAO.maxTableAtchFileId(templateZeroVO) 구문으로 TB_SITE_ 테이블 내의AtchFileId 값을 가져온다
+		가져온 값은 1_AND_SITE_000000000000002 같이  
+			1					 : FILE_TABLE의 fid 컬럼
+			SITE_000000000000002 : SITE_TABLE의 siteCode 컬럼의 형식으로 이루어져 있다 
+			
+		2.	처음 등록할때에는 templateZeroDAO.maxTableAtchFileId(templateZeroVO) 값이 0이나 ""으로 나와서 그냥 등록이 되지만
+			두번째부터는 해당 값이 int 형식으로 되지 않기에 해당 작업과정을 고쳐야 한다. 
+		 
+		*/
 		if(!templateZeroVO.getB_filename().get(0).getOriginalFilename().equals("")){
 			
 			String f_code;	//atchfileid를 담을 변수
@@ -154,10 +164,17 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			f_code = f_code.replaceAll("FILE_", "");
 			System.out.println("f_code : " + f_code);
 			
-			int temp = Integer.parseInt(f_code); temp ++;			//������ �ڵ忡 �� temp ����
-			int counttemp = Integer.parseInt(templateZeroDAO.maxTableAtchFileId(templateZeroVO))+1; //최대 fid에 1을 더함
+			int temp = Integer.parseInt(f_code); temp ++;			
+
+			String maxAtchFileIdString = templateZeroDAO.maxTableAtchFileId(templateZeroVO); //최대 atchFileId값을를 가져옴
+			maxAtchFileIdString = maxAtchFileIdString.substring(0, maxAtchFileIdString.indexOf("_AND_SITE_")); //_AND_SITE_ 부분을 제거된 값을 숫자로 채워서 넣음
+			int counttemp = Integer.parseInt(maxAtchFileIdString)+1; //최대 fid에 1을 더함
 			
-			templateZeroVO.setB_file_id(Integer.toString(counttemp));//file_table�� f_id�� �� ���� ���̵� ����
+			
+			//FILE_TABLE에 넣을 fid 값을 setB_file_id 로 지정하기
+		    //SITE_ 테이블에 넣을 atchFileId 값을 getB_file_id 로 지정하기
+			templateZeroVO.setB_file_id(Integer.toString(counttemp));
+		    templateZeroVO.setAtchFileId( templateZeroVO.getB_file_id() + "_AND_" + templateZeroVO.getSiteCode() ); 
 
 			List<String> newCodeList = new ArrayList<String>();		//file_table에 나올 복수형의 파일을 동시에 등록하기 위한 codelist
 			String newCode = "FILE_";											//file_table에 나올 복수형의 파일을 동시에 등록하기 위한 code의 temp
@@ -178,7 +195,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			}
 			//AtchFileid의 형식을 FileCode를 만든 다음 설정하는것으로 변경
 			//AtchFileid의 형식을 숫자에서 fid _AND_ siteCode의 형식으로의 변환이 필요함
-			templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + templateZeroVO.getSiteCode());
+			//templateZeroVO.setAtchFileId(Integer.toString(counttemp) + "_AND_" + templateZeroVO.getSiteCode());
 			
 
 			String originFilename = "";
@@ -225,7 +242,7 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			System.out.println(fileVO.get(0).getFname());
 			System.out.println("-------------------------------------------------------------------");
 		     
-		     mboardDAO.insertFileBoardDAO(fileVO);
+		    mboardDAO.insertFileBoardDAO(fileVO);
 			
 		}
 		
