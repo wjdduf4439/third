@@ -31,6 +31,10 @@ public interface TemplateZeroService {
 	
 	public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception;
 	
+	public void disableTableRecord(TemplateZeroVO templateZeroVO) throws Exception;
+
+	public void restoreTableRecord(TemplateZeroVO templateZeroVO) throws Exception;
+
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception;
 	
 }

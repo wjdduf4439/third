@@ -320,6 +320,15 @@
 .color04 { color:#3c3c3c !important; } /* black */
 .color05 { color:#ff3232 !important; } /* red */
 
+
+/* background-color */
+.background-color01 { background-color:#22a824 !important; } /* green */
+.background-color02 { background-color:#005dba !important; } /* blue */
+.background-color03 { background-color:#6a469c !important; } /* purple */
+.background-color04 { background-color:#3c3c3c !important; } /* black */
+.background-color05 { background-color:#ff3232 !important; } /* red */
+.background-color06 { background-color:#FFC396 !important; } /* orange */
+
 /* margin */
 .mg0 { margin:0 !important; }
 .mg0auto { margin:0 auto !important; }

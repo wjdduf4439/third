@@ -14,6 +14,7 @@ public class TemplateZeroVO extends VOobject {
 	private String context;
 	private String atchFileId;
 	private String writerID;
+	private String del_chk;
 	private String frstRegistPnttm;
 	private String frstRegistNm;
 	private String lastUpdtPnttm;
@@ -72,6 +73,12 @@ public class TemplateZeroVO extends VOobject {
 	}
 	public void setWriterID(String writerID) {
 		this.writerID = writerID;
+	}
+	public String getDel_chk() {
+		return del_chk;
+	}
+	public void setDel_chk(String del_chk) {
+		this.del_chk = del_chk;
 	}
 	public String getFrstRegistPnttm() {
 		return frstRegistPnttm;

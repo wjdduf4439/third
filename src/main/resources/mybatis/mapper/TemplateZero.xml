@@ -40,6 +40,7 @@
 		    </choose>    
 		    		        
 		</foreach>
+		,DEL_CHK
 		
 		FROM	TB_${siteCode}
 		WHERE	1=1
@@ -172,6 +173,22 @@
 		WHERE code = #{code}
 			
 			
+	</update>
+	
+	<update id="disableTableRecord">
+		
+		UPDATE	TB_${siteCode}
+		SET del_chk = 'Y'
+		WHERE code = #{code}
+	
+	</update>
+	
+	<update id="restoreTableRecord">
+		
+		UPDATE	TB_${siteCode}
+		SET del_chk = 'N'
+		WHERE code = #{code}
+	
 	</update>
 	
 	<delete id="deleteTableRecord">

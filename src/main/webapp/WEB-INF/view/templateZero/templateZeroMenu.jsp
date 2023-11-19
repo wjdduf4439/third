@@ -9,6 +9,11 @@
 
 <script>
 	
+	
+	window.addEventListener('load', function() {
+        $("$Tzero").css("color","orange");
+    })
+	
 	function fn_searchKeyPressed(event) {
 		//검색 상자 키 이벤트
 		if (event.keyCode == 13) {
@@ -110,7 +115,7 @@
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
 								<tr onclick="javascript:fn_update('${result.code}')">
-									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
+									<td class="<c:out value="${result.del_chk == 'Y' ? 'background-color06' : ''}"/>"><c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
 									<c:forEach var="result2" items="${fieldList }" varStatus="status2">
 										<c:if test="${result2.ordinal_Position == 2 }"><td>${result.title}</td></c:if>
 										<c:if test="${result2.ordinal_Position == 3 }"><td>${result.context}</td></c:if>

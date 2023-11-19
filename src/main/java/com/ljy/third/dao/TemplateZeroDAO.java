@@ -81,6 +81,16 @@ public class TemplateZeroDAO {
 		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.updateTableRecord", templateZeroVO );
 	}
 	
+	public void disableTableRecord(TemplateZeroVO templateZeroVO) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.disableTableRecord", templateZeroVO );
+	}
+	
+	public void restoreTableRecord(TemplateZeroVO templateZeroVO) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.restoreTableRecord", templateZeroVO );
+	}
+	
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) {
 		// TODO Auto-generated method stub
 		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.deleteTableRecord", templateZeroVO );

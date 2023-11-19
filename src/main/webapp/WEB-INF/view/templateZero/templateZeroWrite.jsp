@@ -253,11 +253,26 @@ function fn_insert(){
 
 function fn_delete(){
 	
-	if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
+	if($("#del_chk").val() == "N"){
+		if (!confirm("비활성화하시겠습니까? 사용자 뷰 화면에서 보이지 않게 됩니다.")) { return; }	
+	}else if($("#del_chk").val() == "Y"){
+		if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
+	}
 	
 	fn_pageReset();
 	
 	document.frm.action = '<c:url value="/template/templateZeroDelete.go"/>';
+	document.frm.submit();
+	
+}
+
+function fn_restore(){
+	
+	if (!confirm("복구하시겠습니까?")) { return; }
+	
+	fn_pageReset();
+	
+	document.frm.action = '<c:url value="/template/templateZeroRestore.go"/>';
 	document.frm.submit();
 	
 }
@@ -287,6 +302,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<input type="hidden" id="atchFileId" name="atchFileId" value="${resultList.atchFileId }"/>
 			<input type="hidden" id="context" name="context" value=""/>
 			<input type="hidden" id="noticeSwitch" name="noticeSwitch" value="${resultList.noticeSwitch }"/>
+			<input type="hidden" id="del_chk" name="del_chk" value="${resultList.del_chk }"/>
 			
 			<input type="hidden" id="load_editorImage" name="load_editorImage" value="${editorImageCode.code }"/>
 			<input type="hidden" id="editorImage" name="editorImage" value="${resultList.editorImage }"/>
@@ -342,7 +358,13 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<button class="btn03 fr" onclick="javascript:fn_back();" type="button">돌아가기</button>
 			<c:if test="${empty resultList }"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">등록</button> </c:if>
 			<c:if test="${not empty resultList}"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">수정</button> </c:if>
-			<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
+			<c:if test="${not empty resultList}">
+				<button class="btn05 fr" onclick="javascript:fn_delete();" type="button">
+					<c:if test="${resultList.del_chk eq 'Y'}"> 삭제 </c:if>
+					<c:if test="${resultList.del_chk eq 'N'}"> 비활성화 </c:if>
+				</button>
+			</c:if>
+			<c:if test="${not empty resultList and resultList.del_chk eq 'Y'}"> <button class="btn05 fr" onclick="javascript:fn_restore();" type="button">복구</button> </c:if>
 		</div>
 		</div>
 

@@ -244,7 +244,27 @@ public class TemplateZeroController {
 	@RequestMapping("/template/templateZeroDelete.go")
 	public String TemplateZeroDelete(@ModelAttribute("searchVO") TemplateZeroVO templateZeroVO  ,ModelMap map) throws Exception {
 		
-		templateZeroService.deleteTableRecord(templateZeroVO);
+		if( "N".equals( templateZeroVO.getDel_chk() ) ) {
+			
+			System.out.println("비활성화 진행");
+			templateZeroService.disableTableRecord(templateZeroVO);
+			
+		} else {
+			
+			System.out.println("삭제 진행");
+			templateZeroService.deleteTableRecord(templateZeroVO);
+			
+		}
+		
+		//return "forward:/template/templateInfo.go";
+		return "forward:/template/templateZeroList.go";
+	}
+	
+	@RequestMapping("/template/templateZeroRestore.go")
+	public String TemplateZeroRestore(@ModelAttribute("searchVO") TemplateZeroVO templateZeroVO  ,ModelMap map) throws Exception {
+		
+		System.out.println("복구 진행");
+		templateZeroService.restoreTableRecord(templateZeroVO);
 		
 		//return "forward:/template/templateInfo.go";
 		return "forward:/template/templateZeroList.go";

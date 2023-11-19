@@ -418,6 +418,19 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		templateZeroDAO.updateTableRecord(templateZeroVO);
 	}
 
+
+	@Override
+	public void disableTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
+		// TODO Auto-generated method stub
+		templateZeroDAO.disableTableRecord(templateZeroVO);
+	}
+
+	@Override
+	public void restoreTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
+		// TODO Auto-generated method stub
+		templateZeroDAO.restoreTableRecord(templateZeroVO);
+	}
+
 	@Override
 	public void deleteTableRecord(TemplateZeroVO templateZeroVO) throws Exception {
 		// TODO Auto-generated method stub
