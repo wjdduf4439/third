@@ -56,8 +56,7 @@ public class SiteAjaxController {
 	@RequestMapping(value = "/site/siteUpdateInput.go")
 	public String siteUpdateInput(String tCode, String placeRowStr) throws Exception {
 		
-		System.out.println("siteUpdateInput tCode : " + tCode);
-		//System.out.println("placeRowStr : " + placeRowStr);
+		
 		
 		//placeRowStrSpliter로 placeRowStr을 분해해서 체크할 체크박스를 구분함
 		String placeRowStrSpliter = ",";
@@ -71,6 +70,10 @@ public class SiteAjaxController {
 		mSysCodeVO.setTemCodeHead(tCode);
 		
 		List<SysCodeVO> resultList = siteService.siteFieldInput(mSysCodeVO);
+		System.out.println("siteUpdateInput tCode : " + tCode);
+		//System.out.println("placeRowStr : " + placeRowStr);
+		System.out.println("siteUpdateInput resultList size : " + resultList.size());
+		
 		
 		for(int i = 0; i < resultList.size(); i++ ) { 
 			

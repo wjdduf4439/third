@@ -8,21 +8,31 @@
 <c:import url="/AdminHeader.go" />
 <script>
 
+
+	/*
+	
+		1. 유형 부분 표시
+		2. 표시항목 부분 표시
+		3. 표시길이 부분 표시
+	
+	*/
+
 $( document ).ready(function() {		
-		
-	//유형 부분 select input박스 ajax 만들기 
+	
+	//게시판 최초등록 시 보여주기 switch만들기
 	/*  
 		
+		현재 게시판을 등록하면, 삭제 버튼을 누를시 바로 삭제되는데, 이걸 완화하기 위한 보여주기 취소 버튼 만들기
 		
-	*/
+		
+	*/	
 	
 	var tCode = '';
-	
-	<c:if test="${not empty resultList }">
+	<c:if test="${not empty resultList.templateType }">
 		tCode = '${resultList.templateType}';
 		var url = "<c:url value='/site/templateTypeOptionInput.go?tCode=" + tCode + "'/>";
 	</c:if>
-	<c:if test="${empty resultList }">
+	<c:if test="${empty resultList.templateType }">
 		tCode = 'NONE';
 		var url = "<c:url value='/site/templateTypeOptionInput.go?tCode=" + tCode + "'/>";
 	</c:if>

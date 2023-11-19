@@ -142,6 +142,7 @@
 				,writerID
 				,frstRegistNm
 				,frstRegistPnttm
+				,del_chk
 				
 			) VALUES (
 				#{code}
@@ -151,7 +152,7 @@
 				,#{writerID}
 				,#{frstRegistNm}
 				,now()
-				
+				,'N'
 			)
 	</insert>
 	
