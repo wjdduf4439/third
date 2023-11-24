@@ -49,10 +49,10 @@
 			<![CDATA[	AND (TITLE LIKE CONCAT ('%', #{searchWrd},'%') OR CONTEXT LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
 		</if>
        <if test=' searchCnd == "0" ' >
-			<![CDATA[	TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			<![CDATA[	AND TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 		</if>
 		<if test=' searchCnd == "1" ' >
-			<![CDATA[	CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			<![CDATA[	AND CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 		</if>
 		
 		ORDER BY frstRegistPnttm DESC,  code DESC
@@ -70,10 +70,10 @@
 			<![CDATA[	AND (TITLE LIKE CONCAT ('%', #{searchWrd},'%') OR CONTEXT LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
 		</if>
        <if test=' searchCnd == "0" ' >
-			<![CDATA[	TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			<![CDATA[	AND TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 		</if>
 		<if test=' searchCnd == "1" ' >
-			<![CDATA[	CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+			<![CDATA[	AND CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 		</if>
 		
 	</select>

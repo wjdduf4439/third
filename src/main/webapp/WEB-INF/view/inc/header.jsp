@@ -291,8 +291,8 @@
 								function fn_ViewSiteLink(siteCode){
 								
 									document.userSitefrm.siteCode.value = siteCode;
-									document.userSitefrm.action = '<c:url value="/template/templeteViewInfo.go"/>';
-									//document.userSitefrm.action = '<c:url value="/template/templeteViewZero.go"/>';
+									//document.userSitefrm.action = '<c:url value="/template/templeteViewInfo.go"/>';
+									document.userSitefrm.action = '<c:url value="/templateView/templateZeroViewList.go"/>';
 									document.userSitefrm.submit();
 									
 								}

@@ -2,7 +2,7 @@ package com.ljy.third.vo;
 
 import org.springframework.web.util.HtmlUtils;
 
-public class VOobject {
+public class VOobject implements Cloneable{
 
 	/** ?��?���?�??�� */
     private int pageUnit = 10;
@@ -23,7 +23,7 @@ public class VOobject {
     private String searchCnd3 ="";
 	/** �??��?�� */
     private String searchWrd ="";
-    
+        
 	public int getPageUnit() {
 		return pageUnit;
 	}
@@ -96,6 +96,5 @@ public class VOobject {
 	public void setSearchWrd(String searchWrd) {
 		this.searchWrd = searchWrd;
 	}
-	
 	
 }

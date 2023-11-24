@@ -18,6 +18,16 @@ public class TemplateViewInfoVO extends VOobject {
 	private String placeWidth;
 	private String[] fieldWidth;
 	
+	public void mergeSearchVO(TemplateZeroViewVO mTemplateZeroViewVO) {
+		
+		this.setSearchCnd(mTemplateZeroViewVO.getSearchCnd());
+		this.setSearchCnd1(mTemplateZeroViewVO.getSearchCnd1());
+		this.setSearchCnd2(mTemplateZeroViewVO.getSearchCnd2());
+		this.setSearchCnd3(mTemplateZeroViewVO.getSearchCnd3());
+		
+		this.setSearchWrd(mTemplateZeroViewVO.getSearchWrd());
+		
+	}
 	
 	public String getSiteCode() {
 		return siteCode;

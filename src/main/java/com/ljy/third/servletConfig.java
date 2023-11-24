@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.ljy.third.filter.searchFilter;
 import com.ljy.third.filter.uriFilter;
 import com.ljy.third.interceptor.TemplateInterceptor;
+import com.ljy.third.interceptor.TemplateViewInterceptor;
 import com.ljy.third.vo.TemplateInfoVO;
 
 
@@ -27,6 +28,10 @@ public class servletConfig implements WebMvcConfigurer{
 		//실질적인 인터셉터 등록
 		@Autowired
 		private TemplateInterceptor mtemplateInterceptor;
+		
+		//실질적인 인터셉터 등록
+		@Autowired
+		private TemplateViewInterceptor mtemplateViewInterceptor;
 		
 		// Interceptor에서 제외되는 URL 주소
 	    private static final String[] EXCLUDE_PATHS = { "/api/error", };
@@ -60,6 +65,13 @@ public class servletConfig implements WebMvcConfigurer{
 	        		//intercepter 주입 구간
 	                //.addPathPatterns("/template/templateInfo*")
 	        		.addPathPatterns("/template/**")
+	                // Interceptor에서 제외되는 URL 주소 기입
+	                .excludePathPatterns(EXCLUDE_PATHS);
+
+	        registry.addInterceptor(mtemplateViewInterceptor)
+	        		//intercepter 주입 구간
+	                //.addPathPatterns("/template/templateInfo*")
+	        		.addPathPatterns("/templateView/**")
 	                // Interceptor에서 제외되는 URL 주소 기입
 	                .excludePathPatterns(EXCLUDE_PATHS);
 	    }

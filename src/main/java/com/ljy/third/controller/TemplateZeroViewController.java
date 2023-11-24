@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ljy.third.util.EnumLogs;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.service.SiteService;
 import com.ljy.third.service.TemplateZeroViewService;
@@ -23,31 +24,39 @@ import com.ljy.third.vo.TemplateZeroViewVO;
 public class TemplateZeroViewController {	
 
 	@Resource(name ="TemplateZeroViewService")
-	private TemplateZeroViewService templateZeroViewService; //�ش� ���� ���� ����
+	private TemplateZeroViewService templateZeroViewService; 
 	
 	@Resource(name ="SiteService")
 	private SiteService siteService; //�ش� ���� ���� ����
 	
-	@RequestMapping("/template/templateZeroViewList.go")
+	@RequestMapping("/templateView/templateZeroViewList.go")
 	public String TemplateZeroViewList(@ModelAttribute("searchVO") TemplateZeroViewVO templateZeroViewVO  ,ModelMap map, HttpServletRequest req) throws Exception {
 		
+		EnumLogs e = new EnumLogs(req);
+		
+		/*
+		
+		templateViewInfoVO = sitetable에서 가져온 게시판의 정보 
+		TemplateZeroViewVO = 실제 뷰에서 표현할 정보를 담음 
+		 
+		 */
+		
 		TemplateViewInfoVO templateViewInfoVO =  (TemplateViewInfoVO) req.getAttribute("templateViewInfoVO");
+		templateViewInfoVO.mergeSearchVO(templateZeroViewVO);
 		System.out.println("TemplateZeroViewList 전달받은 게시판 제목 : " + templateViewInfoVO.getTitle());
-		System.out.println("TemplateZeroViewList 전달받은 게시판 코드 : " + templateZeroViewVO.getSiteCode());
+		System.out.println("TemplateZeroViewList 전달받은 게시판 코드 : " + templateViewInfoVO.getSiteCode());
+		System.out.println("TemplateZeroViewList 전달받은 검색항목 : " + templateViewInfoVO.getSearchCnd());
+		System.out.println("TemplateZeroViewList 전달받은 검색어 : " + templateViewInfoVO.getSearchWrd());
+
 		templateZeroViewVO.setSiteTitle(templateViewInfoVO.getTitle());
 
 		int countList = templateZeroViewService.selectTableRecordListCount(templateViewInfoVO);// ������ �Խ����� �Խù��� ���� ���� �� �÷� ���ϱ�
-		
 		PageSet paging = new PageSet(templateZeroViewVO.getPageIndex(), countList, templateZeroViewVO.getRecordCountPerPage());
 		//현재 페이징을 선언하면 currpage가 1인 상태에서 전달받을 경우, 1에서 더 늘어나는 현상이 보임
 		templateZeroViewVO = (TemplateZeroViewVO) paging.recordSet(templateZeroViewVO);// ���ڵ� ��ġ �Ϸ� �޼ҵ�
 		
 		List<TemplateViewInfoVO> fieldList = templateZeroViewService.selectTableFieldList(templateViewInfoVO);
 		List<TemplateZeroViewVO> resultList = templateZeroViewService.selectTableRecordList(templateViewInfoVO);
-		
-		//System.out.println("ù��° �ʵ�� : " + fieldList.get(0).getColumn_Name());
-		//System.out.println("ù��° �Խù� : " + resultList.get(0).getTitle());
-		
 		//���� ������ �����ͼ� list�� ��� �۾�
 		List<TemplateZeroViewVO> noticeList = new ArrayList<TemplateZeroViewVO>(); // ���� ������ ���� list
 		{
@@ -89,7 +98,7 @@ public class TemplateZeroViewController {
 		return "userView/templateViewMenu";
 	}
 	
-	@RequestMapping("/template/templateZeroViewWrite.go")
+	@RequestMapping("/templateView/templateZeroViewWrite.go")
 	public String TemplateZeroViewWrite(@ModelAttribute("searchVO") TemplateZeroViewVO templateZeroViewVO  ,ModelMap map) throws Exception {
 
 		System.out.println("TemplateZeroViewList 전달받은 게시판 코드 : " + templateZeroViewVO.getSiteCode());

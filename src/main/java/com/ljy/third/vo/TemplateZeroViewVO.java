@@ -26,6 +26,16 @@ public class TemplateZeroViewVO extends VOobject {
 	private List<MultipartFile> b_filename;//���� ���� ���� �ڷ�
 	private String noticeSwitch = "0";
 	
+	public void mergeSearchVO(TemplateZeroVO mTemplateZeroVO) {
+		
+		this.setSearchCnd(mTemplateZeroVO.getSearchCnd());
+		this.setSearchCnd1(mTemplateZeroVO.getSearchCnd1());
+		this.setSearchCnd2(mTemplateZeroVO.getSearchCnd2());
+		this.setSearchCnd3(mTemplateZeroVO.getSearchCnd3());
+		
+		this.setSearchWrd(mTemplateZeroVO.getSearchWrd());
+		
+	}
 	
 	public String getSiteCode() {
 		return siteCode;

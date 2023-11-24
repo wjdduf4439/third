@@ -19,14 +19,14 @@
 	function fn_list(searchCnd) {
 		//페이지 선택
 		document.frm.pageIndex.value = searchCnd;
-		document.frm.action = '<c:url value="/template/templeteViewInfo.go"/>';
+		document.frm.action = '<c:url value="/templateView/templateZeroViewList.go"/>';
 		document.frm.submit();
 	}
 	
 	function fn_view(code){
 		
 		document.frm.code.value = code ;
-		document.frm.action = '<c:url value="/template/templateZeroViewWrite.go"/>';
+		document.frm.action = '<c:url value="/templateView/templateZeroViewWrite.go"/>';
 		document.frm.submit();
 		
 	}
