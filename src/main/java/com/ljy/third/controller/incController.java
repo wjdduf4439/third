@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.service.FormService;
 import com.ljy.third.vo.FormMenuVO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 
 //header와 관련된 동작을 기록한 controller

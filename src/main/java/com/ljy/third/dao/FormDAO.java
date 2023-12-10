@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.FormMenuVO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 @Repository("FormDAO")
 public class FormDAO {

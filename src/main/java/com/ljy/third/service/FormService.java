@@ -3,7 +3,7 @@ package com.ljy.third.service;
 import java.util.List;
 
 import com.ljy.third.vo.FormMenuVO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 public interface FormService {
 

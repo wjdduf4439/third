@@ -370,6 +370,7 @@
 							<li><a class="menuLink" href=<c:url value="/site/siteAdmin.go"/>>게시판 관리</a></li>
 						 	<li><a class="menuLink" href=<c:url value="/form/formAdmin.go"/>>항목 관리</a></li>
 						 	<li><a class="menuLink" href=<c:url value="/log/logAdmin.go"/>>로그 테이블</a></li>
+						 	<li><a class="menuLink" href=<c:url value="/siteMenu/menuAdmin.go"/>>메뉴 관리</a></li>
 							
 							<form id="sitefrm" name="sitefrm" method="post">
 	

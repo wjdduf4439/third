@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.util.EnumLogs;
 import com.ljy.third.util.PageSet;
-import com.ljy.third.service.SiteService;
+import com.ljy.third.service.site.SiteService;
 import com.ljy.third.service.TemplateZeroViewService;
-import com.ljy.third.vo.SiteMenuVO;
 import com.ljy.third.vo.TemplateViewInfoVO;
 import com.ljy.third.vo.TemplateZeroViewVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 //일반 게시판의 사용자 전용 뷰를 담당하는 컨트롤러.
 @Controller

@@ -62,7 +62,7 @@
 	        WHERE formCode = #{formCode}
     </select>
     
-    <select id="selectFormMenuSiteList" resultType="com.ljy.third.vo.SiteMenuVO">
+    <select id="selectFormMenuSiteList" resultType="com.ljy.third.vo.site.SiteMenuVO">
     
     	SELECT siteCode, title, formCode
     	FROM SITE_TABLE

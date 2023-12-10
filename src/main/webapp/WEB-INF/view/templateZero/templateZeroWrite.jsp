@@ -322,7 +322,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 					<td><input type="text" name="title" id="title" class="maxwidth200" value="${resultList.title }"/></td>
 					<th>공지여부확인</th>
 					<td >
-						<input type='checkbox' id='noticeSwitchBox' name='noticeSwitchBox' value='1' <c:out value="${resultList.noticeSwitch == '1' ? 'checked' : ''}"/> >
+						<input type='checkbox' id='notice_chk' name='notice_chk' value='Y' <c:out value="${resultList.notice_chk eq 'Y' ? 'checked' : ''}"/> >
 					</td>
 				</tr>
 				<tr>

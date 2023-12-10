@@ -21,6 +21,8 @@ public interface TemplateZeroService {
 	
 	public int selectTableRecordListCount(TemplateZeroVO templateZeroVO) throws Exception;
 	
+	public List<TemplateZeroVO> selectTableNoticeList(TemplateZeroVO templateZeroVO) throws Exception;	
+	
 	public TemplateZeroVO selectTableRecordOne(TemplateZeroVO templateZeroVO) throws Exception;
 	
 	public TemplateZeroVO selectTableRecordRecent(TemplateZeroVO templateZeroVO) throws Exception;

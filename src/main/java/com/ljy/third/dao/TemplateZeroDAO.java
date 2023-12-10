@@ -35,6 +35,11 @@ public class TemplateZeroDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.ljy.third.dao.TemplateZero.selectTableRecordListCount", templateZeroVO );
 	}
+	
+	public List<TemplateZeroVO> selectTableNoticeList(TemplateZeroVO templateZeroVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.ljy.third.dao.TemplateZero.selectTableNoticeList", templateZeroVO );
+	}
 
 	public String selectTableAtchFileId(TemplateZeroVO templateZeroVO) {
 		// TODO Auto-generated method stub

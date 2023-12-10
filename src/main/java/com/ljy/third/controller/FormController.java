@@ -7,12 +7,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.service.FormService;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.vo.FormMenuVO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 //항목 생성 기능을 담당하는 컨트롤러
 @Controller
@@ -21,49 +22,44 @@ public class FormController {
 	@Resource(name = "FormService")
 	FormService formService;
 	
-	@RequestMapping("/form/formAdmin.go")
-	public String formAdminList(@ModelAttribute("searchVO") FormMenuVO formMenuVO 
-					, ModelMap model
-					) throws Exception {
+
+	@RequestMapping("/form/form{processMark:Admin|Write}.go")
+	public String formAdminList(@ModelAttribute("searchVO") FormMenuVO formMenuVO , ModelMap map, @PathVariable("processMark")String processMark ) throws Exception {
+		String viewMessage = "";
+		if( "Admin".equals(processMark) ) {
+			
+			int countList = formService.selectFormMenuCnt(formMenuVO);// ������ �Խ����� �Խù��� ���� ���� �� �÷� ���ϱ�
+			
+			PageSet paging = new PageSet(formMenuVO.getPageIndex(), countList, formMenuVO.getRecordCountPerPage());
+			formMenuVO = (FormMenuVO) paging.recordSet(formMenuVO);// ���ڵ� ��ġ �Ϸ� �޼ҵ�
+			
+			List<FormMenuVO> resultList = formService.selectFormMenuList(formMenuVO);
+			
+			map.addAttribute("resultList", resultList);
+			map.addAttribute("countList", countList);
+			map.addAttribute("paging", paging);
+			viewMessage = "form/formMenu";
+		}else if( "Write".equals(processMark) ) {
+			
+			List<SiteMenuVO> siteList = formService.selectFormMenuSiteList(formMenuVO);
+			
+			map.addAttribute("siteList", siteList);
+			map.addAttribute("resultList", formService.selectFormMenuOne(formMenuVO));
+			viewMessage = "form/formWrite";
+		}
 		
-		int countList = formService.selectFormMenuCnt(formMenuVO);// ������ �Խ����� �Խù��� ���� ���� �� �÷� ���ϱ�
-		
-		PageSet paging = new PageSet(formMenuVO.getPageIndex(), countList, formMenuVO.getRecordCountPerPage());
-		formMenuVO = (FormMenuVO) paging.recordSet(formMenuVO);// ���ڵ� ��ġ �Ϸ� �޼ҵ�
-		
-		List<FormMenuVO> resultList = formService.selectFormMenuList(formMenuVO);
-		
-		model.addAttribute("resultList", resultList);
-		model.addAttribute("countList", countList);
-		model.addAttribute("paging", paging);
-		
-		return "form/formMenu";
+		return viewMessage;
 		
 	}
 	
-	@RequestMapping(value = "/form/formWrite.go")
-	public String formAdminWrite(ModelMap map, @ModelAttribute("searchVO")FormMenuVO formMenuVO) throws Exception {
+	@RequestMapping("/form/form{processMark:Insert|Update}.go")
+	public String formAdminInsert(ModelMap map, @ModelAttribute("searchVO")FormMenuVO formMenuVO, @PathVariable("processMark")String processMark ) throws Exception {
 		
-		List<SiteMenuVO> siteList = formService.selectFormMenuSiteList(formMenuVO);
-		
-		map.addAttribute("siteList", siteList);
-		map.addAttribute("resultList", formService.selectFormMenuOne(formMenuVO));
-		
-		return "form/formWrite";
-	}
-	
-	@RequestMapping(value = "/form/formInsert.go")
-	public String formAdminInsert(ModelMap map, @ModelAttribute("searchVO")FormMenuVO formMenuVO) throws Exception {
-		
-		formService.insertFormMenu(formMenuVO);
-		
-		return "redirect:/form/formAdmin.go";
-	}
-	
-	@RequestMapping(value = "/form/formUpdate.go")
-	public String formAdminUpdate(ModelMap map, @ModelAttribute("searchVO")FormMenuVO formMenuVO) throws Exception {
-		
-		formService.updateFormMenu(formMenuVO);
+		if( "Insert".equals(processMark) ) {
+			formService.insertFormMenu(formMenuVO);
+		}else if( "Update".equals(processMark) ) {
+			formService.updateFormMenu(formMenuVO);
+		}
 		
 		return "redirect:/form/formAdmin.go";
 	}

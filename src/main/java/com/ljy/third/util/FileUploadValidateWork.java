@@ -8,8 +8,8 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.ljy.third.dao.SiteDAO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.dao.site.SiteDAO;
+import com.ljy.third.vo.site.SiteMenuVO;
 
 public class FileUploadValidateWork {
 

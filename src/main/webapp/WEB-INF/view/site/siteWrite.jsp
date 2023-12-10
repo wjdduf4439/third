@@ -24,7 +24,7 @@ $( document ).ready(function() {
 		
 		현재 게시판을 등록하면, 삭제 버튼을 누를시 바로 삭제되는데, 이걸 완화하기 위한 보여주기 취소 버튼 만들기
 		목록 화면에서 삭제 표시 만들기
-		<c:if test="${resultList.del_chk eq 'Y'}"> <button class="btn05 width30" type="button">삭제</button> </c:if>
+		<%--<c:if test="${resultList.del_chk eq 'Y'}"> <button class="btn05 width30" type="button">삭제</button> </c:if>--%>
 		
 	*/	
 	

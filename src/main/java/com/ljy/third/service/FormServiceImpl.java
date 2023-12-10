@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ljy.third.vo.FormMenuVO;
-import com.ljy.third.vo.SiteMenuVO;
+import com.ljy.third.vo.site.SiteMenuVO;
 import com.ljy.third.dao.FormDAO;
 
 @Service("FormService")

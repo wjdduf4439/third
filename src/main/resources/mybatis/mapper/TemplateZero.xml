@@ -78,6 +78,16 @@
 		
 	</select>
 	
+	<select id="selectTableNoticeList" resultType="com.ljy.third.vo.TemplateZeroVO">
+	 
+		SELECT *
+		FROM TB_${siteCode}
+		WHERE notice_chk = 'Y'
+        ORDER BY code DESC
+        LIMIT 1
+		 
+	</select>
+	
 	<select id="selectTableAtchFileId" resultType="String">
 	 
 		SELECT atchFileId
@@ -144,7 +154,7 @@
 				,frstRegistNm
 				,frstRegistPnttm
 				,del_chk
-				
+				,notice_chk
 			) VALUES (
 				#{code}
 				,#{title}
@@ -154,6 +164,7 @@
 				,#{frstRegistNm}
 				,now()
 				,'N'
+				,#{notice_chk}
 			)
 	</insert>
 	
@@ -169,6 +180,7 @@
 			,frstRegistNm  = #{frstRegistNm}
 			,lastUpdtNm  = "수정자"
 			,lastUpdtPnttm=now()
+			,notice_chk  = #{notice_chk}
 			
 		WHERE code = #{code}
 			

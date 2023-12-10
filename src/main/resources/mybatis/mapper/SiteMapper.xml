@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ljy.third.dao">
 	
-	<select id="selectSiteMenuList" resultType="com.ljy.third.vo.SiteMenuVO">
+	<select id="selectSiteMenuList" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT	siteCode,
 	        			title,
 	        			adminName
@@ -47,7 +47,7 @@
 	        
     </select>
     
-    <select id="selectSiteMenuRecent" resultType="com.ljy.third.vo.SiteMenuVO">
+    <select id="selectSiteMenuRecent" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT *
 	        FROM SITE_TABLE
        		ORDER BY siteCode DESC
@@ -61,11 +61,10 @@
 	        FROM SITE_TABLE
 	 </select>
 
-	<select id="selectSiteMenuOne" resultType="com.ljy.third.vo.SiteMenuVO">
+	<select id="selectSiteMenuOne" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT 
 	        	siteCode,
 	        	title,
-	        	noticeSwitch,
 	        	formCode,
 	        	adminName,
 	        	typeName,
@@ -89,7 +88,7 @@
     
     </select>
     
-    <select id="selectSiteField" resultType="com.ljy.third.vo.SiteMenuVO">
+    <select id="selectSiteField" resultType="com.ljy.third.vo.site.SiteMenuVO">
     
     		SELECT COLUMN_NAME
 			FROM Information_schema.columns
@@ -109,7 +108,7 @@
     
     </select>
     
-    <select id="selectFileValidateInfo" resultType="com.ljy.third.vo.SiteMenuVO">
+    <select id="selectFileValidateInfo" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT siteCode, maxFileUploadNumber, fileUploadType
 	        FROM SITE_TABLE
 	        WHERE siteCode = #{siteCode}
@@ -158,6 +157,7 @@
 				`lastUpdtNm` VARCHAR(50) NULL DEFAULT NULL COMMENT '최종 게시물 수정자',
 				`viewNum` INT NOT NULL DEFAULT 0 COMMENT '조회수',
 				`del_chk` ENUM('Y', 'N') NULL DEFAULT 'N' COMMENT '삭제여부',
+				`notice_chk` ENUM('Y', 'N') NULL DEFAULT 'N' COMMENT '공지사항여부',
 				PRIMARY KEY (`CODE`)
 			)
 			COMMENT='사이트관리 >> 게시판관리 >> ${siteCode} >> 생성된 테이블'
@@ -172,7 +172,6 @@
 			title = #{title}
 			,adminName=#{adminName}
 			,formCode = #{formCode}
-			,noticeSwitch = #{noticeSwitch}
 			,templateType  = #{templateType}
 			,maxFileUploadNumber  = #{maxFileUploadNumber}
 			,fileUploadType  = #{fileUploadType}

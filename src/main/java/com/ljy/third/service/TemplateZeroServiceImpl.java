@@ -74,6 +74,12 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 		// TODO Auto-generated method stub
 		return templateZeroDAO.selectTableRecordListCount(templateZeroVO);
 	}
+	
+	@Override
+	public List<TemplateZeroVO> selectTableNoticeList(TemplateZeroVO templateZeroVO) throws Exception {
+		// TODO Auto-generated method stub
+		return templateZeroDAO.selectTableNoticeList(templateZeroVO);
+	}	
 
 	@Override
 	public TemplateZeroVO selectTableRecordOne(TemplateZeroVO templateZeroVO) throws Exception {
