@@ -89,10 +89,13 @@
 						<tbody>
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
+								<c:if test='${result.del_chk eq "Y" }'> <c:set var="title" value="<span class='box_del'>삭제</span><span class='lineThrough_del'>${result.title }</span>"/> </c:if>
+								<c:if test='${result.del_chk ne "Y" }'> <c:set var="title" value="${result.title }"/> </c:if>
 								<tr onclick="javascript:fn_update('${result.siteCode}')">
-									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
-									<td> ${result.title }</td>
-									<td> ${result.adminName }</td>
+								
+									<td><c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
+									<td>${ title }</td>
+									<td>${result.adminName }</td>
 									
 								</tr>
 							</c:forEach>

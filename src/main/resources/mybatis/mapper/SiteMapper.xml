@@ -8,7 +8,8 @@
 	<select id="selectSiteMenuList" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT	siteCode,
 	        			title,
-	        			adminName
+	        			adminName,
+	        			del_chk
 	        			
 	        FROM SITE_TABLE
 	        WHERE 1=1
@@ -67,6 +68,7 @@
 	        	title,
 	        	formCode,
 	        	adminName,
+	        	del_chk,
 	        	typeName,
 	        	templateType,
 	        	maxFileUploadNumber,
@@ -190,6 +192,12 @@
 		WHERE siteCode = #{siteCode}
 	</update>
 	
+	<update id="disableSiteMenu">
+		UPDATE SITE_TABLE SET
+			del_chk = 'Y'
+		WHERE siteCode = #{siteCode}
+	</update>
+	
 	<update id="deleteSiteTableDelete">
 			DROP TABLE TB_${siteCode}
 	</update>
@@ -200,6 +208,12 @@
 			WHERE siteCode = #{siteCode}
 		
 	</delete>
+	
+	<update id="restoreSiteMenu">
+		UPDATE SITE_TABLE SET
+			del_chk = 'N'
+		WHERE siteCode = #{siteCode}
+	</update>
 	
 		<!-- 게시판 작성 화면의 템플릿 유형을 불러오는 sql문 -->
 	<select id="siteTemplateTypeInput" resultType="com.ljy.third.vo.SysCodeVO">

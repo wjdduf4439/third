@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.util.PageSet;
 import com.ljy.third.service.site.SiteService;
+import com.ljy.third.vo.TemplateZeroVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 
@@ -110,10 +111,31 @@ public class SiteController {
 	@RequestMapping(value = "/site/siteDelete.go")
 	public String siteAdminDelte(ModelMap map, @ModelAttribute("searchVO")SiteMenuVO siteMenuVO) throws Exception {
 		
-		siteService.deleteSiteMenu(siteMenuVO);
+		//siteService.deleteSiteMenu(siteMenuVO);
+		
+		if( "N".equals( siteMenuVO.getDel_chk() ) ) {
+			
+			System.out.println("비활성화 진행");
+			siteService.disableSiteMenu(siteMenuVO);
+			
+		} else {
+			
+			System.out.println("삭제 진행");
+			siteService.deleteSiteMenu(siteMenuVO);
+			
+		}
 		
 		return "redirect:/site/siteAdmin.go";
 	}
+	
+	@RequestMapping("/site/siteRestore.go")
+	public String siteAdminRestore(ModelMap map, @ModelAttribute("searchVO")SiteMenuVO siteMenuVO) throws Exception {
+		
+		System.out.println("복구 진행");
+		siteService.restoreSiteMenu(siteMenuVO);
+		
+		return "redirect:/site/siteAdmin.go";
+	}	
 
 	
 	//��ȣ�� ǥ�õ� �迭 �׸���� �Ӽ������� ġȯ�� �� �ְ� �ϴ� �޼���

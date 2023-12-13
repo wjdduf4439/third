@@ -96,10 +96,23 @@ public class SiteServiceImpl implements SiteService {
 	}
 
 	@Override
+	public void disableSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+		// TODO Auto-generated method stub
+		siteDAO.disableSiteMenu(siteMenuVO);
+
+	}
+	
+	@Override
 	public void deleteSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
 		siteDAO.deleteSiteMenu(siteMenuVO);
 		siteDAO.deleteSiteTableDelete(siteMenuVO);
+	}
+	
+	@Override
+	public void restoreSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+		// TODO Auto-generated method stub
+		siteDAO.restoreSiteMenu(siteMenuVO);
 	}
 
 	@Override

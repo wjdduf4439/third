@@ -108,17 +108,37 @@ public class SiteAjaxController {
 	public String siteUpdateWidthInput(String placeRowStr, String placeWidthStr) throws Exception {
 		
 		System.out.println("siteUpdateWidthInput 메소드 접근");
+		System.out.println("siteUpdateWidthInput placeRowStr : " + placeRowStr);
+		System.out.println("siteUpdateWidthInput placeWidthStr : " + placeWidthStr);
 		String inputHtml = "";
 		
 		//sitefield의 순번을 나타내는 구간
 		String placeRowStrSpliter = ",";
-		String[] placeRowArray = placeRowStr.split(placeRowStrSpliter);
+		String[] placeRowArray = {};
+		if(placeRowStr == "") placeRowArray[0] = "0";
+		else placeRowArray = placeRowStr.split(placeRowStrSpliter);
 		
-		//sitefield의 표시길이를 나타내는 구간
+		//sitefield의 표시길이를 나타내는 구간, placeWidthStrArray_temp 배열에 먼저 선언한 다음, placeWidthStrArray 배열 선언 작업을 한다
 		String placeWidthStrSpliter = ",";
-		String[] placeWidthStrArray = placeWidthStr.split(placeWidthStrSpliter);
+		String[] placeWidthStrArray = new String[placeRowArray.length];
+		String[] placeWidthStrArray_temp = {};
+		if(placeWidthStr == "") placeWidthStrArray[0] = "";
+		else placeWidthStrArray_temp = placeWidthStr.split(placeWidthStrSpliter);
 		
-		
+		/*
+		placeWidthStrArray 선언 작업은, 최대 index을 placeRowArray.length로 하는 중에, 
+			i의 값이 placeWidthStrArray_temp 배열 값보다 작으면 placeWidthStrArray_temp배열 안의 값을 선언
+			i의 값이 placeWidthStrArray_temp 배열 값보다 같거나 크면 ""을 선언
+		*/
+		for(int i = 0; i < placeRowArray.length; i++ ) {
+			if(i < placeWidthStrArray_temp.length) placeWidthStrArray[i] = placeWidthStrArray_temp[i];
+			else placeWidthStrArray[i] = "";
+		}	
+			
+		/*
+		System.out.println("siteUpdateWidthInput placeRowArray length : " + placeRowArray.length);
+		System.out.println("siteUpdateWidthInput placeWidthStrArray length : " + placeWidthStrArray.length);
+		*/
 		for(int i = 0; i < placeRowArray.length; i++ ) { 
 			
 			inputHtml += "<input  type='number' id='placeWidthOption";

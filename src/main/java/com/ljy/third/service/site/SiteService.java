@@ -24,8 +24,12 @@ public interface SiteService {
 	
 	public void insertSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
 
+	public void disableSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
+	
 	public void deleteSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
-
+	
+	public void restoreSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
+	
 	public void updateSiteMenu(SiteMenuVO siteMenuVO) throws Exception;
 
 	public void updateSiteField(SiteMenuVO siteMenuVO) throws Exception;

@@ -282,10 +282,22 @@ function fn_insert(){
 
 function fn_delete(){
 	
-	if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
-	
+	if($("#del_chk").val() == "N"){
+		if (!confirm("비활성화하시겠습니까? 사용자 뷰 화면에서 보이지 않게 됩니다.")) { return; }	
+	}else if($("#del_chk").val() == "Y"){
+		if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
+	}
 	
 	document.frm.action = '<c:url value="/site/siteDelete.go"/>';
+	document.frm.submit();
+	
+}
+
+function fn_restore(){
+	
+	if (!confirm("복구하시겠습니까?")) { return; }
+	
+	document.frm.action = '<c:url value="/site/siteRestore.go"/>';
 	document.frm.submit();
 	
 }
@@ -322,6 +334,7 @@ function fn_back(){
 		
 				<input type="hidden" id="siteCode" name="siteCode" value="${resultList.siteCode }"/>
 				<input type="hidden" id="templateType" name="templateType" value="" />
+				<input type="hidden" id="del_chk" name="del_chk" value="${resultList.del_chk }"/>
 				
 				<!-- <input type="hidden" id="placeRow" name="placeRow" value="${resultList.placeRow}" /> -->
 				<input type="hidden" id="placeWidth" name="placeWidth" value="${resultList.placeWidth}" />
@@ -405,11 +418,24 @@ function fn_back(){
 		        		<td id ="allowFileTypeInput" >
 		        			여기서 체크박스로 여러 타입의 파일 형식을 체크하고 저장하여 db에 저장한 다음, insert, update 기능 시 해당 첨부파일의 파일 형식을 따져 허용/반려하는식의 로직 짜기
 		        			</br>        		
-		        			<input type="checkbox" id="fileUploadType_jpg" name="fileUploadType_chkbox" value="jpg" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('jpg');" >jpg
-		        			<input type="checkbox" id="fileUploadType_png" name="fileUploadType_chkbox" value="png" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('png');" >png
-		        			<input type="checkbox" id="fileUploadType_pdf" name="fileUploadType_chkbox" value="pdf" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('pdf');" >pdf
-		        			<input type="checkbox" id="fileUploadType_zip" name="fileUploadType_chkbox" value="zip" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('zip');" >zip
-		        			<input type="checkbox" id="fileUploadType_webp" name="fileUploadType_chkbox" value="webp" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('webp');" >webp
+		        			<input type="checkbox" id="fileUploadType_jpg" name="fileUploadType_chkbox" value="jpg" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('jpg');" >
+		        			<label for="fileUploadType_jpg">jpg</label>
+		        			<input type="checkbox" id="fileUploadType_png" name="fileUploadType_chkbox" value="png" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('png');" >
+		        			<label for="fileUploadType_png">png</label>
+							<input type="checkbox" id="fileUploadType_pdf" name="fileUploadType_chkbox" value="pdf" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('pdf');" >
+							<label for="fileUploadType_pdf">pdf</label>
+							<input type="checkbox" id="fileUploadType_zip" name="fileUploadType_chkbox" value="zip" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('zip');" >
+							<label for="fileUploadType_zip">zip</label>
+							<input type="checkbox" id="fileUploadType_webp" name="fileUploadType_chkbox" value="webp" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('webp');" >
+							<label for="fileUploadType_webp">webp</label>
+							<input type="checkbox" id="fileUploadType_java" name="fileUploadType_chkbox" value="java" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('java');" >
+							<label for="fileUploadType_java">java</label>
+							<input type="checkbox" id="fileUploadType_xml" name="fileUploadType_chkbox" value="xml" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('xml');" >
+							<label for="fileUploadType_xml">xml</label>
+							<input type="checkbox" id="fileUploadType_jsp" name="fileUploadType_chkbox" value="jsp" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('jsp');" >
+							<label for="fileUploadType_jsp">jsp</label>
+							<input type="checkbox" id="fileUploadType_class" name="fileUploadType_chkbox" value="class" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('class');" >
+							<label for="fileUploadType_class">class</label>
 		        		</td>
 		        	</tr>
 				</table>
@@ -420,7 +446,13 @@ function fn_back(){
 				<button class="btn03 fr" onclick="javascript:fn_back();" type="button">돌아가기</button>
 				<c:if test="${empty resultList }"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">등록</button> </c:if>
 				<c:if test="${not empty resultList}"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">수정</button> </c:if>
-				<c:if test="${not empty resultList}"> <button class="btn05 fr" onclick="javascript:fn_delete();" type="button">삭제</button> </c:if>
+				<c:if test="${not empty resultList}">
+					<button class="btn05 fr" onclick="javascript:fn_delete();" type="button">
+						<c:if test="${resultList.del_chk eq 'Y'}"> 삭제 </c:if>
+						<c:if test="${resultList.del_chk eq 'N'}"> 비활성화 </c:if>
+					</button>
+				</c:if>
+				<c:if test="${not empty resultList and resultList.del_chk eq 'Y'}"> <button class="btn05 fr" onclick="javascript:fn_restore();" type="button">복구</button> </c:if>
 			</div>
 		</div>
 

@@ -10,6 +10,7 @@ public class SiteMenuVO extends VOobject {
 	private String title;
 	private String noticeSwitch;
 	private String formCode;
+	private String del_chk;
 	private String adminName;
 	private String typeName;
 	private String templateType;
@@ -114,6 +115,12 @@ public class SiteMenuVO extends VOobject {
 	}
 	public void setFormCode(String formCode) {
 		this.formCode = formCode;
+	}
+	public String getDel_chk() {
+		return del_chk;
+	}
+	public void setDel_chk(String del_chk) {
+		this.del_chk = del_chk;
 	}
 	public String[] getFieldNumber() {
 		return fieldNumber;

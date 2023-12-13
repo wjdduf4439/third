@@ -70,6 +70,10 @@ public class SiteDAO {
 		sqlSession.update("com.ljy.third.dao.insertSiteTable", siteMenuVO);
 	}
 
+	public void disableSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.ljy.third.dao.disableSiteMenu", siteMenuVO);
+	}
 	
 	public void deleteSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
 		// TODO Auto-generated method stub
@@ -79,6 +83,11 @@ public class SiteDAO {
 	public void deleteSiteTableDelete(SiteMenuVO siteMenuVO) {
 		// TODO Auto-generated method stub
 		sqlSession.update("com.ljy.third.dao.deleteSiteTableDelete", siteMenuVO);
+	}
+	
+	public void restoreSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete("com.ljy.third.dao.restoreSiteMenu", siteMenuVO);
 	}
 	
 	public void updateSiteMenu(SiteMenuVO siteMenuVO) throws Exception {

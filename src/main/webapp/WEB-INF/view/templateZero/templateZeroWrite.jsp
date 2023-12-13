@@ -143,7 +143,7 @@ function fn_insert(){
 	
 	fn_pageReset();
 	
-	if($("input:checkbox[name=noticeSwitchBox]").is(":checked") == true){ $("#noticeSwitch").val("1"); }else{ $("#noticeSwitch").val("0"); }
+	if($("input:checkbox[name=notice_chk_val]").is(":checked") == true){ $("#notice_chk").val("Y"); }else{ $("#notice_chk").val("N"); }
 	
 	<c:if test="${empty resultList}">
 		document.frm.action = '<c:url value="/template/templateZeroInsert.go"/>';
@@ -301,7 +301,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 			<input type="hidden" id="siteTitle" name="siteTitle" value="${searchVO.siteTitle }"/>
 			<input type="hidden" id="atchFileId" name="atchFileId" value="${resultList.atchFileId }"/>
 			<input type="hidden" id="context" name="context" value=""/>
-			<input type="hidden" id="noticeSwitch" name="noticeSwitch" value="${resultList.noticeSwitch }"/>
+			<input type="hidden" id="notice_chk" name="notice_chk" value="${resultList.notice_chk }"/>
 			<input type="hidden" id="del_chk" name="del_chk" value="${resultList.del_chk }"/>
 			
 			<input type="hidden" id="load_editorImage" name="load_editorImage" value="${editorImageCode.code }"/>
@@ -322,7 +322,7 @@ function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recor
 					<td><input type="text" name="title" id="title" class="maxwidth200" value="${resultList.title }"/></td>
 					<th>공지여부확인</th>
 					<td >
-						<input type='checkbox' id='notice_chk' name='notice_chk' value='Y' <c:out value="${resultList.notice_chk eq 'Y' ? 'checked' : ''}"/> >
+						<input type='checkbox' id='notice_chk_val' name='notice_chk_val' value='Y' <c:out value="${resultList.notice_chk eq 'Y' ? 'checked' : ''}"/> >
 					</td>
 				</tr>
 				<tr>

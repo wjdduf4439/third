@@ -54,7 +54,6 @@ public class TemplateZeroController {
 			List<TemplateZeroVO> resultList = templateZeroService.selectTableRecordList(templateInfoVO);
 			List<TemplateZeroVO> noticeList = new ArrayList<TemplateZeroVO>(); //공지사항 리스트 가져오기
 			{
-				
 				noticeList = templateZeroService.selectTableNoticeList(templateZeroVO);
 				if( noticeList.size() > 0 ) { map.addAttribute("noticeList", noticeList); } //noticelist
 				else { map.addAttribute("noticeList", null); }
@@ -104,7 +103,7 @@ public class TemplateZeroController {
 	}
 	
 	@RequestMapping("/template/templateZero{processMark:Insert|Update}.go")
-	public String TemplateZeroUpdate(final MultipartHttpServletRequest multiRequest , @ModelAttribute("searchVO") TemplateZeroVO templateZeroVO ,ModelMap map, HttpServletRequest req,
+	public String TemplateZeroProcess(final MultipartHttpServletRequest multiRequest , @ModelAttribute("searchVO") TemplateZeroVO templateZeroVO ,ModelMap map, HttpServletRequest req,
 			@PathVariable("processMark")String processMark ) throws Exception {
 		
 
