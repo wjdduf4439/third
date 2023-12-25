@@ -33,7 +33,7 @@ public class SiteAjaxController {
 		for(int i = 0; i < resultList.size(); i++ ) { 
 			
 			
-			inputHtml += "<input type='checkbox' id='placeRow' name='placeRow' value='";
+			inputHtml += "<input type='checkbox' id='placeRowVal' name='placeRowVal' value='";
 			inputHtml += resultList.get(i).getSysOutNum();
 			inputHtml += "' placeholder='제목' onclick='javascript:fn_checked(";
 			inputHtml += resultList.get(i).getSysOutNum();
@@ -78,7 +78,8 @@ public class SiteAjaxController {
 		for(int i = 0; i < resultList.size(); i++ ) { 
 			
 			
-			inputHtml += "<input type='checkbox' id='placeRow' name='placeRow' value='";
+			inputHtml += "<input type='checkbox' id='placeRowVal" + resultList.get(i).getSysOutNum() + "'"; 
+			inputHtml += " name='placeRowVal' value='";
 			inputHtml += resultList.get(i).getSysOutNum();
 			inputHtml += "' placeholder='제목' onclick='javascript:fn_checked(";
 			inputHtml += resultList.get(i).getSysOutNum();
@@ -91,7 +92,10 @@ public class SiteAjaxController {
 					}
 				}
 			inputHtml += "/>";
-			inputHtml += resultList.get(i).getTemFieldCharge() + "  ";
+//			inputHtml += resultList.get(i).getTemFieldCharge() + "  ";
+			inputHtml += "<label for='placeRowVal" + resultList.get(i).getSysOutNum() + "'>" + resultList.get(i).getTemFieldCharge() +"</label>";
+			
+			
 			
 		}
 		

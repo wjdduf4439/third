@@ -8,12 +8,18 @@
 	<select id="selectFormMenuList" resultType="com.ljy.third.vo.FormMenuVO">
 	        SELECT		formCode,
 	        			formName,
+	        			del_chk,
 	        			frstRegistNm
 	        			
 	        FROM FORM_TABLE
 	        WHERE 1=1
+	        
+	        <if test="header_call == 'true'" >
+	        	AND del_chk = 'N'
+	        </if>
+	        
 	        <!-- start 레코드부터 size값만큼 레코드를 뽑아냄 -->
-	        <!-- 
+	        
 	        <if test="searchCnd == null" >
 				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
 			</if>
@@ -23,7 +29,7 @@
 			<if test="searchCnd == 1" >
 				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 			</if>
-			 -->
+			
 	        
     </select>
 
@@ -32,7 +38,7 @@
 	        FROM FORM_TABLE
 	        WHERE 1=1
 	        
-	       <!-- 
+	       
 	        <if test="searchCnd == null" >
 				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
 			</if>
@@ -42,7 +48,7 @@
 			<if test="searchCnd == 1" >
 				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
 			</if>
-			 -->
+			
 	        
     </select>
     
@@ -56,6 +62,7 @@
 	        SELECT 
 	        	formCode,
 	        	formName,
+	        	del_chk,
 	        	frstRegistNm
 	        	
 	        FROM FORM_TABLE
@@ -101,6 +108,12 @@
 		
 	</update>
 	
+	<update id="disableFormMenu">
+		UPDATE FORM_TABLE SET
+			del_chk = 'Y'
+		WHERE formCode = #{formCode}
+	</update>
+	
 	<delete id="deleteFormMenu">
 		 
 			DELETE FROM FORM_TABLE
@@ -112,11 +125,16 @@
 		 
 		UPDATE	SITE_TABLE
 			
-		SET
-			formcode = null
+		SET formcode = null
 			
 		WHERE formCode = #{formCode}
 		
+	</update>
+	
+	<update id="restoreFormMenu">
+		UPDATE FORM_TABLE SET
+			del_chk = 'N'
+		WHERE formCode = #{formCode}
 	</update>
 
 </mapper>

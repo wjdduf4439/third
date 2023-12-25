@@ -1,5 +1,6 @@
 package com.ljy.third.service.site;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,11 +29,17 @@ public class SiteServiceImpl implements SiteService {
 		// TODO Auto-generated method stub
 		return siteDAO.selectSiteMenuCnt(siteMenuVO);
 	}
-
+	
 	@Override
-	public String selectSiteMenuMax(SiteMenuVO siteMenuVO) throws Exception {
+	public int selectSiteMenuCnt(HashMap<String, Object> stringJson) throws Exception{
 		// TODO Auto-generated method stub
-		return siteDAO.selectSiteMenuMax(siteMenuVO);
+		return siteDAO.selectSiteMenuCnt(stringJson);
+	}
+	
+	@Override
+	public String selectSiteMenuMax(HashMap<String, Object> stringJson) throws Exception {
+		// TODO Auto-generated method stub
+		return siteDAO.selectSiteMenuMax(stringJson);
 	}
 
 	@Override
@@ -52,20 +59,20 @@ public class SiteServiceImpl implements SiteService {
 		// TODO Auto-generated method stub
 		return siteDAO.selectSiteMenuFormList();
 	}
-
+	
 	@Override
-	public List<SiteMenuVO> selectSiteField(SiteMenuVO siteMenuVO) throws Exception {
+	public List<SiteMenuVO> selectSiteField(HashMap<String, Object> stringJson) throws Exception{
 		// TODO Auto-generated method stub
-		return siteDAO.selectSiteField(siteMenuVO);
+		return siteDAO.selectSiteField(stringJson);
 	}
 
 	@Override
-	public void insertSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+	public void insertSiteMenu(HashMap<String, Object> stringJson) throws Exception{
 		// TODO Auto-generated method stub
 		
 		try {
 			
-			String maxCode = siteDAO.selectSiteMenuMax(siteMenuVO);
+			String maxCode = siteDAO.selectSiteMenuMax(stringJson);
 			
 			int temp = Integer.parseInt(maxCode.substring(5, maxCode.length())); temp ++;
 			
@@ -82,49 +89,49 @@ public class SiteServiceImpl implements SiteService {
 			for(int j = 0; j < 15-i ; j++) { newCode += "0"; }
 			newCode += Integer.toString(temp);
 			
-			siteMenuVO.setSiteCode(newCode);
+			stringJson.put("siteCode", newCode);
 			
 			
 		}catch(Exception e) {
 			
-			siteMenuVO.setSiteCode("SITE_000000000000001");
+			stringJson.put("siteCode", "SITE_000000000000001");
 			
 		}
 		
-		siteDAO.insertSiteMenu(siteMenuVO);
-		siteDAO.insertSiteTable(siteMenuVO);
+		siteDAO.insertSiteMenu(stringJson);
+		siteDAO.insertSiteTable(stringJson);
 	}
 
 	@Override
-	public void disableSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+	public void updateSiteMenu(HashMap<String, Object> stringJson) throws Exception{
 		// TODO Auto-generated method stub
-		siteDAO.disableSiteMenu(siteMenuVO);
+		siteDAO.updateSiteMenu(stringJson);
+	}
+
+	@Override
+	public void disableSiteMenu(HashMap<String, Object> stringJson) throws Exception{
+		// TODO Auto-generated method stub
+		siteDAO.disableSiteMenu(stringJson);
 
 	}
 	
 	@Override
-	public void deleteSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+	public void deleteSiteMenu(HashMap<String, Object> stringJson) throws Exception {
 		// TODO Auto-generated method stub
-		siteDAO.deleteSiteMenu(siteMenuVO);
-		siteDAO.deleteSiteTableDelete(siteMenuVO);
+		siteDAO.deleteSiteMenu(stringJson);
+		siteDAO.deleteSiteTableDelete(stringJson);
 	}
 	
 	@Override
-	public void restoreSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+	public void restoreSiteMenu(HashMap<String, Object> stringJson) throws Exception {
 		// TODO Auto-generated method stub
-		siteDAO.restoreSiteMenu(siteMenuVO);
+		siteDAO.restoreSiteMenu(stringJson);
 	}
-
+	
 	@Override
-	public void updateSiteMenu(SiteMenuVO siteMenuVO) throws Exception {
+	public void updateSiteField(HashMap<String, Object> stringJson) throws Exception {
 		// TODO Auto-generated method stub
-		siteDAO.updateSiteMenu(siteMenuVO);
-	}
-
-	@Override
-	public void updateSiteField(SiteMenuVO siteMenuVO) throws Exception {
-		// TODO Auto-generated method stub
-		siteDAO.updateSiteField(siteMenuVO);
+		siteDAO.updateSiteField(stringJson);
 	}
 	
 	@Override

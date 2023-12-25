@@ -88,9 +88,11 @@
 						<tbody>
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
+								<c:if test='${result.del_chk eq "Y" }'> <c:set var="title" value="<span class='box_del'>삭제</span><span class='lineThrough_del'>${result.formName }</span>"/> </c:if>
+								<c:if test='${result.del_chk ne "Y" }'> <c:set var="title" value="${result.formName }"/> </c:if>
 								<tr onclick="javascript:fn_update('${result.formCode}')">
 									<td> <c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
-									<td> ${result.formName }</td>
+									<td> ${ title }</td>
 									<td> ${result.frstRegistNm }</td>
 									
 								</tr>

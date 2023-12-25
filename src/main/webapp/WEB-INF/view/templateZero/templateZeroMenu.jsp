@@ -11,7 +11,7 @@
 	
 	
 	window.addEventListener('load', function() {
-        $("$Tzero").css("color","orange");
+        $("#Tzero").css("color","orange");
     })
 	
 	function fn_searchKeyPressed(event) {

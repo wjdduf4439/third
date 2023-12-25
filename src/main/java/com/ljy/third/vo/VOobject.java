@@ -1,9 +1,16 @@
 package com.ljy.third.vo;
 
+import java.io.Serializable;
+
 import org.springframework.web.util.HtmlUtils;
 
-public class VOobject implements Cloneable{
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+public class VOobject implements Cloneable, Serializable {
+
+	private static final long serialVersionUID = 2868410232929931052L;
+	
 	/** ?��?���?�??�� */
     private int pageUnit = 10;
     /** ?��?���??��?���? */

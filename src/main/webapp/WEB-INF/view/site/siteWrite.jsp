@@ -20,13 +20,13 @@
 $( document ).ready(function() {		
 	
 	//게시판 최초등록 시 보여주기 switch만들기
-	/*  
+	<%--  
 		
 		현재 게시판을 등록하면, 삭제 버튼을 누를시 바로 삭제되는데, 이걸 완화하기 위한 보여주기 취소 버튼 만들기
 		목록 화면에서 삭제 표시 만들기
-		<%--<c:if test="${resultList.del_chk eq 'Y'}"> <button class="btn05 width30" type="button">삭제</button> </c:if>--%>
-		
-	*/	
+		<c:if test="${resultList.del_chk eq 'Y'}"> <button class="btn05 width30" type="button">삭제</button> </c:if>
+
+	--%>
 	
 	var tCode = '';
 	<c:if test="${not empty resultList.templateType }">
@@ -223,30 +223,12 @@ function fn_validate(){
 }
 
 function fn_insert(){
-	
-	let placeWidthVal = '';
-	let fileUploadTypeVal = '';
-	
-	//각 게시판의 표시 field 길이 설정
-	$("input:checkbox[name=placeRow]:checked").each(function() {
-
-		placeWidthVal += $('#placeWidthOption'+this.value+'').val();
-		placeWidthVal += ',';
-
-	});
-	
-	placeWidthVal = placeWidthVal.substring(0,placeWidthVal.length-1);
-	$('#placeWidth').val(placeWidthVal);
-	
-	//허용 파일 형식 데이터 설정
-	$("input:checkbox[name=fileUploadType_chkbox]:checked").each(function() {
-
-		fileUploadTypeVal += $('#fileUploadType_'+this.value+'').val();
-		fileUploadTypeVal += ',';
-
-	});
-	fileUploadTypeVal = fileUploadTypeVal.substring(0,fileUploadTypeVal.length-1);
-	$('#fileUploadType').val(fileUploadTypeVal);
+	/* 
+	fn_checked(-1) 을 호출시켜서 placeRowVal input과 placeWidthVal input 값을 재지정시킨다
+	fn_fileUploadTypeChecked(-1) 을 호출시켜서 fileUploadType_chkbox input 값을 재지정시킨다
+	 */
+	fn_checked(-1);
+	fn_fileUploadTypeChecked(-1);
 	
 	/*
 	return;
@@ -260,23 +242,42 @@ function fn_insert(){
 	
 	//alert('$("#templateTypeSelect option:selected").val() : ' + $("#templateTypeSelect option:selected").val());
 	
+	let url = "";
 	if($("#templateTypeSelect option:selected").val() == "T0SF"){ //select-option 태그를 가져오는 val함수
 
 		
 		<c:if test="${not empty resultList }"> 
-			document.frm.action = '<c:url value="/site/siteUpdate.go"/>';
+			url = "<c:url value='/site/siteUpdate.go'/>";
 		</c:if>
 		<c:if test="${empty resultList }">
-			document.frm.action = '<c:url value="/site/siteInsert.go"/>';
+			url = "<c:url value='/site/siteInsert.go'/>";
 		</c:if>
 	
-	}else{
-		
-		alert("update실패" + $("#templateTypeSelect option:selected").val());
-		
 	}
 	
-	document.frm.submit();
+	let frmData = $("#frm").serializeArray();
+ 	let frmData_json = JSON.stringify(objectifyForm(frmData));
+ 	
+ 	$.ajax({      
+        type:"post",  
+        url : url,
+        async: true,
+        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        data : frmData_json,
+        dataType : 'json',
+        contentType : 'application/json; charset=utf-8',
+        beforeSend : function(xmlHttpRequest){
+     	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){   
+        	//alert("args.returnPage : " + args.returnPage);
+        	$("#frm").attr("action",args.returnPage );
+        	$("#frm").submit();
+        },   
+        error:function(e){  
+            alert("siteajax 실패" + e.responseText);  
+        }  
+    });
 	
 }
 
@@ -288,24 +289,74 @@ function fn_delete(){
 		if (!confirm("삭제하시겠습니까? 삭제한 데이터는 복구가 불가능합니다.")) { return; }
 	}
 	
-	document.frm.action = '<c:url value="/site/siteDelete.go"/>';
-	document.frm.submit();
+	let url = "<c:url value='/site/siteDelete.go'/>";
+
+	let frmData = $("#frm").serializeArray();
+ 	let frmData_json = JSON.stringify(objectifyForm(frmData));
+	
+	$.ajax({      
+        type:"post",  
+        url : url,
+        async: true,
+        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        data : frmData_json,
+        dataType : 'json',
+        contentType : 'application/json; charset=utf-8',
+        beforeSend : function(xmlHttpRequest){
+     	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){   
+        	//alert("args.returnPage : " + args.returnPage);
+        	$("#frm").attr("action",args.returnPage );
+        	$("#frm").submit();
+        },   
+        error:function(e){  
+            alert("siteajax 실패" + e.responseText);  
+        }  
+    });
+	
 	
 }
 
 function fn_restore(){
 	
 	if (!confirm("복구하시겠습니까?")) { return; }
-	
+	/* 
 	document.frm.action = '<c:url value="/site/siteRestore.go"/>';
 	document.frm.submit();
+	 */
+	
+	let url = "<c:url value='/site/siteRestore.go'/>";
+ 	
+ 	let frmData = $("#frm").serializeArray();
+ 	let frmData_json = JSON.stringify(objectifyForm(frmData));
+ 	
+	$.ajax({      
+        type:"post",  
+        url : url,
+        async: true,
+        data : frmData_json,
+        dataType : 'json',	//dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
+        contentType : 'application/json;charset=utf-8',
+        beforeSend : function(xmlHttpRequest){
+        	xmlHttpRequest.setRequestHeader("AJAX", "true");
+        	  },    
+        success:function(args){
+        	
+        	$("#frm").attr("action",args.returnPage );
+        	$("#frm").submit();
+        },   
+        error:function(e){  
+            alert("siteajax 실패" + e.responseText);  
+        }  
+    });
 	
 }
 
 function fn_back(){
 	
-	document.frm.action = '<c:url value="/site/siteAdmin.go"/>';
-	document.frm.submit();
+	$("#frm").attr("action","<c:url value='/site/siteAdmin.go'/>" );
+	$("#frm").submit();
 	
 }
 
@@ -336,7 +387,7 @@ function fn_back(){
 				<input type="hidden" id="templateType" name="templateType" value="" />
 				<input type="hidden" id="del_chk" name="del_chk" value="${resultList.del_chk }"/>
 				
-				<!-- <input type="hidden" id="placeRow" name="placeRow" value="${resultList.placeRow}" /> -->
+				<input type="hidden" id="placeRow" name="placeRow" value="${resultList.placeRow}" />
 				<input type="hidden" id="placeWidth" name="placeWidth" value="${resultList.placeWidth}" />
 				<input type="hidden" id="fileUploadType" name="fileUploadType" value="${resultList.fileUploadType}" />
 				
@@ -386,7 +437,6 @@ function fn_back(){
 		        		<th><i class="icono-asterisk"></i>   유형</th>
 			            <td id="templateTypePlace" colspan="100">
 				            
-				            	<!-- 템플릿 표시 성공했으나, onchangeEvent가 제대로 동작하지 않음 -->
 				            	<!-- 동적 input 태그 이벤트 바인딩 -->
 				            	<!-- https://brunch.co.kr/@ourlove/98 -->
 				            	
@@ -416,8 +466,6 @@ function fn_back(){
 		        	<tr>
 		        		<th><i class="fa fa-asterisk" aria-hidden="true"></i>허용 파일 타입(추가구성)</th>
 		        		<td id ="allowFileTypeInput" >
-		        			여기서 체크박스로 여러 타입의 파일 형식을 체크하고 저장하여 db에 저장한 다음, insert, update 기능 시 해당 첨부파일의 파일 형식을 따져 허용/반려하는식의 로직 짜기
-		        			</br>        		
 		        			<input type="checkbox" id="fileUploadType_jpg" name="fileUploadType_chkbox" value="jpg" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('jpg');" >
 		        			<label for="fileUploadType_jpg">jpg</label>
 		        			<input type="checkbox" id="fileUploadType_png" name="fileUploadType_chkbox" value="png" placeholder="허용파일형" onclick="javascript:fn_fileUploadTypeChecked('png');" >

@@ -1,11 +1,18 @@
 package com.ljy.third.vo.site;
 
-import org.springframework.stereotype.Component;
-
 import com.ljy.third.vo.VOobject;
 
-public class SiteMenuVO extends VOobject {
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
+@NoArgsConstructor //기본 생성자를 만들어줌
+@AllArgsConstructor //여기에 필드에 쓴 모든생성자만 만들어줌
+public class SiteMenuVO extends VOobject {
+	
+	private static final long serialVersionUID = 2868410232929931052L;
+	
 	private String siteCode;
 	private String title;
 	private String noticeSwitch;
@@ -31,6 +38,8 @@ public class SiteMenuVO extends VOobject {
 	private String frstRegistNm;
 	private String lastRegistPnttm;
 	private String lastRegistNm;
+	
+	private String header_call;
     
 	public String getSiteCode() {
 		return siteCode;
@@ -157,6 +166,12 @@ public class SiteMenuVO extends VOobject {
 	}
 	public void setPlaceRowArray(String[] placeRowArray) {
 		this.placeRowArray = placeRowArray;
+	}
+	public String getHeader_call() {
+		return header_call;
+	}
+	public void setHeader_call(String header_call) {
+		this.header_call = header_call;
 	}
 	
 	

@@ -27,6 +27,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/smarteditor2-master/workspace/js/service/HuskyEZCreator.js"  charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/third_commonSetting.js"></script>
 
  
  <!-- 제이쿼리 ui js -->
@@ -201,7 +202,7 @@
 							
 						 	<c:forEach var="form" items="${formList }" varStatus="status1">
 		
-								<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName }</a></li>
+								<li onmouseover="javascript:fn_show();" ><a class="menuLink" >${form.formName } </a></li>
 									
 							</c:forEach>
 							

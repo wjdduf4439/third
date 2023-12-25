@@ -12,8 +12,10 @@ public class EnumLogs {
 	
 	public EnumLogs(HttpServletRequest request) {
 		
-		//Enumeration 클래스가 Enumeration형의 데이터를 request로 받아들여 자동으로 변환을 해준다.
+		//헤더 정보 출력
+		showHeaderlog(request);
 		
+		//Enumeration 클래스가 Enumeration형의 데이터를 request로 받아들여 자동으로 변환을 해준다.
 		System.out.println("/////// ---- enum class log ------------------------------------------------");
 		
 		 Enumeration params = request.getParameterNames(); 
@@ -28,6 +30,9 @@ public class EnumLogs {
 	}
 	
 	public EnumLogs(HttpServletRequest request, Map<String, String> mdto) {
+		
+		//헤더 정보 출력
+		showHeaderlog(request);
 		
 		//Enumeration 클래스가 Enumeration형의 데이터를 request로 받아들여 자동으로 변환을 해준다.
 		
@@ -46,7 +51,20 @@ public class EnumLogs {
 		 
 	}
 	
-	
+	public void showHeaderlog(HttpServletRequest request) {
+		
+		System.out.println("/////// ---- enum header log ------------------------------------------------");
+		Enumeration headers = request.getHeaderNames();
+		 
+		while(headers.hasMoreElements()) {
+		    String headerName = (String)headers.nextElement();
+		    String value = request.getHeader(headerName);
+		    System.out.println("headerName:"+headerName+","+value);
+		}
+		
+		System.out.println("[ END ] ---- enum header log ------------------------------------------------");
+		
+	}
 	
 	
 }

@@ -124,7 +124,7 @@ table tbody tr td { line-height:2 !important; }
 /* tableline */
 .tableline { width:100%; border-top:2px solid #74849f; border-bottom:1px solid #bbb; margin-bottom:20px; border-right:1px solid #dedede; }
 .tableline tr:hover { background:#f0f2f5; }
-.tableline tr:hover td { background:#f0f2f5 !important; }
+.tableline tr:hover td { background:#f0f2f5 !important; box-shadow:0 0 0 3px #000 inset; }
 .tableline tr th { font-size:1.0rem; font-weight:400; padding:10px 5px; background:#c8c8c8; color:#000; text-align:center; border-bottom:1px solid #8b8e94; border-top:1px solid #8b8e94 !important; vertical-align:middle; letter-spacing:0; border-left:1px solid #e2e5ec; }
 .tableline th a, .tableline th a:hover, .tableline th a:visited {color:#000 !important;}
 .tableline td { border-bottom:1px solid #ddd; border-left:1px solid #dedede; font-weight:300; padding:5px 15px; color:#6f6f6f; text-align:center; vertical-align:middle; font-size:1.0rem; line-height:1.6; letter-spacing:0; background:#fff; }

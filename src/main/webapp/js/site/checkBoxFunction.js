@@ -6,41 +6,36 @@ function fn_checked(m){
 		var placeRowArr = [];
 		var placeWidthArr = [];
 		
-		$("input:checkbox[name=placeRow]:checked").each(function(i){
+		$("input:checkbox[name=placeRowVal]:checked").each(function(i){
 			
-			if(this.value != m){
-				//체크하지 않은 부분의 width정보를 모아서 별도로 배열에 보관
-				console.log(this.value + " - " + m);
-				
-				placeRowVal += this.value;
-				placeRowVal += ',';
-				
-				//console.log($('#placeWidthOption'+i+'').val());
-				placeWidthVal += $('#placeWidthOption'+this.value+'').val();
-				placeWidthVal += ',';	
-				
-			}else{
-				//체크한 부분은 공백값이 당연하기 때문에 배열 내에 빈 공간을 생성
-				placeRowVal += ',';
-				placeWidthVal += ',';
-				
-			}
+			placeRowVal += this.value;
+			placeRowVal += ',';
+			
+			//console.log($('#placeWidthOption'+i+'').val());
+			console.log('this.value : ' + this.value);
+			
+			let checkPlaceWidthVal = $('#placeWidthOption'+this.value+'').val();
+			if(typeof checkPlaceWidthVal == "undefined" || checkPlaceWidthVal == null || checkPlaceWidthVal == "")	placeWidthVal += "";
+			else																									placeWidthVal += $('#placeWidthOption'+this.value+'').val();
+			placeWidthVal += ',';	
 			
 		});
+		
 		placeRowVal = placeRowVal.substring(0,placeRowVal.length-1);
 		placeWidthVal = placeWidthVal.substring(0,placeWidthVal.length-1);
 		
 		var placeRowArr = placeRowVal.split(",");
 		var placeWidthArr = placeWidthVal.split(",");
-		
-		console.log("placeRowVal : " + placeRowVal);
-		console.log("placeWidthVal : " + placeWidthVal);
-
+		/*
+		console.log("fn_checked - placeRowVal : " + placeRowVal);
+		console.log("fn_checked - placeWidthVal : " + placeWidthVal);
+		*/
+	
 	$("#lengthInput").empty();
 
 	var template = '';
 	
-	$("input:checkbox[name=placeRow]:checked").each(function(i){ 
+	$("input:checkbox[name=placeRowVal]:checked").each(function(i){ 
 		
 		template += '<input  type="number" id="placeWidthOption'+this.value+'" name="placeWidthOption'+this.value+'" class ="width150" value="" placeholder="속성'+(i+1)+'" /> </br>';
 		
@@ -50,7 +45,10 @@ function fn_checked(m){
 	
 	//insert 시 체크박스를 다시 만들고 값을 다시 배열하는 작업
 	
-	$("input:checkbox[name=placeRow]:checked").each(function(i){
+	$("#placeRow").val(placeRowVal);
+	$("#placeWidth").val(placeWidthVal);
+	
+	$("input:checkbox[name=placeRowVal]:checked").each(function(i){
 		
 		if(this.value == placeRowArr[i]){
 			
@@ -71,7 +69,6 @@ function fn_checked(m){
 function fn_fileUploadTypeChecked(m){
 	
 	let fileUploadTypeVal = '';
-	let fileUploadTypeArr = [];
 	
 	$("input:checkbox[name=fileUploadType_chkbox]:checked").each(function(i){ fileUploadTypeVal +=  this.value; fileUploadTypeVal +=  ',' });
 	fileUploadTypeVal = fileUploadTypeVal.substring(0,fileUploadTypeVal.length-1);

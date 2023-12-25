@@ -47,5 +47,10 @@ mybatis:
   type-aliases-package: com.ljy.third.dao
   mapper-locations: 
     - classpath:mybatis/mapper/*.xml
+
+---    
     
+server:
+  servlet:
+    context-path : /third
   

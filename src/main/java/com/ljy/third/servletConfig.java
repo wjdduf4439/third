@@ -10,6 +10,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.ljy.third.filter.searchFilter;
 import com.ljy.third.filter.uriFilter;
+import com.ljy.third.interceptor.CommonInterceptor;
 import com.ljy.third.interceptor.TemplateInterceptor;
 import com.ljy.third.interceptor.TemplateViewInterceptor;
 import com.ljy.third.vo.TemplateInfoVO;
@@ -27,6 +28,10 @@ public class servletConfig implements WebMvcConfigurer{
 	
 		//실질적인 인터셉터 등록
 		@Autowired
+		private CommonInterceptor mcommonInterceptor;
+		
+		//실질적인 인터셉터 등록
+		@Autowired
 		private TemplateInterceptor mtemplateInterceptor;
 		
 		//실질적인 인터셉터 등록
@@ -34,7 +39,13 @@ public class servletConfig implements WebMvcConfigurer{
 		private TemplateViewInterceptor mtemplateViewInterceptor;
 		
 		// Interceptor에서 제외되는 URL 주소
-	    private static final String[] EXCLUDE_PATHS = { "/api/error", };
+	    private static final String[] EXCLUDE_PATHS = { "/api/error", "/log/**"};
+		/*
+		    reg1.addPathPatterns("/test1");	
+		    reg2.addPathPatterns("/*");	//모든 경로에 적용
+		    reg3.addPathPatterns("//*");	//모든 경로에 적용(하위 경로까지 포함)
+		    reg4.excludePathPatterns("/*");	//제외할 주소의 경로 설정
+		*/
 	
 		//필터 빈
 	 	@Bean
@@ -61,6 +72,17 @@ public class servletConfig implements WebMvcConfigurer{
 	    //인터셉터 등록 빈
 	    @Override
 	    public void addInterceptors(InterceptorRegistry registry){
+	    	
+	    	registry.addInterceptor(mcommonInterceptor)
+		    		//intercepter 주입 구간
+		            //.addPathPatterns("/template/templateInfo*")
+		    		
+		            // Interceptor에서 제외되는 URL 주소 기입
+	    			.addPathPatterns("/**.go")
+	    			.addPathPatterns("/**/**.go")
+	    			.addPathPatterns("/**/**/**.go")
+	    			.addPathPatterns("/**/**/**/**.go")
+		            .excludePathPatterns(EXCLUDE_PATHS);
 	        registry.addInterceptor(mtemplateInterceptor)
 	        		//intercepter 주입 구간
 	                //.addPathPatterns("/template/templateInfo*")
