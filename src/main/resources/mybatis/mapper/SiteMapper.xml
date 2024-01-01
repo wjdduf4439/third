@@ -22,16 +22,18 @@
 	        	AND del_chk = 'N'
 	        </if>
 	        
-	        <if test="searchCnd == null" >
-				<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+	        <if test="header_call != 'true'" >
+	        
+		        <if test="searchCnd == null" >
+					<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+				</if>
+			    <if test="searchCnd == 0" >
+					<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				</if>
+				<if test="searchCnd == 1" >
+					<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				</if>
 			</if>
-		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			<if test="searchCnd == 1" >
-				<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			
 			
 	        ORDER BY frstRegistPnttm DESC,  siteCode DESC
 	        LIMIT #{pageIndex}, #{recordCountPerPage} 
@@ -43,14 +45,18 @@
 	        FROM SITE_TABLE
 	        WHERE 1=1
 	        
-	       <if test="searchCnd == null" >
-				<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-			</if>
-		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			<if test="searchCnd == 1" >
-				<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+	       <if test="header_call != 'true'" >
+	        
+		        <if test="searchCnd == null" >
+					<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+				</if>
+			    <if test="searchCnd == 0" >
+					<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				</if>
+				<if test="searchCnd == 1" >
+					<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+				</if>
+				
 			</if>
 	        
     </select>

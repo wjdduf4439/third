@@ -49,7 +49,7 @@ public class SiteAjaxController {
 	
 	/*
 	
-		수정 화면 진입시 템플릿 유형을 표시한 다음 템플릿의 필드를 표시하기 위한 메소드
+		수정 화면 진입시 템플릿 유형을 표시한 다음 템플릿의 필드를 체크박스로 표시하기 위한 메소드
 		템플릿의 필드는 체크박스만 표시하고 필드 너비는 siteUpdateWidthInput 메소드에서 실행한다.
 	
 	*/
@@ -187,12 +187,9 @@ public class SiteAjaxController {
 		
 		//inputHtml += " <select  id=\"templateTypeSelect\" name=\"templateTypeSelect\" class=\"selectText width150\" onchange=\"javascript:fn_template();\" >\r\n";
 		
-		if( tCode != "NONE" && !"NONE".equals(tCode) ) { 
-			inputHtml += " <select  id=\"templateTypeSelect\" name=\"templateTypeSelect\" class=\"selectText width150\" disabled >\r\n";
-		} else {
-			inputHtml += " <select  id=\"templateTypeSelect\" name=\"templateTypeSelect\" class=\"selectText width150\" >\r\n";
-		}
-		
+		inputHtml += " <select  id=\"templateTypeSelect\" name=\"templateTypeSelect\" class=\"selectText width150\" ";
+		if( tCode != "NONE" && !"NONE".equals(tCode) ) { 	inputHtml += "disabled"; }
+		inputHtml += " >\r\n";
 		
 		inputHtml += " <option value=\"9\">::: 선택 :::</option> ";
 		
