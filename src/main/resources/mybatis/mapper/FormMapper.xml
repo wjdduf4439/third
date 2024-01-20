@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ljy.third.dao">
+<mapper namespace="com.ljy.third.dao.form">
 	
-	<select id="selectFormMenuList" resultType="com.ljy.third.vo.FormMenuVO">
+	<select id="selectFormMenuList" resultType="com.ljy.third.vo.form.FormMenuVO">
 	        SELECT		formCode,
 	        			formName,
 	        			del_chk,
@@ -19,17 +19,7 @@
 	        </if>
 	        
 	        <!-- start 레코드부터 size값만큼 레코드를 뽑아냄 -->
-	        
-	        <if test="searchCnd == null" >
-				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-			</if>
-		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			<if test="searchCnd == 1" >
-				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			
+			<include refid="search_option" />
 	        
     </select>
 
@@ -38,17 +28,7 @@
 	        FROM FORM_TABLE
 	        WHERE 1=1
 	        
-	       
-	        <if test="searchCnd == null" >
-				<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-			</if>
-		    <if test="searchCnd == 0" >
-				<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			<if test="searchCnd == 1" >
-				<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-			</if>
-			
+			<include refid="search_option" />
 	        
     </select>
     
@@ -58,7 +38,7 @@
 	        FROM FORM_TABLE
 	 </select>
 
-	<select id="lookFormMenuOne" resultType="com.ljy.third.vo.FormMenuVO">
+	<select id="lookFormMenuOne" resultType="com.ljy.third.vo.form.FormMenuVO">
 	        SELECT 
 	        	formCode,
 	        	formName,
@@ -136,5 +116,19 @@
 			del_chk = 'N'
 		WHERE formCode = #{formCode}
 	</update>
+
+	<sql id="search_option">
+	        
+        <if test="searchCnd == null" >
+			<![CDATA[	AND	(formName LIKE CONCAT ('%', #{searchWrd},'%') OR frstRegistNm LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+		</if>
+	    <if test="searchCnd == 0" >
+			<![CDATA[	AND	formName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+		<if test="searchCnd == 1" >
+			<![CDATA[	AND	frstRegistNm LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+	
+	</sql>
 
 </mapper>

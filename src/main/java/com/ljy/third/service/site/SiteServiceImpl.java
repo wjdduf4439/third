@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ljy.third.dao.site.SiteDAO;
-import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SysCodeVO;
+import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 @Service("SiteService")
@@ -144,6 +144,12 @@ public class SiteServiceImpl implements SiteService {
 	public List<SysCodeVO> siteFieldInput(SysCodeVO sysCodeVO) throws Exception {
 		// TODO Auto-generated method stub
 		return siteDAO.siteFieldInput(sysCodeVO);
+	}
+	
+	private String createCode(String codeHead ) {
+		
+		
+		return "";
 	}
 
 }

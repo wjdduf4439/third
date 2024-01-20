@@ -19,7 +19,7 @@
 	
 	</select>
 	
-	<select id="selectTableRecordList" resultType="com.ljy.third.vo.TemplateZeroViewVO"  >
+	<select id="selectTableRecordList" resultType="com.ljy.third.vo.templateZero.TemplateZeroViewVO"  >
 		
 		
         SELECT CODE,
@@ -115,7 +115,7 @@
 		 
 	</select>
 	
-	<select id="selectTableRecordOne" resultType="com.ljy.third.vo.TemplateZeroViewVO">
+	<select id="selectTableRecordOne" resultType="com.ljy.third.vo.templateZero.TemplateZeroViewVO">
 	 
 		SELECT *
 		FROM TB_${siteCode}
@@ -123,7 +123,7 @@
 		 
 	</select>
 	
-	<select id="selectTableRecordRecent" resultType="com.ljy.third.vo.TemplateZeroViewVO">
+	<select id="selectTableRecordRecent" resultType="com.ljy.third.vo.templateZero.TemplateZeroViewVO">
 	 
 		SELECT *
 		FROM TB_${siteCode}

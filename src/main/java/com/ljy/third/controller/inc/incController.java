@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ljy.third.service.form.FormService;
 import com.ljy.third.service.site.SiteService;
-import com.ljy.third.vo.FormMenuVO;
+import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 

@@ -6,3 +6,13 @@ function objectifyForm(formArray) {
 	}
 	return returnArray;
 }
+$.ajaxSetup({
+	async: true,
+    beforeSend : function(xmlHttpRequest){
+ 	   xmlHttpRequest.setRequestHeader("AJAX", "true");
+   	},    
+	error: function (request, status, error) {
+		alert("요청중 오류 발생(code: " + request.status + ")");
+		console.log("code:" + request.status + "\nmessage:" + request.responseText + "\nerror:" + error);
+	}
+});

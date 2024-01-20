@@ -19,7 +19,7 @@
 	
 	</select>
 	
-	<select id="selectTableRecordList" resultType="com.ljy.third.vo.TemplateZeroVO"  >
+	<select id="selectTableRecordList" resultType="com.ljy.third.vo.templateZero.TemplateZeroVO"  >
 		
 		
         SELECT CODE,
@@ -45,15 +45,7 @@
 		FROM	TB_${siteCode}
 		WHERE	1=1
 		
-		<if test=' searchCnd == "" or searchCnd == null' >
-			<![CDATA[	AND (TITLE LIKE CONCAT ('%', #{searchWrd},'%') OR CONTEXT LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-		</if>
-       <if test=' searchCnd == "0" ' >
-			<![CDATA[	AND TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-		</if>
-		<if test=' searchCnd == "1" ' >
-			<![CDATA[	AND CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-		</if>
+		<include refid="search_option" />
 		
 		ORDER BY frstRegistPnttm DESC,  code DESC
 	    LIMIT ${pageIndex}, #{recordCountPerPage} 
@@ -65,20 +57,12 @@
 		SELECT COUNT(CODE)
 		FROM	TB_${siteCode}
 		WHERE	1=1
-		
-		<if test=' searchCnd == "" ' >
-			<![CDATA[	AND (TITLE LIKE CONCAT ('%', #{searchWrd},'%') OR CONTEXT LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-		</if>
-       <if test=' searchCnd == "0" ' >
-			<![CDATA[	AND TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-		</if>
-		<if test=' searchCnd == "1" ' >
-			<![CDATA[	AND CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-		</if>
+
+		<include refid="search_option" />
 		
 	</select>
 	
-	<select id="selectTableNoticeList" resultType="com.ljy.third.vo.TemplateZeroVO">
+	<select id="selectTableNoticeList" resultType="com.ljy.third.vo.templateZero.TemplateZeroVO">
 	 
 		SELECT *
 		FROM TB_${siteCode}
@@ -126,7 +110,7 @@
 		 
 	</select>
 	
-	<select id="selectTableRecordOne" resultType="com.ljy.third.vo.TemplateZeroVO">
+	<select id="selectTableRecordOne" resultType="com.ljy.third.vo.templateZero.TemplateZeroVO">
 	 
 		SELECT *
 		FROM TB_${siteCode}
@@ -134,7 +118,7 @@
 		 
 	</select>
 	
-	<select id="selectTableRecordRecent" resultType="com.ljy.third.vo.TemplateZeroVO">
+	<select id="selectTableRecordRecent" resultType="com.ljy.third.vo.templateZero.TemplateZeroVO">
 	 
 		SELECT *
 		FROM TB_${siteCode}
@@ -156,7 +140,7 @@
 				,del_chk
 				,notice_chk
 			) VALUES (
-				#{code}
+				createCode(#{ maxCode }, concat(#{ primaryCode },'_'))
 				,#{title}
 				,#{context}
 				,#{atchFileId}
@@ -179,7 +163,7 @@
 			,atchFileId = #{atchFileId}
 			,frstRegistNm  = #{frstRegistNm}
 			,lastUpdtNm  = "수정자"
-			,lastUpdtPnttm=now()
+			,lastUpdtPnttm = now()
 			,notice_chk  = #{notice_chk}
 			
 		WHERE code = #{code}
@@ -221,6 +205,20 @@
 		
 	
 	</delete>
+	
+	<sql id="search_option">
+	
+		<if test=' searchCnd == "" or searchCnd == null' >
+			<![CDATA[	AND (TITLE LIKE CONCAT ('%', #{searchWrd},'%') OR CONTEXT LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+		</if>
+       <if test=' searchCnd == "0" ' >
+			<![CDATA[	AND TITLE LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+		<if test=' searchCnd == "1" ' >
+			<![CDATA[	AND CONTEXT LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+	
+	</sql>
 
 
 </mapper>

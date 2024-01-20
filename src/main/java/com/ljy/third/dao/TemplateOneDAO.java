@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateOneVO;
-import com.ljy.third.vo.TemplateZeroVO;
+import com.ljy.third.vo.templateZero.TemplateZeroVO;
 
 @Repository("TemplateOneDAO")
 public class TemplateOneDAO {

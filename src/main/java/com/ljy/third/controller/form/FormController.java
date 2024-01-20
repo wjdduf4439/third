@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ljy.third.service.form.FormService;
 import com.ljy.third.util.PageSet;
-import com.ljy.third.vo.FormMenuVO;
+import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 //항목 생성 기능을 담당하는 컨트롤러

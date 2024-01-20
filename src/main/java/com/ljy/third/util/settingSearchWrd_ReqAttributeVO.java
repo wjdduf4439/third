@@ -1,7 +1,7 @@
 package com.ljy.third.util;
 
 import com.ljy.third.vo.TemplateOneVO;
-import com.ljy.third.vo.TemplateZeroVO;
+import com.ljy.third.vo.templateZero.TemplateZeroVO;
 
 public class settingSearchWrd_ReqAttributeVO {
 

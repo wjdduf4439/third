@@ -2,13 +2,6 @@ package com.ljy.third.vo.site;
 
 import com.ljy.third.vo.VOobject;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@ToString
-@NoArgsConstructor //기본 생성자를 만들어줌
-@AllArgsConstructor //여기에 필드에 쓴 모든생성자만 만들어줌
 public class SiteMenuVO extends VOobject {
 	
 	private static final long serialVersionUID = 2868410232929931052L;
@@ -17,6 +10,8 @@ public class SiteMenuVO extends VOobject {
 	private String title;
 	private String noticeSwitch;
 	private String formCode;
+	//primaryCode 받기용 선언
+    private String primaryCode;
 	private String del_chk;
 	private String adminName;
 	private String typeName;
@@ -124,6 +119,12 @@ public class SiteMenuVO extends VOobject {
 	}
 	public void setFormCode(String formCode) {
 		this.formCode = formCode;
+	}
+	public String getPrimaryCode() {
+		return primaryCode;
+	}
+	public void setPrimaryCode(String primaryCode) {
+		this.primaryCode = primaryCode;
 	}
 	public String getDel_chk() {
 		return del_chk;

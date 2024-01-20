@@ -60,21 +60,14 @@
 		$.ajax({      
 	        type:"post",  
 	        url : url,
-	        async: true,
 	        //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
 	        dataType : 'text', // 받을 data type
 	        data : JSON.stringify(jsonData),
 	        processData : false,
-	        contentType : false,
-	        beforeSend : function(xmlHttpRequest){
-	        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-	        	  },    
+	        contentType : false,    
 	        success:function(args){   
 	        	//alert(args);
-	        },   
-	        error:function(e){  
-	            alert("log 기입 실패" + e.responseText);  
-	        }  
+	        }
 	    });  
 			
 	});

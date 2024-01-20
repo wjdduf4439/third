@@ -9,11 +9,6 @@
 
 <script>
 	
-	
-	window.addEventListener('load', function() {
-        $("#Tzero").css("color","orange");
-    })
-	
 	function fn_searchKeyPressed(event) {
 		//검색 상자 키 이벤트
 		if (event.keyCode == 13) {
@@ -24,7 +19,7 @@
 	function fn_list(searchCnd) {
 		//페이지 선택
 		document.frm.pageIndex.value = searchCnd;
-		document.frm.action = '<c:url value="/template/templateInfo.go"/>';
+		document.frm.action = '<c:url value="/template/templateZeroList.go"/>';
 		document.frm.submit();
 	}
 	
@@ -115,9 +110,13 @@
 							
 							<c:forEach var="result" items="${resultList }" varStatus="status1">
 								<tr onclick="javascript:fn_update('${result.code}')">
-									<td class="<c:out value="${result.del_chk == 'Y' ? 'background-color06' : ''}"/>"><c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
+									<td><c:out value="${paging.dbCount - (paging.currPage * paging.recordCountPerPage + status1.index) }" /> </td>
 									<c:forEach var="result2" items="${fieldList }" varStatus="status2">
-										<c:if test="${result2.ordinal_Position == 2 }"><td>${result.title}</td></c:if>
+										<c:if test="${result2.ordinal_Position == 2 }">
+											<c:if test='${result.del_chk eq "Y" }'> <c:set var="title" value="<span class='box_del'>삭제</span><span class='lineThrough_del'>${result.title }</span>"/> </c:if>
+											<c:if test='${result.del_chk ne "Y" }'> <c:set var="title" value="${result.title }"/> </c:if>
+											<td>${title}</td>
+										</c:if>
 										<c:if test="${result2.ordinal_Position == 3 }"><td>${result.context}</td></c:if>
 										<c:if test="${result2.ordinal_Position == 4 }"><td>${result.atchFileId}</td></c:if>
 										<c:if test="${result2.ordinal_Position == 5 }"><td>${result.writerID}</td></c:if>

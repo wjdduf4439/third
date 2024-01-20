@@ -136,7 +136,7 @@
 			</form>
 			
 			<div class="btngroup mt0">
-				<button class="btn03 fr" onclick="javascript:fn_back();" type="button">돌아가기</button>
+				<button class="btn03 fr" onclick="javascript:fn_back('<c:url value='/site/siteAdmin.go'/>');" type="button">돌아가기</button>
 				<c:out value= '' />
 				<c:if test="${empty resultList }"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">등록</button> </c:if>
 				<c:if test="${not empty resultList}"> <button class="btn02 fr" onclick="javascript:fn_insert();" type="button">수정</button> </c:if>

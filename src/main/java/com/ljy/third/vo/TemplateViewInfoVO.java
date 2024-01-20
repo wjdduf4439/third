@@ -1,5 +1,7 @@
 package com.ljy.third.vo;
 
+import com.ljy.third.vo.templateZero.TemplateZeroViewVO;
+
 public class TemplateViewInfoVO extends VOobject {
 
 	private String siteCode;
@@ -24,7 +26,6 @@ public class TemplateViewInfoVO extends VOobject {
 		this.setSearchCnd1(mTemplateZeroViewVO.getSearchCnd1());
 		this.setSearchCnd2(mTemplateZeroViewVO.getSearchCnd2());
 		this.setSearchCnd3(mTemplateZeroViewVO.getSearchCnd3());
-		
 		this.setSearchWrd(mTemplateZeroViewVO.getSearchWrd());
 		
 	}

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ljy.third.dao">
+<mapper namespace="com.ljy.third.dao.site">
 	
 	<select id="selectSiteMenuList" resultType="com.ljy.third.vo.site.SiteMenuVO">
 	        SELECT	siteCode,
@@ -23,16 +23,7 @@
 	        </if>
 	        
 	        <if test="header_call != 'true'" >
-	        
-		        <if test="searchCnd == null" >
-					<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-				</if>
-			    <if test="searchCnd == 0" >
-					<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-				</if>
-				<if test="searchCnd == 1" >
-					<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-				</if>
+		        <include refid="search_option" />
 			</if>
 			
 	        ORDER BY frstRegistPnttm DESC,  siteCode DESC
@@ -45,18 +36,8 @@
 	        FROM SITE_TABLE
 	        WHERE 1=1
 	        
-	       <if test="header_call != 'true'" >
-	        
-		        <if test="searchCnd == null" >
-					<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
-				</if>
-			    <if test="searchCnd == 0" >
-					<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-				</if>
-				<if test="searchCnd == 1" >
-					<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
-				</if>
-				
+			<if test="header_call != 'true'" >
+		        <include refid="search_option" />
 			</if>
 	        
     </select>
@@ -76,25 +57,28 @@
 	 </select>
 
 	<select id="selectSiteMenuOne" resultType="com.ljy.third.vo.site.SiteMenuVO">
-	        SELECT 
-	        	siteCode,
-	        	title,
-	        	formCode,
-	        	adminName,
-	        	del_chk,
-	        	typeName,
-	        	templateType,
-	        	maxFileUploadNumber,
-	        	fileUploadType,
-	        	placeRow,
-	        	placeName,
-	        	placeWidth
+ 			SELECT 
+	        	`site`.siteCode,
+	        	`site`.title,
+	        	`site`.formCode,
+	        	`templatefield`.`primaryCode` as `primaryCode`,
+	        	`site`.adminName,
+	        	`site`.del_chk,
+	        	`site`.typeName,
+	        	`site`.templateType,
+	        	`site`.maxFileUploadNumber,
+	        	`site`.fileUploadType,
+	        	`site`.placeRow,
+	        	`site`.placeName,
+	        	`site`.placeWidth
 	        	
-	        FROM SITE_TABLE
-	        WHERE siteCode = #{siteCode}
+	        FROM SITE_TABLE as `site`
+	        left join TEMPLATEFIELD_TABLE as `templatefield` on `site`.`templateType` = `templatefield`.`code`
+	        
+	        WHERE `site`.siteCode = #{siteCode}
     </select>
     
-    <select id="selectSiteMenuFormList" resultType="com.ljy.third.vo.FormMenuVO">
+    <select id="selectSiteMenuFormList" resultType="com.ljy.third.vo.form.FormMenuVO">
     
     		SELECT	formCode, formName
 	        FROM	FORM_TABLE
@@ -248,5 +232,19 @@
 	        WHERE temCodeHead LIKE CONCAT('%','${temCodeHead}' ,'%')
 	        
     </select>
+    
+    <sql id="search_option">
+    
+		<if test="searchCnd == null" >
+			<![CDATA[	AND	(title LIKE CONCAT ('%', #{searchWrd},'%') OR adminName LIKE CONCAT ('%', #{searchWrd},'%') )  ]]>
+		</if>
+	    <if test="searchCnd == 0" >
+			<![CDATA[	AND	title LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+		<if test="searchCnd == 1" >
+			<![CDATA[	AND	adminName LIKE CONCAT('%',#{searchWrd} ,'%')  ]]>
+		</if>
+	
+	</sql>
 
 </mapper>

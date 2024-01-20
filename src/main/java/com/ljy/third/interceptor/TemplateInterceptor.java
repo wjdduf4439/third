@@ -59,6 +59,8 @@ public class TemplateInterceptor implements HandlerInterceptor {
 			//siteCode부분은 가져오되..... siteCode를 db에서 돌리고 값을 찾아오게 시킨다.
 			//기존 CONTROLLER에서는 MAP형식으로 값을 보냈지만, REQUST형식으로 값을 담아서 보낸다.
 			
+			if( "true".equals(request.getHeader("AJAX"))	) { return true; }
+			
 			String[] fieldNumber;		//게시판에 나오는 항목들의 순번을 결정하는 값
 			String[] fieldName;			//게시판의 나오는 항목들의 이름을 결정할 값
 			String[] fieldWidth = {"50"};	//게시판의 폭을 결정할 값

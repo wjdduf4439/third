@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.TemplateViewInfoVO;
-import com.ljy.third.vo.TemplateZeroViewVO;
+import com.ljy.third.vo.templateZero.TemplateZeroViewVO;
 
 @Repository("TemplateZeroViewDAO")
 public class TemplateZeroViewDAO {

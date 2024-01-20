@@ -3,7 +3,7 @@ package com.ljy.third.service.form;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ljy.third.vo.FormMenuVO;
+import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 public interface FormService {

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.ljy.third.controller.TemplateInfoController;
 import com.ljy.third.service.TemplateInfoService;
-import com.ljy.third.service.TemplateZeroViewService;
+import com.ljy.third.service.templateZero.TemplateZeroViewService;
 import com.ljy.third.util.EnumLogs;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateViewInfoVO;

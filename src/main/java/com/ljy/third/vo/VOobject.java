@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class VOobject implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = 2868410232929931052L;
-	
+    
 	/** ?��?���?�??�� */
     private int pageUnit = 10;
     /** ?��?���??��?���? */
@@ -30,7 +30,7 @@ public class VOobject implements Cloneable, Serializable {
     private String searchCnd3 ="";
 	/** �??��?�� */
     private String searchWrd ="";
-        
+    
 	public int getPageUnit() {
 		return pageUnit;
 	}

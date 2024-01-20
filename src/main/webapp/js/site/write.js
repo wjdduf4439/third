@@ -19,22 +19,14 @@ function fn_templateCheckBox(url){
 	$.ajax({      
         type:"get",  
         url : url,
-        async: true,
         //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
         dataType : 'text',
-        processData : false,
         contentType : false,
-        beforeSend : function(xmlHttpRequest){
-        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
         success:function(args){   
         	//alert(args);
         	$("#templateplace").empty();
         	$("#templateplace").append(args);
-        },   
-        error:function(e){  
-            alert("siteajax 실패" + e.responseText);  
-        }  
+        }
     }); 
 	
 }
@@ -46,21 +38,13 @@ function fn_templateTypeOptionInput(url){
 	$.ajax({      
 	    type:"get",  
 	    url : url,
-	    async: true,
 	    //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
 	    dataType : 'text',
-	    processData : false,
 	    contentType : false,
-	    beforeSend : function(xmlHttpRequest){
-	    	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-	    	  },    
 	    success:function(args){   
 	    	//alert(args);
 	    	$("#templateTypePlace").empty();
 	    	$("#templateTypePlace").append(args);
-	    },   
-	    error:function(e){  
-	        alert("siteajax 실패" + e.responseText);  
 	    }  
 	}); 
 		
@@ -75,23 +59,15 @@ function fn_siteUpdateCheckbox(url){
 	$.ajax({      
         type:"get",  
         url : url,
-        async: true,
         //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
         dataType : 'text',
-        processData : false,
         contentType : false,
-        beforeSend : function(xmlHttpRequest){
-        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
         success:function(args){   
         	//alert(args);
         	$("#templateplace").empty();
         	$("#templateplace").append(args);
         	
-        },   
-        error:function(e){  
-            alert("sitefieldajax 실패" + e.responseText);  
-        }  
+        } 
     }); 
 }
 
@@ -101,23 +77,15 @@ function fn_siteUpdateWidthInput(url){
 	$.ajax({      
         type:"get",  
         url : url,
-        async: true,
         //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
         dataType : 'text',
-        processData : false,
         contentType : false,
-        beforeSend : function(xmlHttpRequest){
-        	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
         success:function(args){   
         	//alert(args);
         	$("#lengthInput").empty();
         	$("#lengthInput").append(args);
         	
-        },   
-        error:function(e){  
-            alert("sitewidthajax 실패" + e.responseText);  
-        }  
+        }
     }); 
 }
 
@@ -168,22 +136,15 @@ function fn_delete(url){
 	$.ajax({      
         type:"post",  
         url : url,
-        async: true,
         //dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
         data : frmData_json,
         dataType : 'json',
-        contentType : 'application/json; charset=utf-8',
-        beforeSend : function(xmlHttpRequest){
-     	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
+        contentType : 'application/json; charset=utf-8',  
         success:function(args){   
         	//alert("args.returnPage : " + args.returnPage);
         	$("#frm").attr("action",args.returnPage );
         	$("#frm").submit();
-        },   
-        error:function(e){  
-            alert("siteajax 실패" + e.responseText);  
-        }  
+        }
     });
 	
 	
@@ -199,28 +160,21 @@ function fn_restore(url){
 	$.ajax({      
         type:"post",  
         url : url,
-        async: true,
         data : frmData_json,
         dataType : 'json',	//dataType : text 옵션으로 viewresolver가 반응하지 않게 하기
-        contentType : 'application/json;charset=utf-8',
-        beforeSend : function(xmlHttpRequest){
-        	xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
+        contentType : 'application/json;charset=utf-8', 
         success:function(args){
         	
         	$("#frm").attr("action",args.returnPage );
         	$("#frm").submit();
-        },   
-        error:function(e){  
-            alert("siteajax 실패" + e.responseText);  
-        }  
+        }
     });
 	
 }
 
-function fn_back(){
+function fn_back(url){
 	
-	$("#frm").attr("action","<c:url value='/site/siteAdmin.go'/>" );
+	$("#frm").attr("action",url );
 	$("#frm").submit();
 	
 }

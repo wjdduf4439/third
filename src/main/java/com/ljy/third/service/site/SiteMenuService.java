@@ -2,8 +2,8 @@ package com.ljy.third.service.site;
 
 import java.util.List;
 
-import com.ljy.third.vo.FormMenuVO;
 import com.ljy.third.vo.SysCodeVO;
+import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
 public interface SiteMenuService {

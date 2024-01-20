@@ -102,20 +102,16 @@ function fn_insert(){
         data : frmData_json,
         dataType : 'json',
         contentType : 'application/json; charset=utf-8',
-        beforeSend : function(xmlHttpRequest){
-     	   xmlHttpRequest.setRequestHeader("AJAX", "true");
-        	  },    
         success:function(args){   
         	//alert("args.returnPage : " + args.returnPage);
         	$("#frm").attr("action",args.returnPage );
         	$("#frm").submit();
-        },   
-        error:function(e){  
-            alert("siteajax 실패" + e.responseText);  
-        }  
+        }
     });
 	
 }
+
+
 
 
 </script>
