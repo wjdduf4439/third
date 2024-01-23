@@ -1,5 +1,11 @@
 package com.ljy.third.controller.templateZero;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +21,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ljy.third.util.FileUploadValidateWork;
 import com.ljy.third.util.PageSet;
+import com.ljy.third.service.FileService;
 import com.ljy.third.service.site.SiteService;
 import com.ljy.third.service.templateZero.TemplateZeroService;
+import com.ljy.third.vo.FileVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 import com.ljy.third.vo.templateZero.TemplateZeroVO;
@@ -40,6 +50,14 @@ public class TemplateZeroController {
 	
 	@Resource(name ="SiteService")
 	private SiteService siteService; 
+	
+	@Resource(name = "FileService")
+	private FileService fileService;
+
+	//private String SAVE_PATH =  "C:/sts-bundle/workspace-sts-3.9.4.RELEASE/first/src/main/webapp/resources/image";
+	private String SAVE_PATH =  "";
+	private String PREFIX_URL =  SAVE_PATH + "/";
+	
 	
 	@RequestMapping("/template/templateZero{processMark:List|Write}.go")
 	public String TemplateZeroList(@ModelAttribute("searchVO") TemplateZeroVO templateZeroVO  ,ModelMap map, HttpServletRequest req
@@ -164,12 +182,19 @@ public class TemplateZeroController {
 		*/
 		
 		if( "Insert".equals(processMark) ) {
-			
+
+			/*
+			insert 작업시, 작업 시점에서의 가장 큰 maxcode를 먼저 찾아낸 다음 insert 작업을 수행하고, 이 수행 시의 maxcode는 upload에서 재사용되게 만든다.
+			*/
+			String maxCode = templateZeroService.selectTableRecordListMax(stringJson);
+			stringJson.put("maxCode", maxCode);
+			resultMap.put("resultCode", maxCode );
 			templateZeroService.insertTableRecord(stringJson, request);
 			
 		}else if( "Update".equals(processMark) ) {
 			
 			templateZeroService.updateTableRecord(stringJson, request);
+			resultMap.put("resultCode", stringJson.get("code") );
 			
 		}
 		
@@ -219,6 +244,192 @@ public class TemplateZeroController {
 		resultMap.put("returnPage",  rootContextPath + "/template/templateZeroList.go" );
 		
 		return resultMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/template/templateZeroUpload.go", method = RequestMethod.POST)
+	public HashMap<String, Object> templateZeroUpload(HttpServletRequest request,
+			@RequestPart(value = "siteCode") String siteCode, 
+			@RequestPart(value = "code") String code, 
+			@RequestPart(value="b_filename",required = false) List<MultipartFile> uploadFile
+			) throws Exception {
+
+		HashMap<String, String> atchFileIdMap = new HashMap<String, String>();
+		HashMap<String, String> fileMap = new HashMap<String, String>();
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		if( !"true".equals(request.getHeader("AJAX"))	) {
+			resultMap.put("message",  "ajax 요청 아님!" ); return resultMap;
+		}
+		
+		System.out.println("templateZeroUpload uploadFile : " + siteCode.toString());
+		System.out.println("templateZeroUpload uploadFile : " + code.toString());
+		System.out.println("templateZeroUpload uploadFile : " + uploadFile.get(0).getOriginalFilename());
+		
+		String originFilename = "";
+		String savingFilename = "";
+		int savingFileTypeIndex = 0;
+		String savingFileType = "";
+		
+		TemplateZeroVO atchFileIdVO = new TemplateZeroVO();
+		
+		if(!uploadFile.get(0).getOriginalFilename().equals("")){
+			
+	
+			String maxCode;	//atchfileid를 담을 변수
+			makedir(request);	//파일이 있다면 파일경로를 먼저 지정
+			try {	maxCode = fileService.selectFileCodeMax();	}catch (Exception e) {	maxCode = "0";	}
+
+			String maxAtchFileIdString = templateZeroService.selectTableAtchFileIdMax(siteCode); //최대 atchFileId값을를 가져옴
+			int counttemp = 0;
+			System.out.println("가져온 maxAtchFileIdString : " + maxAtchFileIdString);
+			
+			//maxTableAtchFileId의 값이 0이면 무조건 앞자리만 0이고, 해당 게시판에 처음 들어오는 첨부파일이니 counttemp 값을 1로 해준다
+			//maxTableAtchFileId의 값이 0이 아니라면 _AND_SITE_ 구문 앞까지의 번호를 추출해서 1을 더한다			
+			if( maxAtchFileIdString.substring(0,1) == "0" ) {
+				counttemp = 1; 
+			} else {
+				maxAtchFileIdString = maxAtchFileIdString.substring(0, maxAtchFileIdString.indexOf("_AND_SITE_")); //_AND_SITE_ 부분을 제거된 값을 숫자로 채워서 넣음
+				counttemp = Integer.parseInt(maxAtchFileIdString)+1; //최대 fid에 1을 더함
+			}
+			
+			//FILE_TABLE에 넣을 fid 값을 setB_file_id 로 지정하기
+		    //SITE_ 테이블에 넣을 atchFileId 값을 getB_file_id 로 지정하기
+			atchFileIdVO.setB_file_id(Integer.toString(counttemp));
+			atchFileIdVO.setAtchFileId(atchFileIdVO.getB_file_id() + "_AND_" + siteCode ); 
+				
+			for(int i = 0 ; i < uploadFile.size(); i++  ) {
+
+				fileMap.put("siteCode", siteCode);
+				//새로운 filevo 선언 후 sitecode에 현재 사용하고 있는 게시판 코드를 집어넣음
+
+				//savingfname으로 파일 저장, savingFileTypeIndex으로 파일 형식의 온점 마크 위치를 찾음
+				originFilename = uploadFile.get(i).getOriginalFilename();
+				savingFilename = makeSavingFileCode( code, atchFileIdVO.getB_file_id() , i);
+				
+				//savingFileTypeIndex으로 파일 형식의 온점 마크 위치를 찾고 파일 형식을 잘라내어 저장함
+				savingFileTypeIndex = makeSavingFileTypeIndex(originFilename);
+				savingFileType = originFilename.substring(savingFileTypeIndex, originFilename.length());
+				
+				//최종 파일 저장 형식은 새로 지은 file의 이름과 파일 형식을 같이 하여 저장함
+				writeFile(uploadFile.get(i), savingFilename + savingFileType);
+				
+				/*
+				mfileVO.setFid(atchFileIdVO.getB_file_id());
+				mfileVO.setFsign(i);							 //������ ����
+				mfileVO.setFpath( PREFIX_URL + savingFilename + savingFileType); 
+				//fname는 그대로 두고, savingfname는 날짜 + 시간 + code로 설정
+				mfileVO.setSavingFname(savingFilename + savingFileType);
+				mfileVO.setFname(originFilename); //������ �̸�
+				*/
+				/*
+				INSERT INTO FILE_TABLE(code, siteCode, fid, fsign, fpath, savingFname, fname)
+				VALUES(
+					createCode(#{ maxCode }, concat(#{ primaryCode },'_'))
+				   	<!-- #{code}, -->
+				   	#{siteCode},
+				    #{fid},
+				    #{fsign},
+				    #{fpath},
+				    #{savingFname},
+				    #{fname}
+				   )
+				)
+				*/
+				//fileMap.put("siteCode", siteCode);
+				fileMap.put("maxCode", maxCode);
+				fileMap.put("fid", atchFileIdVO.getB_file_id());
+				fileMap.put("fsign", Integer.toString(i));
+				fileMap.put("fpath", PREFIX_URL + savingFilename + savingFileType);
+				fileMap.put("savingFname", savingFilename + savingFileType);
+				fileMap.put("fname", originFilename);
+				
+				templateZeroService.insertFileRecord(fileMap); 
+			}
+			atchFileIdMap.put("siteCode", siteCode);
+			atchFileIdMap.put("atchFileId", atchFileIdVO.getB_file_id() + "_AND_" + siteCode);
+			atchFileIdMap.put("code", code);
+			templateZeroService.updateAtchFileId(atchFileIdMap);
+			
+		}
+		
+		resultMap.put("successCode",  "success" );
+		
+		return resultMap;
+	}
+
+	
+	//파일을 기입하거나 저장할때 경로는 지정
+	private void makedir( HttpServletRequest req ) {
+		
+		String processerName = System.getProperty("os.name").toLowerCase();
+		System.out.println("processerName : " + processerName); 
+		
+		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/upload"; }
+		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
+		
+		
+		this.PREFIX_URL =  SAVE_PATH + "/";
+		
+	}
+
+	
+	private void writeFile(MultipartFile b_filename, String saveFileName) throws IOException, InterruptedException {
+		
+		byte[] data = b_filename.getBytes();
+		
+		FileOutputStream fos;
+			
+		//String path = "c:/upload";
+		String path = this.SAVE_PATH;
+		File Folder = new File(path);
+		
+		if (!Folder.isDirectory()) {
+			
+			    Folder.mkdir(); //���� �����մϴ�
+			    
+			    Folder.setWritable(true, true);
+			    Folder.setReadable(true, true);
+			    Folder.setExecutable(true, true);
+			    
+		}
+		
+		//실질적으로 파일을 서버 디렉터리에 업로드 및 입력하는 부분
+		try {fos = new FileOutputStream(path + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
+		
+	}
+	
+	
+	//파일 이름을 받아서 확장자를 추출하는 메소드
+	private int makeSavingFileTypeIndex( String originFileName ) {
+
+		List<Integer> indexList = new ArrayList<Integer> ();
+		String fileTypeMark = ".";
+		int savingFileTypeIndex = originFileName.indexOf(fileTypeMark);
+		
+		while(savingFileTypeIndex != -1) {
+			
+			if(savingFileTypeIndex == -1) break;
+			
+			indexList.add(savingFileTypeIndex);
+			//더이상 찾을 .이 없으면 originFileName.indexOf(의 값은 -1을 표시한다.
+			savingFileTypeIndex = originFileName.indexOf(fileTypeMark, savingFileTypeIndex + fileTypeMark.length());
+		}
+		
+		return indexList.get(indexList.size() - 1);
+	}
+	
+	//파일을 기입하거나 저장할때 현재 시간과 fid, sign에 기반해서 코드를 생성
+	private String makeSavingFileCode( String code, String fid, int fsign ) {
+
+		LocalDate  savingDate = LocalDate.now();
+		DateTimeFormatter savingDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		
+		LocalTime  savingTime = LocalTime.now();
+		DateTimeFormatter savingTimeFormatter = DateTimeFormatter.ofPattern("HH-mm-ss");
+		
+		return code + "_" + fid + "_" + fsign + "_" + savingDate.format(savingDateFormatter)+ "_" + savingTime.format(savingTimeFormatter);
 	}
 	
 }

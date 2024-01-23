@@ -21,6 +21,10 @@ public interface TemplateZeroService {
 	public int selectTableRecordListCount(TemplateInfoVO templateInfoVO) throws Exception;
 	
 	public int selectTableRecordListCount(TemplateZeroVO templateZeroVO) throws Exception;
+
+	public String selectTableRecordListMax(HashMap<String, String> stringJson) throws Exception;
+	
+	public String selectTableAtchFileIdMax(String siteCode) throws Exception;
 	
 	public List<TemplateZeroVO> selectTableNoticeList(TemplateZeroVO templateZeroVO) throws Exception;	
 	
@@ -32,7 +36,11 @@ public interface TemplateZeroService {
 	
 	public void insertTableRecord(HashMap<String, String> stringJson, HttpServletRequest req ) throws Exception;
 	
+	public void insertFileRecord(HashMap<String, String> stringJson ) throws Exception;
+	
 	public void updateTableRecord(HashMap<String, String> stringJson, HttpServletRequest req ) throws Exception;
+	
+	public void updateAtchFileId( HashMap<String, String> stringJson ) throws Exception;
 	
 	public void disableTableRecord(HashMap<String, Object> stringJson) throws Exception;
 

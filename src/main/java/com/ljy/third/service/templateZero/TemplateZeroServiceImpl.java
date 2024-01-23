@@ -42,9 +42,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	@Resource(name = "BoardDAO")
 	private BoardDAO mboardDAO;
 	
-	//private String SAVE_PATH =  "C:/sts-bundle/workspace-sts-3.9.4.RELEASE/first/src/main/webapp/resources/image";
-	private String SAVE_PATH =  "";
-	private String PREFIX_URL =  SAVE_PATH + "/";
 	
 	@Override
 	public List<TemplateInfoVO> selectTableFieldList(TemplateInfoVO templateInfoVO) throws Exception {
@@ -70,6 +67,18 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	public int selectTableRecordListCount(TemplateZeroVO templateZeroVO) throws Exception {
 		// TODO Auto-generated method stub
 		return templateZeroDAO.selectTableRecordListCount(templateZeroVO);
+	}
+	
+	@Override
+	public String selectTableRecordListMax(HashMap<String, String> stringJson) throws Exception {
+		// TODO Auto-generated method stub
+		return templateZeroDAO.selectTableRecordListMax(stringJson);
+	}
+	
+	@Override
+	public String selectTableAtchFileIdMax(String siteCode) throws Exception {
+		// TODO Auto-generated method stub
+		return templateZeroDAO.selectTableAtchFileIdMax(siteCode);
 	}
 	
 	@Override
@@ -120,18 +129,26 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 	@Override
 	public void insertTableRecord(HashMap<String, String> stringJson, HttpServletRequest req ) throws Exception {
 		// TODO Auto-generated method stub
-		
-		String maxCode = templateZeroDAO.selectTableRecordListMax(stringJson);
-		stringJson.put("maxCode",maxCode);
-		
 		//최종 글 내용 레코드 등록
 		templateZeroDAO.insertTableRecord(stringJson);
+	}
+	
+	@Override
+	public void insertFileRecord(HashMap<String, String> stringJson) throws Exception {
+		// TODO Auto-generated method stub
+		//최종 글 내용 레코드 등록
+		templateZeroDAO.insertFileRecord(stringJson);
 	}
 
 	@Override
 	//public void updateTableRecord(TemplateZeroVO templateZeroVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 	public void updateTableRecord(HashMap<String, String> stringJson, HttpServletRequest req ) throws Exception {
 		templateZeroDAO.updateTableRecord(stringJson);
+	}
+	
+	@Override
+	public void updateAtchFileId(HashMap<String, String> stringJson) throws Exception {
+		templateZeroDAO.updateAtchFileId(stringJson);
 	}
 
 
@@ -185,48 +202,6 @@ public class TemplateZeroServiceImpl implements TemplateZeroService {
 			
 		}
 		templateZeroDAO.deleteTableRecord(stringJson);
-	}
-	
-	private void writeFile(MultipartFile b_filename, String saveFileName) throws IOException, InterruptedException {
-		
-		byte[] data = b_filename.getBytes();
-		
-		FileOutputStream fos;
-			
-		//String path = "c:/upload";
-		String path = this.SAVE_PATH;
-		File Folder = new File(path);
-		
-		if (!Folder.isDirectory()) {
-			
-				
-			
-			    Folder.mkdir(); //���� �����մϴ�
-			    
-			    Folder.setWritable(true, true);
-			    Folder.setReadable(true, true);
-			    Folder.setExecutable(true, true);
-			    
-		}
-		
-		//실질적으로 파일을 서버 디렉터리에 업로드 및 입력하는 부분
-		try {fos = new FileOutputStream(path + "/" + saveFileName); fos.write(data); fos.close();} catch(Exception e) {}
-		
-		
-	}
-	
-	//파일을 기입하거나 저장할때 경로는 지정
-	private void makedir( HttpServletRequest req ) {
-		
-		String processerName = System.getProperty("os.name").toLowerCase();
-		System.out.println("processerName : " + processerName); 
-		
-		if(processerName.contains("windows")) { this.SAVE_PATH = "c:/upload"; }
-		else { this.SAVE_PATH = "/home/ec2-user/third_FileDir"; }
-		
-		
-		this.PREFIX_URL =  SAVE_PATH + "/";
-		
 	}
 	
 	//파일을 기입하거나 저장할때 현재 시간과 fid, sign에 기반해서 코드를 생성

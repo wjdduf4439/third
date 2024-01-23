@@ -41,6 +41,12 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
+	public String selectFileCodeMax() {
+		// TODO Auto-generated method stub
+		return fileDAO.selectFileCodeMax();
+	}	
+	
+	@Override
 	public void deleteFileMenu(String code, String fid, String fsign, String sitecode) {
 		// TODO Auto-generated method stub
 		fileDAO.deleteFileMenu(code, fid, fsign);

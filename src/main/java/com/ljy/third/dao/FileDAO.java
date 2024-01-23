@@ -30,7 +30,7 @@ public class FileDAO {
 		return sqlSession.selectOne("com.ljy.third.dao.FileMapper.selectFileSign", atchFileId);
 	}
 	
-	public FileVO selectFileCodeMax() {
+	public String selectFileCodeMax() {
 		
 		return sqlSession.selectOne("com.ljy.third.dao.FileMapper.selectFileCodeMax");
 		

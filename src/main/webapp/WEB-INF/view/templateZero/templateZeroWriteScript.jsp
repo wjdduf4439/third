@@ -106,6 +106,7 @@ function fn_insert(){
 	if($("input:checkbox[name=notice_chk_val]").is(":checked") == true){ $("#notice_chk").val("Y"); }else{ $("#notice_chk").val("N"); }
 	
 	let url;
+	let uploadurl = '<c:url value="/template/templateZeroUpload.go"/>';
 	<c:if test="${empty resultList}">
 		url = '<c:url value="/template/templateZeroInsert.go"/>';
 	</c:if>
@@ -219,13 +220,38 @@ function fn_insert(){
         dataType : 'json',
         contentType : 'application/json; charset=utf-8',
         success:function(args){   
-        	//alert("args.returnPage : " + args.returnPage);
+ 			$("#code").val(args.resultCode);
+ 			fn_upload(uploadurl);
         	$("#frm").attr("action",args.returnPage );
         	$("#frm").submit();
         }
     });
 	
+ 	
+ 	
 }
+ 
+function fn_upload(url){
+	 
+	var form = $('#frm')[0];
+	var formData = new FormData(form);
+ 	/* 
+ 	- contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
+ 	- processData : false로 선언 시 formData를 string으로 변환하지 않음
+ 	출처: https://dorongdogfoot.tistory.com/144 [도롱 the Dog Foot:티스토리]
+ 	 */
+ 	$.ajax({      
+        type:"post",  
+        url : url,
+        async: true,
+        data : formData,
+        contentType : false,
+        processData : false,
+        success:function(args){   
+			
+        }
+    });
+ }
 
 function fn_pageReset(){ $("#pageIndex").val(${searchVO.pageIndex/searchVO.recordCountPerPage});} 
 

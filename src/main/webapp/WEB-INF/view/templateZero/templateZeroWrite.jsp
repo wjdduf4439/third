@@ -87,11 +87,11 @@ https://ckeditor.com/docs/index.html
 					<td colspan="3"><textarea  name="contexteditor" id="contexteditor" class="maxwidth800"> ${resultList.context } </textarea></td>
 					
 				</tr>
-				<%-- 
+				
 				<c:import url="/file/fileAdmin.go" charEncoding="utf-8">        
 					<c:param name="atchFileId" value="${resultList.atchFileId}" />
 				</c:import>
-				 --%>
+				
 			
 			</table>
 

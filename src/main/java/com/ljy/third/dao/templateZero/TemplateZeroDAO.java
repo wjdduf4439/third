@@ -66,6 +66,11 @@ public class TemplateZeroDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("com.ljy.third.dao.TemplateZero.selectTableFileListMax", templateZeroVO );
 	}
+	
+	public String selectTableAtchFileIdMax(String siteCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.ljy.third.dao.TemplateZero.selectTableAtchFileIdMax", siteCode );
+	}	
 
 	public TemplateZeroVO selectTableRecordOne(TemplateZeroVO templateZeroVO) {
 		// TODO Auto-generated method stub
@@ -82,9 +87,19 @@ public class TemplateZeroDAO {
 		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.insertTableRecord", stringJson );
 	}
 	
+	public void insertFileRecord(HashMap<String, String> stringJson) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.insertFileRecord", stringJson );
+	}
+	
 	public void updateTableRecord(HashMap<String, String> stringJson) {
 		// TODO Auto-generated method stub
 		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.updateTableRecord", stringJson );
+	}
+	
+	public void updateAtchFileId(HashMap<String, String> stringJson) {
+		// TODO Auto-generated method stub
+		sqlSession.selectOne("com.ljy.third.dao.TemplateZero.updateAtchFileId", stringJson );
 	}
 	
 	public void disableTableRecord(HashMap<String, Object> stringJson) {

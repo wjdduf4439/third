@@ -9,6 +9,8 @@ public interface FileService {
 	public List<FileVO> selectFileMenuList(String atchFileId) throws Exception;
 	
 	public int selectAtchFileCount(String fid);
+	
+	public String selectFileCodeMax();
 
 	public void deleteFileMenu(String code, String fid, String fsign, String sitecode);
 	

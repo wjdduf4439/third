@@ -96,6 +96,13 @@
 		 
 	</select>
 	
+	<select id="selectTableRecordListMax" resultType="String">
+	 
+		SELECT MAX(CODE)
+		FROM TB_${siteCode}
+		 
+	</select>
+	
 	<select id="selectTableFileListMax" resultType="String">
 	 
 		SELECT count(code)
@@ -103,12 +110,12 @@
 		 
 	</select>
 	
-	<select id="selectTableRecordListMax" resultType="String">
+	<select id="selectTableAtchFileIdMax" resultType="String">
 	 
-		SELECT MAX(CODE)
+		SELECT max(atchFileId)
 		FROM TB_${siteCode}
 		 
-	</select>
+	</select>	
 	
 	<select id="selectTableRecordOne" resultType="com.ljy.third.vo.templateZero.TemplateZeroVO">
 	 
@@ -128,7 +135,7 @@
 	</select>
 	
 	<insert id="insertTableRecord">
-		 
+		 	
 			INSERT INTO TB_${siteCode} (
 				code
 				,title
@@ -150,6 +157,27 @@
 				,'N'
 				,#{notice_chk}
 			)
+			<!-- 
+			<selectKey resultType="String" keyProperty="resultCode" order="AFTER" >
+				select createCode(#{ maxCode }, concat(#{ primaryCode },'_')) AS resultCode
+			</selectKey>
+			 -->
+	</insert>
+	
+	<insert id="insertFileRecord">
+		 	
+		INSERT INTO FILE_TABLE(code, siteCode, fid, fsign, fpath, savingFname, fname)
+    	VALUES(
+			createCode(#{ maxCode }, concat('FILE','_')),
+           	<!-- #{code}, -->
+           	#{siteCode},
+            #{fid},
+            #{fsign},
+            #{fpath},
+            #{savingFname},
+            #{fname}
+		)
+    	
 	</insert>
 	
 	<update id="updateTableRecord">
@@ -166,6 +194,15 @@
 			,lastUpdtPnttm = now()
 			,notice_chk  = #{notice_chk}
 			
+		WHERE code = #{code}
+			
+			
+	</update>
+	
+	<update id="updateAtchFileId">
+		 
+		UPDATE	TB_${siteCode}
+		SET atchFileId = #{atchFileId}
 		WHERE code = #{code}
 			
 			

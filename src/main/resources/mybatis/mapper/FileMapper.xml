@@ -32,9 +32,9 @@
 		WHERE fid = #{atchFileId}
 	</select>
 	
-	<select id="selectFileCodeMax" resultType="com.ljy.third.vo.FileVO">
+	<select id="selectFileCodeMax" resultType="String">
 	
-		SELECT *
+		SELECT code
 		FROM FILE_TABLE
 		ORDER BY code DESC LIMIT 1
 	

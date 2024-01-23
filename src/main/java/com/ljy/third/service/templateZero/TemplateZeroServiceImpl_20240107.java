@@ -540,25 +540,5 @@ public class TemplateZeroServiceImpl_20240107 implements TemplateZeroService {
 		
 		return code + "_" + fid + "_" + fsign + "_" + savingDate.format(savingDateFormatter)+ "_" + savingTime.format(savingTimeFormatter);
 	}
-	
-	
-	//파일 이름을 받아서 확장자를 추출하는 메소드
-	private int makeSavingFileTypeIndex( String originFileName ) {
-
-		List<Integer> indexList = new ArrayList<Integer> ();
-		String fileTypeMark = ".";
-		int savingFileTypeIndex = originFileName.indexOf(fileTypeMark);
-		
-		while(savingFileTypeIndex != -1) {
-			
-			if(savingFileTypeIndex == -1) break;
-			
-			indexList.add(savingFileTypeIndex);
-			//더이상 찾을 .이 없으면 originFileName.indexOf(의 값은 -1을 표시한다.
-			savingFileTypeIndex = originFileName.indexOf(fileTypeMark, savingFileTypeIndex + fileTypeMark.length());
-		}
-		
-		return indexList.get(indexList.size() - 1);
-	}
 
 }
