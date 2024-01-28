@@ -1,21 +1,15 @@
 package com.ljy.third.interceptor;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.ljy.third.controller.TemplateInfoController;
 import com.ljy.third.service.TemplateInfoService;
-import com.ljy.third.service.templateZero.TemplateZeroViewService;
 import com.ljy.third.util.EnumLogs;
-import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateViewInfoVO;
 
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /*
 	servletConfig를 사용하여 해당 인터셉터를 등록해주어야 한다.
@@ -53,9 +47,8 @@ public class TemplateViewInterceptor implements HandlerInterceptor {
 	
 		@Resource(name ="TemplateInfoService")
 		private TemplateInfoService templateInfoService;
-		
 		@Override
-   		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 			
 			//request의 sitecode 부분을 찾아서 mTemplateInfoVO를 패밒시킨 다음 mTemplateInfoVO의 정보를 기존의 request에 넣을 수 있도록 해야 한다.
 			//siteCode부분은 가져오되..... siteCode를 db에서 돌리고 값을 찾아오게 시킨다.
@@ -95,8 +88,7 @@ public class TemplateViewInterceptor implements HandlerInterceptor {
 		}
 
 		
-	 
-	    @Override
+		@Override
 	    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 	            throws Exception {
 	        // TODO Auto-generated method stub

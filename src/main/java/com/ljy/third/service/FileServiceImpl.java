@@ -1,14 +1,13 @@
 package com.ljy.third.service;
 
-import java.util.Arrays;
 import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.ljy.third.dao.FileDAO;
 import com.ljy.third.vo.FileVO;
+
+import jakarta.annotation.Resource;
 
 @Service("FileService")
 public class FileServiceImpl implements FileService {

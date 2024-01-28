@@ -7,15 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ljy.third.dao.FileEditorContentDAO;
 import com.ljy.third.vo.FileEditorContentVO;
+
+import jakarta.annotation.Resource;
 
 @Service("fileEditorContentService")
 public class fileEditorContentServiceImpl implements FileEditorContentService {
@@ -100,7 +99,7 @@ public class fileEditorContentServiceImpl implements FileEditorContentService {
 
 	
 	//파일을 기입하거나 저장할때 경로는 지정
-	private void makedir( HttpServletRequest req ) {
+	private void makedir( MultipartHttpServletRequest request ) {
 		
 		String processerName = System.getProperty("os.name").toLowerCase();
 		//System.out.println("processerName : " + processerName); 

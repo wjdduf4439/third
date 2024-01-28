@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -20,15 +17,18 @@ import com.ljy.third.vo.FileVO;
 import com.ljy.third.vo.TemplateInfoVO;
 import com.ljy.third.vo.TemplateOneVO;
 
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+
 @Service("TemplateOneService")
 public class TemplateOneServiceImpl implements TemplateOneService {
-	
+	/*
 	@Resource(name = "TemplateOneDAO")
 	TemplateOneDAO templateOneDAO; 
 	
 	@Resource(name = "FileDAO")
 	FileDAO fileDAO;
-
+	
 	@Resource(name = "BoardDAO")
 	private BoardDAO mboardDAO;
 	
@@ -44,13 +44,13 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		
 		return templateOneDAO.selectTableFieldList(templateInfoVO);
 	}
-
+	
 	@Override
 	public List<TemplateOneVO> selectTableRecordList(TemplateInfoVO templateInfoVO) throws Exception {
 		// TODO Auto-generated method stub
 		return templateOneDAO.selectTableRecordList(templateInfoVO);
 	}
-
+	
 	@Override
 	public int selectTableRecordListCount(TemplateInfoVO templateInfoVO) throws Exception {
 		// TODO Auto-generated method stub
@@ -62,27 +62,27 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		// TODO Auto-generated method stub
 		return templateOneDAO.selectTableRecordListCount(templateOneVO);
 	}
-
+	
 	@Override
 	public TemplateOneVO selectTableRecordOne(TemplateOneVO templateOneVO) throws Exception {
 		// TODO Auto-generated method stub
 		
 		return templateOneDAO.selectTableRecordOne(templateOneVO);
 	}
-
+	
 	@Override
 	public TemplateOneVO selectTableRecordContext(TemplateOneVO templateOneVO) throws Exception {
 		// TODO Auto-generated method stub
 		
 		return templateOneDAO.selectTableRecordContext(templateOneVO);
 	}
-
+	
 	@Override
 	public TemplateOneVO selectTableRecordRecent(TemplateOneVO templateOneVO) throws Exception {
 		// TODO Auto-generated method stub
 		return templateOneDAO.selectTableRecordRecent(templateOneVO);
 	}
-
+	
 	@Override
 	public void insertTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		// TODO Auto-generated method stub
@@ -141,7 +141,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 			
 			templateOneVO.setB_file_id(Integer.toString(counttemp));//file_table�� f_id�� �� ���� ���̵� ����
 			templateOneVO.setAtchFileId(Integer.toString(counttemp));
-
+	
 			List<String> newCodeList = new ArrayList<String>();		//������ ÷���� ����ŭ file_table�� �� "������"�ڵ� ����
 			
 			for(int i = 0; i < templateOneVO.getB_filename().size(); i++) {
@@ -159,7 +159,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 				newCodeList.add(newCode);
 				
 			}
-
+	
 			String originFilename = "";
 			List<FileVO> fileVO = new ArrayList<FileVO>();
 			
@@ -195,7 +195,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		
 		templateOneDAO.insertTableRecord(templateOneVO);
 	}
-
+	
 	@Override
 	public void updateTableRecord(TemplateOneVO templateOneVO, final MultipartHttpServletRequest multiRequest, HttpServletRequest req ) throws Exception {
 		
@@ -271,7 +271,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 			
 			
 			int sign = 0;
-
+	
 			try { sign = fileDAO.selectFileSign(atchFileId); }catch (Exception e) {	sign = 0; }		//f_sign�ִ밪 ����
 			System.out.println("fsign�� : " + sign);
 			
@@ -308,7 +308,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 			System.out.println("-------------------------------------------------------------------");
 			
 		    mboardDAO.insertFileBoardDAO(fileVO);
-
+	
 			//filevolist�� atchfileid(fid)�� ������ ���� �Է��ϰ�, index�� fsign�� ������ ����, updateFile�� fsign�� update 
 			List<FileVO> mFileVOList = new ArrayList<FileVO>();
 			
@@ -329,7 +329,7 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		
 		templateOneDAO.updateTableRecord(templateOneVO);
 	}
-
+	
 	@Override
 	public void deleteTableRecord(TemplateOneVO templateOneVO) throws Exception {
 		// TODO Auto-generated method stub
@@ -380,5 +380,5 @@ public class TemplateOneServiceImpl implements TemplateOneService {
 		this.PREFIX_URL =  SAVE_PATH + "/";
 		
 	}
-
+	*/
 }

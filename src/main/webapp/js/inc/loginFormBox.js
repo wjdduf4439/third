@@ -1,6 +1,20 @@
 
 
-	$(document).ready(function(){ fn_setLoginFormWidth();  });
+	$(document).ready(function(){ 
+		fn_setLoginFormWidth();
+		$('#id').keypress(function(event) {
+	        if (event.which === 13) { // Check if the pressed key is 'Enter'
+	            event.preventDefault(); // Prevent the default form submission
+	            $('#pw').focus();
+	        }
+	    }); 
+		$('#pw').keypress(function(event) {
+	        if (event.which === 13) { // Check if the pressed key is 'Enter'
+	            event.preventDefault(); // Prevent the default form submission
+	            $('#loginHomeVO').submit();
+	        }
+	    }); 
+	});
 		
 	$( window ).resize(function() {
 		fn_setLoginFormWidth();

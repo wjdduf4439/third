@@ -3,13 +3,13 @@ package com.ljy.third.service.form;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import com.ljy.third.dao.form.FormDAO;
 import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
+
+import jakarta.annotation.Resource;
 
 @Service("FormService")
 public class FormServiceImpl implements FormService {

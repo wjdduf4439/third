@@ -2,9 +2,9 @@ package com.ljy.third.controller;
 
 import java.nio.charset.StandardCharsets;
 
-import javax.annotation.Resource;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

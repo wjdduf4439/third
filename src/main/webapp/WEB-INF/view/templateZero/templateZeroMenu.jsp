@@ -11,7 +11,7 @@
 	
 	function fn_searchKeyPressed(event) {
 		//검색 상자 키 이벤트
-		if (event.keyCode == 13) {
+		if (event.keyCode == 13) {r
 			fn_egov_select_List('1');
 		}
 	}

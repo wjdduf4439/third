@@ -8,7 +8,10 @@
 <script type="text/javascript">
 
 	
-	$(document).ready(function(){ fn_setWidth(); fn_setRV('3','0'); });
+	$(document).ready(function(){ 
+		fn_setWidth(); fn_setRV('3','0');
+		
+	});
 	
 	$( window ).resize(function() {
 			fn_setWidth();

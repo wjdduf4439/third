@@ -3,14 +3,10 @@ package com.ljy.third.service.templateZero;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.ljy.third.vo.FileEditorContentVO;
 import com.ljy.third.vo.TemplateInfoVO;
-import com.ljy.third.vo.TemplateOneVO;
 import com.ljy.third.vo.templateZero.TemplateZeroVO;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public interface TemplateZeroService {
 

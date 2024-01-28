@@ -2,8 +2,6 @@ package com.ljy.third.service.templateZero;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import com.ljy.third.dao.BoardDAO;
@@ -11,6 +9,8 @@ import com.ljy.third.dao.FileDAO;
 import com.ljy.third.dao.TemplateZeroViewDAO;
 import com.ljy.third.vo.TemplateViewInfoVO;
 import com.ljy.third.vo.templateZero.TemplateZeroViewVO;
+
+import jakarta.annotation.Resource;
 
 @Service("TemplateZeroViewService")
 public class TemplateZeroViewServiceImpl implements TemplateZeroViewService {

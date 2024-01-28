@@ -32,9 +32,9 @@
 					<li><a class="menuLink" href=<c:url value="/loginHome.go"/>>초기 화면</a></li>
 					<%
 					
-					System.out.println("session id : " + session.getValue("id"));
+					System.out.println("session id : " + session.getAttribute("id"));
 					
-					if( null == session.getValue("id") ){
+					if( null == session.getAttribute("id") ){
 						%>  <li><a class="menuLink" href="javascript:fn_LoginForm();">로그인</a></li> <%	 
 					} else { 
 						%>  <li><a class="menuLink" href="javascript:fn_loginOut('<c:url value="/accLogout.go"/>');">로그아웃</a></li> <%	 

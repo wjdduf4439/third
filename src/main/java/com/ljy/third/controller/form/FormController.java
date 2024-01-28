@@ -3,9 +3,6 @@ package com.ljy.third.controller.form;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +17,9 @@ import com.ljy.third.service.form.FormService;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 //항목 생성 기능을 담당하는 컨트롤러
 @Controller

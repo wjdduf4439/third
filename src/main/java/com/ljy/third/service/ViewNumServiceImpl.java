@@ -1,11 +1,12 @@
 package com.ljy.third.service;
 
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import com.ljy.third.dao.ViewNumDAO;
+
+import jakarta.annotation.Resource;
 
 @Service("ViewNumService")
 public class ViewNumServiceImpl implements ViewNumService {

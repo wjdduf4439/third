@@ -1,6 +1,6 @@
 package com.ljy.third.controller;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

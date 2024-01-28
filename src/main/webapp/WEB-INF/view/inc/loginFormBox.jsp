@@ -4,9 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/loginForm.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/inc/loginFormBox.js"></script>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/inc/loginFormBox.js"></script> 
-
 	<!-- 로그인 화면 전용 마스크 -->
 	<div id="loginmask"></div>
 

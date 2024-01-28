@@ -2,13 +2,14 @@ package com.ljy.third.controller.site;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ljy.third.service.site.SiteService;
 import com.ljy.third.vo.SysCodeVO;
+
+import jakarta.annotation.Resource;
 
 
 //게시판 생성 부분의 sitefield 항목과 그 부가적인 기능을 동작하는 컨트롤러

@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ljy.third.dao.BoardDAO;
 import com.ljy.third.vo.BoardVO;
 import com.ljy.third.vo.FileVO;
-import com.ljy.third.dao.BoardDAO;
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service("BoardService")
 public class BoardServiceImpl implements BoardService {

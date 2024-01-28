@@ -3,9 +3,6 @@ package com.ljy.third.aop;
 
 import java.lang.reflect.Method;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
@@ -16,6 +13,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ljy.third.vo.loginHomeVO;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Aspect
 public class loginSessionSetter {
@@ -42,7 +42,13 @@ public class loginSessionSetter {
 		Method method = signature.getMethod();
 		
 		//어노테이션에서 지정한 메소드에서 httprequest를 받아 담을 object 변수 		
-		HttpSession session = ((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest().getSession();
+		//HttpSession session = ((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest().getSession();
+		HttpSession session = null;
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		if (requestAttributes != null) {
+		    request = requestAttributes.getRequest();
+		    session = request.getSession();
+		}
 		//System.out.println("세션에 등록된 id의 값 : " + session.getAttribute("id").toString() );
 		
 		//파라미터의 값을 순차적으로 조회해야 함
@@ -79,11 +85,13 @@ public class loginSessionSetter {
 	@Before("within(com.ljy.third.controller..*)")
 	public void sessionCreate(JoinPoint jpt) throws Exception {
 		
-		HttpSession session = ((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest().getSession(true);
-		if(null == session) {
-			
-			
-			
+		//세션작업할 세션 생성 
+		HttpServletRequest request = null;
+		HttpSession session = null;
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		if (requestAttributes != null) {
+			 request = requestAttributes.getRequest();
+		    session = request.getSession();
 		}
 		
 	}
@@ -91,7 +99,13 @@ public class loginSessionSetter {
 	@After("execution(* com.ljy.third.controller..*(..))")
 	public void sessionPassCheck(JoinPoint jpt) throws Exception {
 		
-		HttpSession session = ((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest().getSession(true);
+		HttpServletRequest request = null;
+		HttpSession session = null;
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		if (requestAttributes != null) {
+			request = requestAttributes.getRequest();
+		    session = request.getSession();
+		}
 		if( null == session) {
 			
 			System.out.println("세션 없음");

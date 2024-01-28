@@ -3,9 +3,6 @@ package com.ljy.third.controller.site;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,6 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ljy.third.util.PageSet;
 import com.ljy.third.service.site.SiteService;
 import com.ljy.third.vo.site.SiteMenuVO;
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 //게시판 생성 기능을 담당하는 컨트롤러

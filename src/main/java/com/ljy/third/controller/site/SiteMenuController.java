@@ -3,7 +3,6 @@ package com.ljy.third.controller.site;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +13,8 @@ import com.ljy.third.util.PageSet;
 import com.ljy.third.service.site.SiteService;
 import com.ljy.third.vo.SysCodeVO;
 import com.ljy.third.vo.site.SiteMenuVO;
+
+import jakarta.annotation.Resource;
 
 
 //게시판 생성 기능을 담당하는 컨트롤러

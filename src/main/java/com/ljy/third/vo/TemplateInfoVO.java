@@ -1,5 +1,7 @@
 package com.ljy.third.vo;
 
+import java.util.Arrays;
+
 public class TemplateInfoVO extends VOobject {
 
 	private String siteCode;
@@ -19,6 +21,14 @@ public class TemplateInfoVO extends VOobject {
 	private String[] fieldWidth;
 	
 	
+	@Override
+	public String toString() {
+		return "siteCode=" + siteCode + ",\ntitle=" + title + ",\ntemplateType=" + templateType + ",\ncolumn_Name="
+				+ column_Name + ",\ncolumn_Comment=" + column_Comment + ",\nordinal_Position=" + ordinal_Position
+				+ ",\nplaceRow=" + placeRow + ",\nfieldNumber=" + Arrays.toString(fieldNumber) + ",\nplaceName="
+				+ placeName + ",\nfieldName=" + Arrays.toString(fieldName) + ",\nplaceWidth=" + placeWidth
+				+ ",\nfieldWidth=" + Arrays.toString(fieldWidth) + "]";
+	}
 	public String getSiteCode() {
 		return siteCode;
 	}

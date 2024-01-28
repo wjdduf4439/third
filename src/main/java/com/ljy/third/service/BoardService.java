@@ -2,10 +2,11 @@ package com.ljy.third.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.ljy.third.vo.BoardVO;
 import com.ljy.third.vo.FileVO;
+
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public interface BoardService {
 	

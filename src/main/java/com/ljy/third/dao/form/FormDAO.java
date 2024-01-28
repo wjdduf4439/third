@@ -3,18 +3,20 @@ package com.ljy.third.dao.form;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
 
+import jakarta.inject.Inject;
+
 @Repository("FormDAO")
 public class FormDAO {
 
 	@Inject //�ڹٿ��� �����ϴ� �ش� ���������Ŀ� ���� �����͸� �����ϴ� ������̼�
+	@Autowired
 	private SqlSession sqlSession;
 	
 	public List<FormMenuVO> selectFormMenuList(FormMenuVO formMenuVO) throws Exception {

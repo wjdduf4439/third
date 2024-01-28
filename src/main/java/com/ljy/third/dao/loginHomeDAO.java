@@ -1,11 +1,12 @@
 package com.ljy.third.dao;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ljy.third.vo.loginHomeVO;
+
+import jakarta.inject.Inject;
 
 
 //springboot는 mapper어노테이션으로 별도로 db와 연동할 수 있다.
@@ -13,6 +14,7 @@ import com.ljy.third.vo.loginHomeVO;
 public class loginHomeDAO {
 	
 	@Inject //자바에서 지원하는 해당 데이터형식에 맞춰 데이터를 주입하는 어노테이션
+	@Autowired
 	private SqlSession sqlSession;
 	
 	public loginHomeVO selectloginHomeOne(loginHomeVO mloginHomeVO) throws Exception {

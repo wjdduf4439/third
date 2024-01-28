@@ -3,7 +3,6 @@ package com.ljy.third.service.site;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +10,8 @@ import com.ljy.third.dao.site.SiteDAO;
 import com.ljy.third.vo.SysCodeVO;
 import com.ljy.third.vo.form.FormMenuVO;
 import com.ljy.third.vo.site.SiteMenuVO;
+
+import jakarta.annotation.Resource;
 
 @Service("SiteService")
 public class SiteServiceImpl implements SiteService {

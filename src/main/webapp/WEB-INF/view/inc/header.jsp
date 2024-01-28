@@ -60,7 +60,7 @@
 			<jsp:include page="UserHeaderMenu.jsp"/>
 			<%
 				//관리자용 네비게이션 뷰
-				if(	null != session.getValue("id") && !"".equals(session.getValue("id")) ){	
+				if(	null != session.getAttribute("id") && !"".equals(session.getAttribute("id")) ){	
 			%>
 				<jsp:include page="managerHeaderMenu.jsp"/>
 			<% } %>

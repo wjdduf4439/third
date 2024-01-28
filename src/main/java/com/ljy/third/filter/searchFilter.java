@@ -2,14 +2,18 @@ package com.ljy.third.filter;
 
 import java.io.IOException;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.HtmlUtils;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Component
-public class searchFilter implements Filter{
+public class searchFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -47,8 +51,6 @@ public class searchFilter implements Filter{
     public void destroy() {
         System.out.println("End URI checking");
     }
-    
-    public String XssFilter(String msearchWrd){ String resSearchWrd = HtmlUtils.htmlEscape(msearchWrd);  return resSearchWrd; }
     
     
 }
